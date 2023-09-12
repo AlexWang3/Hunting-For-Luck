@@ -8,7 +8,7 @@ namespace MetroidvaniaTools
     public class GameManager : MonoBehaviour
     {
         protected GameObject player;
-        protected PlayerStateManager character;
+        protected Character character;
 
         // Start is called before the first frame update
         void Start()
@@ -18,8 +18,8 @@ namespace MetroidvaniaTools
 
         protected virtual void Initialization()
         {
-            player = FindObjectOfType<PlayerStateManager>().gameObject;
-            character = player.GetComponent<PlayerStateManager>();
+            player = FindObjectOfType<Character>().gameObject;
+            character = player.GetComponent<Character>();
         }
 
         // Update is called once per frame

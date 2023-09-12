@@ -1,61 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Projectile : MonoBehaviour
+namespace MetroidvaniaTools
 {
-    [SerializeField] protected WeaponTypes weapon;
-    public bool fired;
-    public bool left;
-    public float projectileLifeTime;
-    private bool flipped;
+    public class Projectile : MonoBehaviour
+    {
+        [SerializeField] protected WeaponTypes weapon;
+        public bool fired;
+        public bool left;
+        public float projectileLifeTime;
+        private bool flipped;
 
-    protected virtual void OnEnable()
-    {
-        projectileLifeTime = weapon.lifeTime;
-    }
-    protected virtual void FixedUpdate()
-    {
-        Movement();
-    }
-
-    public virtual void Movement()
-    {
-        if(fired) 
+        protected virtual void OnEnable()
         {
-            projectileLifeTime -= Time.deltaTime;
-            if(projectileLifeTime > 0)
+            projectileLifeTime = weapon.lifeTime;
+        }
+        protected virtual void FixedUpdate()
+        {
+            Movement();
+        }
+
+        public virtual void Movement()
+        {
+            if(fired) 
             {
-                if(!left)
+                projectileLifeTime -= Time.deltaTime;
+                if(projectileLifeTime > 0)
                 {
-                    if (flipped)
+                    if(!left)
                     {
-                        flipped = false;
-                        transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                        if (flipped)
+                        {
+                            flipped = false;
+                            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                        }
+                        transform.Translate(Vector2.right * weapon.projectileSpeed * Time.deltaTime);
                     }
-                    transform.Translate(Vector2.right * weapon.projectileSpeed * Time.deltaTime);
+                    else 
+                    {
+                        if (!flipped)
+                        {
+                            flipped = true;
+                            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                        }
+                        transform.Translate(Vector2.left * weapon.projectileSpeed * Time.deltaTime);
+                    }
                 }
-                else 
+                else
                 {
-                    if (!flipped)
-                    {
-                        flipped = true;
-                        transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-                    }
-                    transform.Translate(Vector2.left * weapon.projectileSpeed * Time.deltaTime);
+                    DestroyProjectile();
                 }
-            }
-            else
-            {
-                DestroyProjectile();
             }
         }
+        
+        protected virtual void DestroyProjectile()
+        {
+            projectileLifeTime = weapon.lifeTime;
+            gameObject.SetActive(false);
+        }
     }
-    
-    protected virtual void DestroyProjectile()
-    {
-        projectileLifeTime = weapon.lifeTime;
-        gameObject.SetActive(false);
-    }
-}
 
+}
