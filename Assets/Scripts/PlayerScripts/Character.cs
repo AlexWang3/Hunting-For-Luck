@@ -9,13 +9,16 @@ namespace MetroidvaniaTools
         [HideInInspector] public bool isFacingLeft;
         [HideInInspector] public bool isJumping;
         [HideInInspector] public bool isGrounded;
+        [HideInInspector] public bool isShooting;
+        [HideInInspector] public bool isMeleeAttacking;
+
+        [HideInInspector] public InputManager input;
 
         protected Collider2D col;
         protected Rigidbody2D rb;
         protected Animator anim;
         protected HorizontalMovement movement;
         protected Jump jump;
-        protected InputManager input;
         protected ObjectPooler objectPooler;
         protected Weapon weapon;
 

@@ -39,7 +39,7 @@ namespace MetroidvaniaTools
 
         protected virtual bool CheckForJump()
         {
-            if (input.JumpPressed())
+            if (input.JumpPressed() && !character.isMeleeAttacking)
             {   
                 if (limitAirJumps && character.Falling(acceptedFallSpeed))
                 {

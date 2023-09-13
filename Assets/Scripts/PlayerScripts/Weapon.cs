@@ -20,7 +20,6 @@ namespace MetroidvaniaTools
         public float recoilAnimTime;
         [HideInInspector] public GameObject currentProjectile;
         private GameObject projectileParentFolder;
-        private bool isShooting;
         private bool keepShooting;
         private float shootCountDown;
         private float disableCountDown;
@@ -35,15 +34,15 @@ namespace MetroidvaniaTools
                 objectPooler.CreatePool(weapon, currentPool, projectileParentFolder);
             }
             aimingRightHand.enabled = false;
-            isShooting = false;
+            character.isShooting = false;
             keepShooting = false;
         }
 
         protected virtual void Update()
         {
-            if(input.WeaponFired())
+            if(input.WeaponFired() && !character.isMeleeAttacking)
             {
-                if (!isShooting)
+                if (!character.isShooting)
                 {
                     FireWeapon();
                 }
@@ -56,13 +55,13 @@ namespace MetroidvaniaTools
 
         protected virtual void FixedUpdate()
         {
-            if (isShooting)
+            if (character.isShooting)
             {
                 if (shootCountDown <= 0)
                 {
                     if (!keepShooting)
                     {
-                        isShooting = false;
+                        character.isShooting = false;
                     }
                     else 
                     {
@@ -77,7 +76,7 @@ namespace MetroidvaniaTools
                 }
             }
 
-            if (!isShooting && aimingRightHand.enabled) 
+            if (!character.isShooting && aimingRightHand.enabled) 
             {
                 if (disableCountDown <= 0)
                 {
@@ -92,7 +91,7 @@ namespace MetroidvaniaTools
 
         protected virtual void FireWeapon()
         {
-            isShooting = true;
+            character.isShooting = true;
             shootCountDown = shootInterval;
             disableCountDown = disableTime;
             aimTarget.position = aimStartPosition.position;

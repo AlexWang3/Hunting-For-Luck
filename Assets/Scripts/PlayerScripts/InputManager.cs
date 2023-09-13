@@ -9,6 +9,56 @@ namespace MetroidvaniaTools
         [SerializeField] protected KeyCode jump;
         [SerializeField] protected KeyCode weaponFired;
         [SerializeField] protected KeyCode attack;
+        [SerializeField] protected KeyCode down;
+        [SerializeField] protected KeyCode up;
+
+        public virtual bool DownHeld()
+        {
+            if (Input.GetKey(down))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+        public virtual bool UpHeld()
+        {
+            if (Input.GetKey(up))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public virtual bool DownPressed()
+        {
+            if (Input.GetKeyDown(down))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public virtual bool UpPressed()
+        {
+            if (Input.GetKeyDown(up))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public virtual bool JumpHeld()
         {

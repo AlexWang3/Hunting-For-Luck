@@ -42,8 +42,8 @@ namespace MetroidvaniaTools
         }
 
         protected virtual void Movement()
-        {
-            if (MovementPressed())
+        {   
+            if (MovementPressed() && !character.isMeleeAttacking)
             {
                 anim.SetBool("Moving", true);
                 acceleration = maxSpeed / timeTillMaxSpeed;
