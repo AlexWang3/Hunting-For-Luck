@@ -8,6 +8,8 @@ namespace MetroidvaniaTools
     {
         [SerializeField] protected float timeTillMaxSpeed;
         [SerializeField] protected float maxSpeed;
+        [SerializeField] protected float distanceToCollider;
+        [SerializeField] protected LayerMask collisionLayer;
 
         private float acceleration;
         private float currentSpeed;
@@ -59,6 +61,11 @@ namespace MetroidvaniaTools
                 currentSpeed = 0;
             }
             rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+            if ((rb.velocity.x > 0 && CollisionCheck(Vector2.right, distanceToCollider, collisionLayer))
+                || (rb.velocity.x < 0 && CollisionCheck(Vector2.left, distanceToCollider, collisionLayer)))
+            {
+                rb.velocity = new Vector2(.01f, rb.velocity.y);
+            }
         }
 
         protected virtual void CheckDirection()

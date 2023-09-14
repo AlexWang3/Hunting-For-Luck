@@ -9,12 +9,14 @@ namespace MetroidvaniaTools
         public float defaultForce = 300;
         public float upwardsForce = 600;
         public float movementTime = .1f;
-        
+        public float movementForce = 5000;
+
+
         private bool keepAttacking;
         private bool takeNextInput;
         private Animator meleeAnimator;
-        // 0 for reset, 1 for forward, 2 for downward
-        private int triggerInfo;
+        private int triggerInfo; // 0 for reset, 1 for forward, 2 for downward
+        private bool triggerMovement;
 
         protected override void Initialization()
         {
@@ -24,6 +26,7 @@ namespace MetroidvaniaTools
             keepAttacking = false;
             takeNextInput = false;
             triggerInfo = 0;
+            triggerMovement = false;
         }
 
         protected virtual void Update()
@@ -41,9 +44,29 @@ namespace MetroidvaniaTools
             }
         }
 
+        protected virtual void FixedUpdate()
+        {
+            if (triggerMovement)
+            {
+                triggerMovement = false;
+                rb.velocity = Vector2.zero;
+                if (triggerInfo == 1)
+                {
+                    if (character.isFacingLeft)
+                    {
+                        rb.AddForce(Vector2.left * movementForce);
+                    }
+                    else
+                    {
+                        rb.AddForce(Vector2.right * movementForce);
+                    }
+                }
+            }
+        }
+
+
         private void PerformMeleeAttack()
         {
-            rb.velocity = new Vector2(0, 0);
             character.isMeleeAttacking = true;
             takeNextInput = false;
             anim.SetBool("MeleeAttack", true);
@@ -96,6 +119,7 @@ namespace MetroidvaniaTools
         private void TriggerMeleeWeapon()
         {
             takeNextInput = true;
+            triggerMovement = true;
             switch (triggerInfo)
             {
                 case 1:

@@ -60,7 +60,7 @@ namespace MetroidvaniaTools
                 }
                 collided = true;
             }
-            objHealth.Damage(damageAmount);
+            objHealth.DealDamage(damageAmount);
             StartCoroutine(NoLongerColliding());
         }
 

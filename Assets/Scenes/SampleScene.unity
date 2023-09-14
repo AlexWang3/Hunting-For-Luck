@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44472f74e834a04b9f6d884583625c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 20
 --- !u!61 &13168564
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -529,9 +529,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af6439bd3b53dd41bd08260790fc8ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthPoints: 100
   damageable: 0
-  healthAmount: 100
-  invulnerabilityTime: 0.2
+  iFrameTime: 0.5
+  healthPoints: 0
+  left: 0
+  hit: 0
   giveUpwardForce: 1
 --- !u!61 &504984983
 BoxCollider2D:
@@ -1140,9 +1143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af6439bd3b53dd41bd08260790fc8ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthPoints: 100
   damageable: 0
-  healthAmount: 100
-  invulnerabilityTime: 0.2
+  iFrameTime: 0.5
+  healthPoints: 0
+  left: 0
+  hit: 0
   giveUpwardForce: 0
 --- !u!61 &1537933651
 BoxCollider2D:
@@ -1318,9 +1324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af6439bd3b53dd41bd08260790fc8ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthPoints: 100
   damageable: 1
-  healthAmount: 3
-  invulnerabilityTime: 0
+  iFrameTime: 0.2
+  healthPoints: 0
+  left: 0
+  hit: 0
   giveUpwardForce: 1
 --- !u!61 &1762187303
 BoxCollider2D:
@@ -1764,6 +1773,10 @@ MonoBehaviour:
   input: {fileID: 0}
   timeTillMaxSpeed: 0
   maxSpeed: 20
+  distanceToCollider: 0.05
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &1790039488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1851,9 +1864,10 @@ MonoBehaviour:
   isShooting: 0
   isMeleeAttacking: 0
   input: {fileID: 0}
-  defaultForce: 350
+  defaultForce: 600
   upwardsForce: 1000
   movementTime: 0.1
+  movementForce: 5000
 --- !u!1 &1883190478
 GameObject:
   m_ObjectHideFlags: 0
