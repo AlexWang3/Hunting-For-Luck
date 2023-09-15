@@ -6,6 +6,8 @@ namespace MetroidvaniaTools
     public class Projectile : MonoBehaviour
     {
         [SerializeField] protected WeaponTypes weapon;
+        [SerializeField] protected int damageAmount;
+        [SerializeField] LayerMask damageLayers;
         public bool fired;
         public bool left;
         public float projectileLifeTime;
@@ -52,7 +54,20 @@ namespace MetroidvaniaTools
                 }
             }
         }
-        
+
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
+        {
+            if ((1 << collision.gameObject.layer & damageLayers) != 0)
+            {
+                if (collision.gameObject.GetComponent<Health>() != null)
+                {
+                    collision.gameObject.GetComponent<Health>().DealDamage(damageAmount);
+                }
+                DestroyProjectile();
+            }
+
+        }
+
         protected virtual void DestroyProjectile()
         {
             projectileLifeTime = weapon.lifeTime;

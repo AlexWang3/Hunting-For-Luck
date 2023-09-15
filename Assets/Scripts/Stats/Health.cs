@@ -23,20 +23,10 @@ namespace MetroidvaniaTools
         [HideInInspector] public bool left;
         //A bool that manages the momement the object is hit
         [HideInInspector] public bool hit;
-        //A reference to the Rigidbody on the object
-        protected Rigidbody2D rb;
 
         protected override void Initialization()
         {
             base.Initialization();
-            if (gameObject.GetComponent<Rigidbody2D>())
-            {
-                rb = GetComponent<Rigidbody2D>();
-            }
-            else
-            {
-                rb = null;
-            }
             //This is more specific to enemies so that when a scene loads, all the enemies have max health again
             healthPoints = maxHealthPoints;
         }
@@ -65,24 +55,7 @@ namespace MetroidvaniaTools
         //Manages all the damage effects that should happen when damage is dealt
         public virtual void HandleDamageMovement()
         {
-            //If the hit bool is true
-            if (hit)
-            {
-                /*
-                //Cancels movement to absorb the hit
-                rb.velocity = Vector2.zero;
-                //Handles vertical and horizontal knockback depending on what direction the Player is facing
-                rb.AddForce(Vector2.up * verticalDamageForce);
-                if (!left)
-                {
-                    rb.AddForce(Vector2.right * horizontalDamageForce);
-                }
-                else
-                {
-                    rb.AddForce(Vector2.left * horizontalDamageForce);
-                }
-                */
-            }
+            
         }
 
         //Method that cancels the hit and invulnerable bools so the object can be hit again

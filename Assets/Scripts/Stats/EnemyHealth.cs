@@ -27,7 +27,7 @@ namespace MetroidvaniaTools
         //This revives the enemy quickly so you can test out certain features when building game; this method probably shouldn't exist in real game
         protected virtual void Revive()
         {
-            gameObject.GetComponent<Health>().healthPoints = 100;
+            gameObject.GetComponent<Health>().healthPoints = gameObject.GetComponent<Health>().maxHealthPoints;
             gameObject.SetActive(true);
         }
 
