@@ -14,6 +14,8 @@ namespace MetroidvaniaTools
         //How much the time value needs to be adjusted to better visualize when the player is hit; this is an effects feature, not needed for actual gameplay
         [SerializeField] protected float slowDownSpeed;
         [SerializeField] protected float forceApplyTime;
+        [SerializeField] protected int recoverAmount;
+        [SerializeField] protected float recoverTime;
 
         //A reference to all the different sprites that make up the Player; this is used to make the Player slightly transparent when hit to visualize the Player received damage
         protected SpriteRenderer[] sprites;
@@ -27,7 +29,8 @@ namespace MetroidvaniaTools
         [HideInInspector] public float verticalDamageForce;
         [HideInInspector] public float horizontalDamageForce;
 
-        private float forceApplyCountdown;
+        private bool applyForce;
+        private float recoverTimeCountdown;
         private Rigidbody2D rb;
 
         protected override void Initialization()
@@ -48,6 +51,7 @@ namespace MetroidvaniaTools
         {
             base.FixedUpdate();
             HandleIFrames();
+            HandleRecovery();
         }
 
         public override void DealDamage(int amount)
@@ -62,7 +66,6 @@ namespace MetroidvaniaTools
                 }
                 //If not invulnerable or dashing, then damage is dealt
                 base.DealDamage(amount);
-                forceApplyCountdown = forceApplyTime;
                 //If health is less than or equal to zero, we manage the Player death state
                 if (healthPoints <= 0)
                 {
@@ -74,7 +77,15 @@ namespace MetroidvaniaTools
                 //Puts the Player into a damage state, and quickly sets everything up so we can handle all the damage effects
                 originalTimeScale = Time.timeScale;
                 hit = true;
+                //Slows down time to the damage speed
+                Time.timeScale = slowDownSpeed;
+                applyForce = true;
+                // Cancle Iframe
                 Invoke("Cancel", iFrameTime);
+                //Cancle SlowDown
+                Invoke("HitCancel", slowDownTimeAmount);
+                // Cancle force Apply
+                Invoke("ForceCancel", forceApplyTime);
             }
         }
 
@@ -82,9 +93,7 @@ namespace MetroidvaniaTools
         {
             if (hit)
             {
-                //Slows down time to the damage speed
-                Time.timeScale = slowDownSpeed;
-                if (forceApplyCountdown >= 0)
+                if (applyForce)
                 {
                     rb.velocity = Vector2.zero;
                     //Handles vertical and horizontal knockback depending on what direction the Player is facing
@@ -97,7 +106,6 @@ namespace MetroidvaniaTools
                     {
                         rb.AddForce(Vector2.left * horizontalDamageForce);
                     }
-                    forceApplyCountdown -= Time.deltaTime;
                 }
                 else
                 {
@@ -108,8 +116,6 @@ namespace MetroidvaniaTools
                         character.transform.position = teleportPosition.position;
                     }
                 }
-                //Calls method that cancels damage state after the set amount of time
-                Invoke("HitCancel", slowDownTimeAmount);
             }
 
         }
@@ -140,10 +146,39 @@ namespace MetroidvaniaTools
             }
         }
 
+        protected virtual void HandleRecovery()
+        {
+            if (character.isDead)
+            {
+                return;
+            }
+            if (hit)
+            {
+                recoverTimeCountdown = recoverTime;
+            }
+            else
+            {
+                if (recoverTimeCountdown > 0)
+                {
+                    recoverTimeCountdown -= Time.deltaTime;
+                }
+                else
+                {
+                    recoverTimeCountdown = recoverTime;
+                    GainCurrentHealth(recoverAmount);
+                }
+            }
+        }
+
         //Method that removes player from Damage state
         protected virtual void HitCancel()
         {
             Time.timeScale = originalTimeScale;
+        }
+
+        protected virtual void ForceCancel()
+        {
+            applyForce = false;
         }
 
         //This method is called when the Player grabs a health item and it restores Player health; it is called from the HealthConsumable script when player enters trigger collider

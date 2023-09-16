@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BaseProjectile
   m_EditorClassIdentifier: 
   projectile: {fileID: 552236879467320290, guid: 9cb7124fa6cfc5141afcd054893bb2b2, type: 3}
-  projectileSpeed: 100
+  projectileSpeed: 50
   amountToPool: 20
   lifeTime: 2
