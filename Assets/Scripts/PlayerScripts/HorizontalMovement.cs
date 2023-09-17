@@ -46,10 +46,12 @@ namespace MetroidvaniaTools
 
         protected virtual void Movement()
         {   
+            /*
             if (character.isGettingHit)
             {
                 return;
             }
+            */
             if (MovementPressed() && !character.isMeleeAttacking)
             {
                 anim.SetBool("Moving", true);
