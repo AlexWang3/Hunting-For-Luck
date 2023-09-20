@@ -75,7 +75,7 @@ namespace MetroidvaniaTools
                 AdditionalAir();
                 if (numberOfJumpsLeft == maxJumps - 2)
                 {
-                    anim.SetBool("DoubleJump", true);
+                    //anim.SetBool("DoubleJump", true);
                 }
             }
             if (rb.velocity.y > maxJumpSpeed)
@@ -122,7 +122,7 @@ namespace MetroidvaniaTools
             if (CollisionCheck(Vector2.down, distanceToCollider, collisionLayer) && !character.isJumping)
             {
                 anim.SetBool("Grounded", true);
-                anim.SetBool("DoubleJump", false);
+                //anim.SetBool("DoubleJump", false);
                 character.isGrounded = true;
                 numberOfJumpsLeft = maxJumps;
                 fallCountDown = glideTime;
@@ -136,7 +136,7 @@ namespace MetroidvaniaTools
                     rb.velocity = new Vector2(rb.velocity.x, maxFallSpeed);
                 }
             }
-                anim.SetFloat("VerticalSpeed", rb.velocity.y);
+            anim.SetFloat("VerticalSpeed", rb.velocity.y);
         }
     }
 }

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 namespace MetroidvaniaTools
 {
     public class Character : MonoBehaviour
     {
+        
         [HideInInspector] public bool isFacingLeft;
         [HideInInspector] public bool isJumping;
         [HideInInspector] public bool isGrounded;
@@ -38,10 +40,10 @@ namespace MetroidvaniaTools
         {
             col = GetComponent<Collider2D>();
             rb = GetComponent<Rigidbody2D>();
-            anim = GetComponent<Animator>();
             movement = GetComponent<HorizontalMovement>();
             jump = GetComponent<Jump>();
             input = GetComponent<InputManager>();
+            anim = GetComponent<Animator>();
             objectPooler = ObjectPooler.Instance;
             weapon = GetComponent<Weapon>();
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
