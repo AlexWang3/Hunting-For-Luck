@@ -43,7 +43,7 @@ namespace MetroidvaniaTools
             movement = GetComponent<HorizontalMovement>();
             jump = GetComponent<Jump>();
             input = GetComponent<InputManager>();
-            anim = GetComponent<Animator>();
+            anim = GetComponentInChildren<Animator>();
             objectPooler = ObjectPooler.Instance;
             weapon = GetComponent<Weapon>();
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
