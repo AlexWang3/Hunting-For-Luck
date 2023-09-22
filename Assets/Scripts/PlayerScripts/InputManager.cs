@@ -1,126 +1,90 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace MetroidvaniaTools
 { 
-    public class InputManager : MonoBehaviour
-    {
-        [HideInInspector] public bool disabled = false;
-        [SerializeField] protected KeyCode jump;
-        [SerializeField] protected KeyCode weaponFired;
-        [SerializeField] protected KeyCode attack;
-        [SerializeField] protected KeyCode down;
-        [SerializeField] protected KeyCode up;
+    public class InputManager : MonoBehaviour {
+        public static InputManager Instance;
 
-        public virtual float GetHorizontal()
-        {
-            if (disabled) return 0;
-            return Input.GetAxis("Horizontal");
+        public void Awake() {
+            playerInput = GetComponent<PlayerInput>();
+            if (Instance) {
+                Debug.Log("Mutiple InputManager");
+            }
+            if (!Instance) {
+                Instance = this;
+            }
         }
 
-        public virtual bool DownHeld()
-        {
-            if (disabled) return false;
-            if (Input.GetKey(down))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public void DisableInput() {
+            playerInput.DeactivateInput();
+        }
+
+        public void EnableInput() {
+            playerInput.ActivateInput();
+        }
+
+        public PlayerInput playerInput;
+        // Change the way of disabling it;
+        [HideInInspector] public bool disabled = false;
+        public Vector2 moveInput;
+        public bool jump;
+        public bool meleeAttack;
+        public bool rangeAttack;
+        public virtual float GetHorizontal() {
+            return moveInput.x;
+        }
+        // input
+        #region Input
+
+        public void OnMove(InputAction.CallbackContext ctx) {
+            moveInput = ctx.ReadValue<Vector2>();
+        }
+
+        public void OnJump(InputAction.CallbackContext ctx) {
+            jump =ctx.performed;
+        }
+
+        public void OnMeleeAttack(InputAction.CallbackContext ctx) {
+            meleeAttack = ctx.performed;
+        }
+        public void OnRangeAttack(InputAction.CallbackContext ctx) {
+            rangeAttack = ctx.performed;
+        }
+
+        private void Update() {
+            Debug.Log(moveInput);
+        }
+        #endregion
+
+        public virtual bool DownHeld() {
+            return moveInput.y < 0;
         }
         
         public virtual bool UpHeld()
         {
-            if (disabled) return false;
-            if (Input.GetKey(up))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return moveInput.y > 0;
+        }
+        
+
+        public virtual bool JumpHeld() {
+            return jump;
         }
 
-        public virtual bool DownPressed()
-        {
-            if (disabled) return false;
-            if (Input.GetKeyDown(down))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public virtual bool JumpPressed() {
+            return jump;
         }
 
-        public virtual bool UpPressed()
-        {
-            if (disabled) return false;
-            if (Input.GetKeyDown(up))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public virtual bool AttackPressed() {
+            return meleeAttack;
         }
 
-        public virtual bool JumpHeld()
-        {
-            if (disabled) return false;
-            if (Input.GetKey(jump))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public virtual bool JumpPressed()
-        {
-            if (disabled) return false;
-            if (Input.GetKeyDown(jump))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public virtual bool AttackPressed()
-        {
-            if (disabled) return false;
-            if (Input.GetKeyDown(attack))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public virtual bool WeaponFired()
-        {
-            if (disabled) return false;
-            if (Input.GetKeyDown(weaponFired))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public virtual bool WeaponFired() {
+            return rangeAttack;
         }
     }
 
