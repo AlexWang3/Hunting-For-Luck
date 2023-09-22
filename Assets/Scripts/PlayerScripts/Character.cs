@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,13 @@ using Spine.Unity;
 
 namespace MetroidvaniaTools
 {
-    public class Character : MonoBehaviour
-    {
-        
+    public class Character : MonoBehaviour {
+        public static Character Instance;
+
+        public void Awake() {
+            Instance = this;
+        }
+
         [HideInInspector] public bool isFacingLeft;
         [HideInInspector] public bool isJumping;
         [HideInInspector] public bool isGrounded;
@@ -20,13 +25,14 @@ namespace MetroidvaniaTools
         [HideInInspector] public InputManager input;
         [HideInInspector] public Rigidbody2D rb;
 
-        protected Collider2D col;
-        protected Animator anim;
-        protected HorizontalMovement movement;
-        protected Jump jump;
-        protected ObjectPooler objectPooler;
-        protected Weapon weapon;
-
+        public Collider2D col;
+        public Animator anim;
+        public HorizontalMovement movement;
+        public Jump jump;
+        public ObjectPooler objectPooler;
+        public Weapon weapon;
+        public WeaponAttackManager WAM;
+        public MeleeAttackManager MAM;
 
         private Vector2 facingLeft;
         
@@ -47,6 +53,8 @@ namespace MetroidvaniaTools
             objectPooler = ObjectPooler.Instance;
             weapon = GetComponent<Weapon>();
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
+            MAM = GetComponent<MeleeAttackManager>();
+            WAM = GetComponent<WeaponAttackManager>();
         }
 
         protected virtual void Flip()

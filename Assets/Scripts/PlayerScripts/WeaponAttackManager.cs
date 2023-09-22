@@ -40,7 +40,11 @@ namespace MetroidvaniaTools
 
         protected virtual void Update()
         {
-            if(input.WeaponFired() && !character.isMeleeAttacking)
+            
+        }
+        // Shoot bullet
+        public void RangeFire() {
+            if(!character.isMeleeAttacking)
             {
                 if (!character.isShooting)
                 {

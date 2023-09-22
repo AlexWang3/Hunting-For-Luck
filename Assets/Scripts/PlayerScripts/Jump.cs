@@ -32,14 +32,15 @@ namespace MetroidvaniaTools
         }
 
         // Update is called once per frame
-        protected virtual void Update()
+       /* protected virtual void Update()
         {
             CheckForJump();
         }
-
-        protected virtual bool CheckForJump()
+*/
+        public virtual bool CheckForJump()
         {
-            if (input.JumpPressed() && !character.isMeleeAttacking)
+            //input.JumpPressed()&& 
+            if (!character.isMeleeAttacking)
             {   
                 if (limitAirJumps && character.Falling(acceptedFallSpeed))
                 {

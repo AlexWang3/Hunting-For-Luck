@@ -35,24 +35,36 @@ namespace MetroidvaniaTools
         public bool jump;
         public bool meleeAttack;
         public bool rangeAttack;
+        public bool jumpDown;
+        public bool meleeAttackDown;
         public virtual float GetHorizontal() {
             return moveInput.x;
         }
         // input
         #region Input
-
+    
         public void OnMove(InputAction.CallbackContext ctx) {
             moveInput = ctx.ReadValue<Vector2>();
         }
 
         public void OnJump(InputAction.CallbackContext ctx) {
-            jump =ctx.performed;
+            if (ctx.started) {
+                Character.Instance.jump.CheckForJump();
+            }
+            jump = ctx.performed;
         }
 
         public void OnMeleeAttack(InputAction.CallbackContext ctx) {
+            if (ctx.started) {
+                Character.Instance.MAM.MeleeAttack();
+            }
             meleeAttack = ctx.performed;
         }
         public void OnRangeAttack(InputAction.CallbackContext ctx) {
+            if (ctx.started) {
+                Character.Instance.WAM.RangeFire();
+            }
+
             rangeAttack = ctx.performed;
         }
 
@@ -76,7 +88,7 @@ namespace MetroidvaniaTools
         }
 
         public virtual bool JumpPressed() {
-            return jump;
+            return jumpDown;
         }
 
         public virtual bool AttackPressed() {

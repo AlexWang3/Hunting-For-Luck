@@ -28,10 +28,9 @@ namespace MetroidvaniaTools
             triggerInfo = 0;
             triggerMovement = false;
         }
-
-        protected virtual void Update()
-        {
-            if (input.AttackPressed() && !character.isShooting)
+        
+        public void MeleeAttack() {
+            if (!character.isShooting)
             {
                 if (!character.isMeleeAttacking)
                 {
@@ -86,6 +85,7 @@ namespace MetroidvaniaTools
             if (input.DownHeld() && !character.isGrounded)
             {
                 anim.SetTrigger("DownwardMelee");
+                
                 triggerInfo = 2;
             }
 
