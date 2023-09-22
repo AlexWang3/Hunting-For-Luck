@@ -57,7 +57,7 @@ namespace MetroidvaniaTools
         }
 
         private void Update() {
-            Debug.Log(moveInput);
+            // Debug.Log(moveInput);
         }
         #endregion
 

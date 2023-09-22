@@ -102,7 +102,7 @@ namespace MetroidvaniaTools
             }
         }
 
-        private void FinishMeleeAttack()
+        public void FinishMeleeAttack()
         {
             if (!keepAttacking)
             {
@@ -116,7 +116,7 @@ namespace MetroidvaniaTools
             }
         }
 
-        private void TriggerMeleeWeapon()
+        public void TriggerMeleeWeapon()
         {
             takeNextInput = true;
             triggerMovement = true;

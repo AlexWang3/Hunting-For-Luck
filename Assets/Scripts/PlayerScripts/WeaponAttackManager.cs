@@ -48,6 +48,7 @@ namespace MetroidvaniaTools
                 }
                 else 
                 {
+                    Debug.Log("Keep Shooting Set");
                     keepShooting = true;
                 }
             }
@@ -102,7 +103,7 @@ namespace MetroidvaniaTools
             
         }
 
-        protected void TriggerPlaceProjectile()
+        public void TriggerPlaceProjectile()
         {
             currentProjectile = objectPooler.GetObject(currentPool);
             if(currentProjectile != null) 
