@@ -52,7 +52,6 @@ namespace MetroidvaniaTools
                 }
                 else 
                 {
-                    Debug.Log("Keep Shooting Set");
                     keepShooting = true;
                 }
             }
