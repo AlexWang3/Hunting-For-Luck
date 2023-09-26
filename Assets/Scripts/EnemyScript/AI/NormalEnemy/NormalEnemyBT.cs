@@ -17,8 +17,10 @@ namespace MetroidvaniaTools
         [SerializeField] private float P_TimeTillMaxSpeed;
         [SerializeField] private float P_MaxSpeed;
         [SerializeField] private LayerMask collidersToTurnAroundOn;
-        [SerializeField] private float unitPatrolTime;
-        [SerializeField] private float unitIdleTime;
+        [SerializeField] private float minPatrolTime;
+        [SerializeField] private float maxPatrolTime;
+        [SerializeField] private float minIdleTime;
+        [SerializeField] private float maxIdleTime;
         
         [Header("Chasing Parameters")]
         [SerializeField] private float detectRange;
@@ -30,26 +32,19 @@ namespace MetroidvaniaTools
             enemyCharacter = GetComponent<NormalEnemyCharacter>();
             enemyHealth = GetComponent<EnemyHealth>();
             base.Initialization();
-            enemyCharacter.unitPatrolTime = unitPatrolTime;
-            enemyCharacter.unitIdleTime = unitIdleTime;
-            enemyCharacter.patrolCountDown = unitPatrolTime;
-            enemyCharacter.idleCountDown = unitIdleTime;
         }
 
         protected override Node SetupTree()
         {
             Node chase = new Chase(enemyCharacter, detectRange, C_TimeTillMaxSpeed, C_MaxSpeed);
             Node patrol = new Patrol(enemyCharacter, turnAroundOnCollision, collidersToTurnAroundOn,
-                P_TimeTillMaxSpeed, P_MaxSpeed);
-            Node idle = new Idle(enemyCharacter);
+                P_TimeTillMaxSpeed, P_MaxSpeed, minPatrolTime, maxPatrolTime, minIdleTime, maxIdleTime);
+            // Node idle = new Idle(enemyCharacter);
 
             Node root = new Selector(new List<Node>
             {
                 chase,
-                new Successor(new RandomSelector( new List<Node>
-                {
-                    patrol, idle
-                }))
+                patrol
             });
             return root;
         }

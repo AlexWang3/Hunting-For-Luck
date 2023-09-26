@@ -26,12 +26,10 @@ namespace MetroidvaniaTools
             }
             if (!enemyCharacter.isFighting)
             {
-                enemyCharacter.resetNotFightingTime();
                 enemyCharacter.isFighting = true;   
             }
             enemyCharacter.FacingPlayer();
             enemyCharacter.GeneralMovement(timeTillMaxSpeed, maxSpeed);
-            
             
             state = NodeState.SUCCESS;
             return state;

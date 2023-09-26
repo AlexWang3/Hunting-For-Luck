@@ -12,16 +12,26 @@ namespace MetroidvaniaTools
         private LayerMask collidersToTurnAroundOn;
         private float timeTillMaxSpeed;
         private float maxSpeed;
-        private float unitPatrolTime;
+        private float minPatrolTime;
+        private float maxPatrolTime;
+        private float minIdleTime;
+        private float maxIdleTime;
         
         // Local
-        // private Unity.Mathematics.Random rnd = new Unity.Mathematics.Random();
+        private float patrolCountDown;
+        private float idleCountDown;
+        private bool patrolling;
 
         public Patrol(NormalEnemyCharacter enemyCharacter, bool turnAroundOnCollision,
-            LayerMask collidersToTurnAroundOn, float timeTillMaxSpeed, float maxSpeed)
-            => (this.enemyCharacter, this.turnAroundOnCollision, this.collidersToTurnAroundOn
-                    , this.timeTillMaxSpeed, this.maxSpeed) =
-                (enemyCharacter, turnAroundOnCollision, collidersToTurnAroundOn, timeTillMaxSpeed, maxSpeed);
+            LayerMask collidersToTurnAroundOn, float timeTillMaxSpeed, float maxSpeed, 
+            float minPatrolTime, float maxPatrolTime, float minIdleTime, float maxIdleTime)
+            => (this.enemyCharacter, 
+                    this.turnAroundOnCollision, this.collidersToTurnAroundOn,
+                    this.timeTillMaxSpeed, this.maxSpeed,
+                    this.minPatrolTime, this.maxPatrolTime,
+                    this.minIdleTime, this.maxIdleTime) =
+                (enemyCharacter, turnAroundOnCollision, collidersToTurnAroundOn, timeTillMaxSpeed, maxSpeed, 
+                    minPatrolTime, maxPatrolTime, minIdleTime, maxIdleTime);
         
         
         public override NodeState Evaluate()
@@ -29,26 +39,35 @@ namespace MetroidvaniaTools
             if (enemyCharacter.isFighting)
             {
                 enemyCharacter.isFighting = false;
-                state = NodeState.FAILURE;
-                return state;
+                idleCountDown = Random.Range(minIdleTime, maxIdleTime);
+                patrolling = false;
             }
             
-            if (enemyCharacter.patrolCountDown <= 0)
+            if (patrolling && patrolCountDown <= 0)
             {
-                enemyCharacter.patrolCountDown = enemyCharacter.unitPatrolTime;
-                state = NodeState.SUCCESS;
-                return state;
+                idleCountDown = Random.Range(minIdleTime, maxIdleTime);
+                patrolling = false;
             }
 
-            if (enemyCharacter.patrolCountDown == enemyCharacter.unitPatrolTime)
+            if (!patrolling && idleCountDown <= 0)
             {
+                patrolCountDown = Random.Range(minPatrolTime, maxPatrolTime);
                 RandomFlip();
+                patrolling = true;
             }
-            
-            CheckForTurnAround();
-            enemyCharacter.GeneralMovement(timeTillMaxSpeed, maxSpeed);
-            enemyCharacter.patrolCountDown -= Time.deltaTime;
-            state = NodeState.RUNNING;
+
+            if (patrolling)
+            {
+                CheckForTurnAround();
+                enemyCharacter.GeneralMovement(timeTillMaxSpeed, maxSpeed);
+                patrolCountDown -= Time.deltaTime;   
+            }
+            else
+            {
+                enemyCharacter.rb.velocity = new Vector2(0, enemyCharacter.rb.velocity.y);
+                idleCountDown -= Time.deltaTime;
+            }
+            state = NodeState.SUCCESS;
             return state;
         }
 
@@ -77,6 +96,5 @@ namespace MetroidvaniaTools
             if (Random.Range(0, 2) == 0)
                 enemyCharacter.Flip();
         }
-        
     }   
 }

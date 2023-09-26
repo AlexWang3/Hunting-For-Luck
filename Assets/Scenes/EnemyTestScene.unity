@@ -954,8 +954,10 @@ MonoBehaviour:
   collidersToTurnAroundOn:
     serializedVersion: 2
     m_Bits: 640
-  unitPatrolTime: 2.5
-  unitIdleTime: 0.5
+  minPatrolTime: 1
+  maxPatrolTime: 5
+  minIdleTime: 0.5
+  maxIdleTime: 2
   detectRange: 20
   C_TimeTillMaxSpeed: 0
   C_MaxSpeed: 10
@@ -987,10 +989,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   isFighting: 0
-  patrolCountDown: 0
-  idleCountDown: 0
-  unitPatrolTime: 0
-  unitIdleTime: 0
 --- !u!1 &462487445
 GameObject:
   m_ObjectHideFlags: 0

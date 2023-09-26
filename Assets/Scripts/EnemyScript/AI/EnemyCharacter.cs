@@ -18,6 +18,8 @@ namespace MetroidvaniaTools
         [HideInInspector] public LayerMask playerLayer;
         [HideInInspector] public LayerMask enemyLayer;
         [HideInInspector] public LayerMask boundLayer;
+
+        [HideInInspector] public bool isFighting;
         
         private float acceleration;
         private float moveDirection;
@@ -41,6 +43,8 @@ namespace MetroidvaniaTools
             if (!canCollideWithPlayer)
                 Physics2D.IgnoreCollision(col, playerCollider);
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"));
+
+            isFighting = true;
         }
         
         public virtual bool CollisionCheck(Vector2 direction, float distance, LayerMask collision)
