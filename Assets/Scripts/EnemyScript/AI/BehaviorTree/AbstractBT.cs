@@ -1,20 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using MetroidvaniaTools;
 using UnityEngine;
 
 namespace BehaviorTree
 {
-    public abstract class BehaviorTree : MonoBehaviour
+    public abstract class AbstractBT : MonoBehaviour
     {
 
         private Node _root = null;
 
         protected void Start()
         {
+            Initialization();
+        }
+
+        protected virtual void Initialization()
+        {
             _root = SetupTree();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_root != null)
                 _root.Evaluate();
@@ -23,5 +30,4 @@ namespace BehaviorTree
         protected abstract Node SetupTree();
 
     }
-
 }

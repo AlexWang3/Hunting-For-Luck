@@ -4,26 +4,23 @@ using UnityEngine;
 
 namespace BehaviorTree
 {
-    public class Selector : Node
+    public class Sequence : Node
     {
         private int curNodeIndex;
+        public Sequence(List<Node> children) : base(children) { curNodeIndex = 0;  }
 
-        public Selector() : base() { curNodeIndex = 0; }
-
-        public Selector(List<Node> children) : base(children) { curNodeIndex = 0; }
-        
         public override NodeState Evaluate()
         {
             if (curNodeIndex >= children.Count)
             {
-                Debug.LogError("Unexpected evaluate for selector at index " + curNodeIndex);
+                Debug.LogError("Unexpected evaluate for sequence at index " + curNodeIndex);
                 return NodeState.FAILURE;
             }
             
             state = children[curNodeIndex].Evaluate();
-            if (state != NodeState.FAILURE)
+            if (state != NodeState.SUCCESS)
             {
-                if (state == NodeState.SUCCESS)
+                if (state == NodeState.FAILURE)
                     curNodeIndex = 0;
                 return state;
             }
@@ -34,21 +31,22 @@ namespace BehaviorTree
                 switch (children[curNodeIndex].Evaluate())
                 {
                     case NodeState.FAILURE:
-                        break;
-                    case NodeState.SUCCESS:
-                        state = NodeState.SUCCESS;
+                        state = NodeState.FAILURE;
                         curNodeIndex = 0;
                         return state;
+                    case NodeState.SUCCESS:
+                        break;
                     case NodeState.RUNNING:
                         state = NodeState.RUNNING;
                         return state;
                     default:
-                        break;
+                        state = NodeState.SUCCESS;
+                        return state;
                 }
                 curNodeIndex++;
             }
 
-            state = NodeState.FAILURE;
+            state = NodeState.SUCCESS;
             return state;
         }
 

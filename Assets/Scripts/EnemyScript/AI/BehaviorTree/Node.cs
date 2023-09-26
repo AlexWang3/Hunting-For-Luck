@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using MetroidvaniaTools;
+using UnityEngine;
 
 namespace BehaviorTree
 {
@@ -29,7 +31,7 @@ namespace BehaviorTree
                 _Attach(child);
         }
 
-        private void _Attach(Node node)
+        protected void _Attach(Node node)
         {
             node.parent = this;
             children.Add(node);

@@ -1,22 +1,19 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
+using UnityEngine;
 
 namespace BehaviorTree
 {
     public class RandomSelector : Node
     {
         private int curNodeIndex;
-        private Random rnd;
 
         public RandomSelector() : base() { 
             curNodeIndex = -1;
-            rnd = new Random();
         }
 
         public RandomSelector(List<Node> children) : base(children)
         {
             curNodeIndex = -1;
-            rnd = new Random();
         }
         
         public override NodeState Evaluate()
@@ -61,7 +58,7 @@ namespace BehaviorTree
 
         private int GetRandomIndex()
         {
-            return rnd.NextInt(children.Count);
+            return Random.Range(0, children.Count);
         }
 
         private List<int> GetRandomShuffle()
@@ -73,7 +70,7 @@ namespace BehaviorTree
             while (n > 1)
             {
                 n--;  
-                int k = rnd.NextInt(n + 1);
+                int k = Random.Range(0, n + 1);
                 (result[k], result[n]) = (result[n], result[k]);
             }
             return result;
