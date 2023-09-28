@@ -18,5 +18,6 @@ public class TestLoad : MonoBehaviour
     {
         Debug.Log("You have clicked the button!");
         SceneManager.LoadScene(newGameScene);
+        SceneManager.LoadScene("AlwaysLoad", LoadSceneMode.Additive);
     }
 }
