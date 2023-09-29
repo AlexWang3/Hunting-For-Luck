@@ -68,6 +68,10 @@ namespace MetroidvaniaTools
             rangeAttack = ctx.performed;
         }
 
+        public void OnDash(InputAction.CallbackContext ctx) {
+            
+        }
+
         private void Update() {
             // Debug.Log(moveInput);
         }

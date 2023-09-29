@@ -23,8 +23,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3624256188755994782}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.66, y: 3.73, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.6599998, y: 3.7299995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,7 +71,7 @@ Transform:
   m_Children:
   - {fileID: 8771209097706209993}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2505919318508841146
 Rigidbody2D:
@@ -153,6 +153,8 @@ MonoBehaviour:
   jump: 0
   meleeAttack: 0
   rangeAttack: 0
+  jumpDown: 0
+  meleeAttackDown: 0
 --- !u!114 &7935844671435109377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +177,14 @@ MonoBehaviour:
   isDead: 0
   input: {fileID: 0}
   rb: {fileID: 0}
+  col: {fileID: 0}
+  anim: {fileID: 0}
+  movement: {fileID: 0}
+  jump: {fileID: 0}
+  objectPooler: {fileID: 0}
+  weapon: {fileID: 0}
+  WAM: {fileID: 0}
+  MAM: {fileID: 0}
 --- !u!114 &1691689124750749858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +207,14 @@ MonoBehaviour:
   isDead: 0
   input: {fileID: 0}
   rb: {fileID: 0}
+  col: {fileID: 0}
+  anim: {fileID: 0}
+  movement: {fileID: 0}
+  jump: {fileID: 0}
+  objectPooler: {fileID: 0}
+  weapon: {fileID: 0}
+  WAM: {fileID: 0}
+  MAM: {fileID: 0}
   timeTillMaxSpeed: 0
   maxSpeed: 20
   distanceToCollider: 0.05
@@ -225,6 +243,14 @@ MonoBehaviour:
   isDead: 0
   input: {fileID: 0}
   rb: {fileID: 0}
+  col: {fileID: 0}
+  anim: {fileID: 0}
+  movement: {fileID: 0}
+  jump: {fileID: 0}
+  objectPooler: {fileID: 0}
+  weapon: {fileID: 0}
+  WAM: {fileID: 0}
+  MAM: {fileID: 0}
   limitAirJumps: 0
   maxJumps: 1
   jumpForce: 300
@@ -288,6 +314,14 @@ MonoBehaviour:
   isDead: 0
   input: {fileID: 0}
   rb: {fileID: 0}
+  col: {fileID: 0}
+  anim: {fileID: 0}
+  movement: {fileID: 0}
+  jump: {fileID: 0}
+  objectPooler: {fileID: 0}
+  weapon: {fileID: 0}
+  WAM: {fileID: 0}
+  MAM: {fileID: 0}
   defaultForce: 300
   upwardsForce: 600
   movementTime: 0.1
@@ -314,6 +348,14 @@ MonoBehaviour:
   isDead: 0
   input: {fileID: 0}
   rb: {fileID: 0}
+  col: {fileID: 0}
+  anim: {fileID: 0}
+  movement: {fileID: 0}
+  jump: {fileID: 0}
+  objectPooler: {fileID: 0}
+  weapon: {fileID: 0}
+  WAM: {fileID: 0}
+  MAM: {fileID: 0}
   weaponTypes:
   - {fileID: 11400000, guid: 432a070f84f6a8b439eca499e8005758, type: 2}
   gunBarrel: {fileID: 8467448031209895077}
@@ -631,7 +673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7938281641510655070}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9250002, y: -21.1975, z: 0}
+  m_LocalPosition: {x: -1.9249992, y: -21.1975, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

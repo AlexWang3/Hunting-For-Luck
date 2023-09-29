@@ -25,14 +25,14 @@ namespace MetroidvaniaTools
         [HideInInspector] public InputManager input;
         [HideInInspector] public Rigidbody2D rb;
 
-        public Collider2D col;
-        public Animator anim;
-        public HorizontalMovement movement;
-        public Jump jump;
-        public ObjectPooler objectPooler;
-        public Weapon weapon;
-        public WeaponAttackManager WAM;
-        public MeleeAttackManager MAM;
+        [HideInInspector] public Collider2D col;
+        [HideInInspector] public Animator anim;
+        [HideInInspector] public HorizontalMovement movement;
+        [HideInInspector] public Jump jump;
+        [HideInInspector] public ObjectPooler objectPooler;
+        [HideInInspector] public Weapon weapon;
+        [HideInInspector] public WeaponAttackManager WAM;
+        [HideInInspector] public MeleeAttackManager MAM;
 
         private Vector2 facingLeft;
         

@@ -4,19 +4,32 @@ using UnityEngine;
 
 namespace MetroidvaniaTools
 {
+    public enum MeleeAttackType
+    {
+        NULL,
+        DOWN,
+        AIR,
+        STAB1,
+        STAB2,
+        STAB3
+    }
+    
     public class MeleeAttackManager : Abilities
     {
         public float defaultForce = 300;
         public float upwardsForce = 600;
         public float movementTime = .1f;
         public float movementForce = 5000;
+        public float postMoveInputInterval = .2f;
 
 
         private bool keepAttacking;
         private bool takeNextInput;
         private Animator meleeAnimator;
-        private int triggerInfo; // 0 for reset, 1 for forward, 2 for downward
+        private MeleeAttackType triggerInfo;
         private bool triggerMovement;
+        private int curForwardSequence;
+        private float postMoveInputCountDown;
 
         protected override void Initialization()
         {
@@ -25,8 +38,9 @@ namespace MetroidvaniaTools
             character.isMeleeAttacking = false;
             keepAttacking = false;
             takeNextInput = false;
-            triggerInfo = 0;
+            triggerInfo = MeleeAttackType.NULL;
             triggerMovement = false;
+            curForwardSequence = 0;
         }
         
         public void MeleeAttack() {
@@ -45,11 +59,31 @@ namespace MetroidvaniaTools
 
         protected virtual void FixedUpdate()
         {
+            HandlePhysicMovement();
+            HandleForwardMeleePostMoveInput();
+        }
+
+        private void HandleForwardMeleePostMoveInput()
+        {
+            if (postMoveInputCountDown <= 0)
+            {
+                postMoveInputCountDown = 0;
+                curForwardSequence = 0;
+            }
+            else
+            {
+                postMoveInputCountDown -= Time.deltaTime;
+            }
+                
+        }
+        
+        private void HandlePhysicMovement()
+        {
             if (triggerMovement)
             {
                 triggerMovement = false;
                 rb.velocity = Vector2.zero;
-                if (triggerInfo == 1)
+                if (triggerInfo == MeleeAttackType.STAB1)
                 {
                     if (character.isFacingLeft)
                     {
@@ -62,13 +96,12 @@ namespace MetroidvaniaTools
                 }
             }
         }
-
-
+        
         private void PerformMeleeAttack()
         {
             character.isMeleeAttacking = true;
             takeNextInput = false;
-            anim.SetBool("MeleeAttack", true);
+            // anim.SetBool("MeleeAttack", true);
             if (character.isJumping)
             {
                 character.isJumping = false;
@@ -85,29 +118,52 @@ namespace MetroidvaniaTools
             if (input.DownHeld() && !character.isGrounded)
             {
                 anim.SetTrigger("DownwardMelee");
-                
-                triggerInfo = 2;
+                triggerInfo = MeleeAttackType.DOWN;
             }
-
-            if (!input.UpHeld() && !input.DownHeld())
+            else if (!character.isGrounded)
             {
-                anim.SetTrigger("ForwardMelee");
-                triggerInfo = 1;
+                anim.SetTrigger(("AirStab"));
+                triggerInfo = MeleeAttackType.STAB1;
             }
-
-            if (input.DownHeld() && character.isGrounded)
+            else if (character.isGrounded)
             {
-                anim.SetTrigger("ForwardMelee");
-                triggerInfo = 1;
+                SetForwardMelee();
             }
         }
 
+        private void SetForwardMelee()
+        {
+            switch (curForwardSequence)
+            {
+                case 0:
+                    anim.SetTrigger("Stab1");
+                    triggerInfo = MeleeAttackType.STAB1;
+                    curForwardSequence++;
+                    postMoveInputCountDown = postMoveInputInterval;
+                    break;
+                case 1:
+                    anim.SetTrigger("Stab2");
+                    triggerInfo = MeleeAttackType.STAB1;
+                    curForwardSequence++;
+                    postMoveInputCountDown = postMoveInputInterval;
+                    break;
+                case 2:
+                    anim.SetTrigger("Stab3");
+                    triggerInfo = MeleeAttackType.STAB1;
+                    curForwardSequence = 0;
+                    break;
+                default:
+                    Debug.Log("Unexpected Forward Melee Sequence");
+                    break;
+            }
+        }
+        
         public void FinishMeleeAttack()
         {
             if (!keepAttacking)
             {
                 character.isMeleeAttacking = false;
-                anim.SetBool("MeleeAttack", false);
+                // anim.SetBool("MeleeAttack", false);
             }
             else
             {
@@ -122,10 +178,10 @@ namespace MetroidvaniaTools
             triggerMovement = true;
             switch (triggerInfo)
             {
-                case 1:
+                case MeleeAttackType.STAB1:
                     meleeAnimator.SetTrigger("ForwardMeleeSwipe");
                     break;
-                case 2:
+                case MeleeAttackType.DOWN:
                     meleeAnimator.SetTrigger("DownwardMeleeSwipe");
                     break;
                 default:

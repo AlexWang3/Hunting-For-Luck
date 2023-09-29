@@ -30,16 +30,9 @@ namespace MetroidvaniaTools
             jumpCountDown = buttonHoldTime;
             fallCountDown = glideTime;
         }
-
-        // Update is called once per frame
-       /* protected virtual void Update()
-        {
-            CheckForJump();
-        }
-*/
+        
         public virtual bool CheckForJump()
         {
-            //input.JumpPressed()&& 
             if (!character.isMeleeAttacking)
             {   
                 if (limitAirJumps && character.Falling(acceptedFallSpeed))
@@ -54,6 +47,10 @@ namespace MetroidvaniaTools
                     jumpCountDown = buttonHoldTime;
                     character.isJumping = true;
                     fallCountDown = glideTime;
+                    if (numberOfJumpsLeft <= maxJumps - 2)
+                    {
+                        anim.SetTrigger("DoubleJump");
+                    }
                 }
                 return true;
             }
@@ -74,10 +71,6 @@ namespace MetroidvaniaTools
             {
                 rb.AddForce(Vector2.up * jumpForce);
                 AdditionalAir();
-                if (numberOfJumpsLeft == maxJumps - 2)
-                {
-                    //anim.SetBool("DoubleJump", true);
-                }
             }
             if (rb.velocity.y > maxJumpSpeed)
             {
@@ -123,7 +116,6 @@ namespace MetroidvaniaTools
             if (CollisionCheck(Vector2.down, distanceToCollider, collisionLayer) && !character.isJumping)
             {
                 anim.SetBool("Grounded", true);
-                //anim.SetBool("DoubleJump", false);
                 character.isGrounded = true;
                 numberOfJumpsLeft = maxJumps;
                 fallCountDown = glideTime;
