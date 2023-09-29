@@ -33,6 +33,7 @@ namespace MetroidvaniaTools
         [SerializeField] private float JA_preMoveTime;
         [SerializeField] private float JA_postMoveTime;
         [SerializeField] private float JA_distanceOffset;
+        [SerializeField] private float JA_maxDistance;
 
         [Header("Stager Parameters")] 
         [SerializeField] private float knockBackDistance;
@@ -51,7 +52,7 @@ namespace MetroidvaniaTools
             Node chase = new Chase(enemyCharacter, C_detectRange, C_TimeTillMaxSpeed, C_MaxSpeed);
             Node patrol = new Patrol(enemyCharacter, turnAroundOnCollision, collidersToTurnAroundOn,
                 P_TimeTillMaxSpeed, P_MaxSpeed, minPatrolTime, maxPatrolTime, minIdleTime, maxIdleTime);
-            Node jumpattack = new JumpAttack(enemyCharacter,JA_detectRange,  JA_jumpHeight,JA_preMoveTime, JA_postMoveTime, JA_distanceOffset);
+            Node jumpattack = new JumpAttack(enemyCharacter,JA_detectRange,  JA_jumpHeight,JA_preMoveTime, JA_postMoveTime, JA_distanceOffset, JA_maxDistance);
             Node stagger = new Stagger(enemyCharacter, enemyHealth, knockBackDistance, knockBackHeight, stagerTime);
             
             Node root = new Selector(new List<Node>

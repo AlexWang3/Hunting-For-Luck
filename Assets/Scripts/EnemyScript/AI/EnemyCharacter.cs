@@ -47,7 +47,16 @@ namespace MetroidvaniaTools
                 Physics2D.IgnoreCollision(col, playerCollider);
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"));
         }
-        
+
+        protected virtual void OnEnable()
+        {
+            if (col == null || playerCollider == null)
+                return;
+            if (!canCollideWithPlayer)
+                Physics2D.IgnoreCollision(col, playerCollider);
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"));
+        }
+
         public virtual bool CollisionCheck(Vector2 direction, float distance, LayerMask collision)
         {
             RaycastHit2D[] hits = new RaycastHit2D[10];

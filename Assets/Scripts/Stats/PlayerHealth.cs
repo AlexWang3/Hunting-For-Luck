@@ -50,6 +50,7 @@ namespace MetroidvaniaTools
         private void FixedUpdate()
         {
             HandleIFrames();
+            HandleDamageMovement();
             HandleRecovery();
         }
 

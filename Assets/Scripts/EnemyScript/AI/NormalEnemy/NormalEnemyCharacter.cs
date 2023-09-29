@@ -24,7 +24,14 @@ namespace MetroidvaniaTools
             curState = NormalEnemyStates.NULL;
             groundCheckDisabled = false;
         }
-        
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            curState = NormalEnemyStates.NULL;
+            groundCheckDisabled = false;
+        }
+
         protected virtual void FixedUpdate()
         {
             GroundCheck();

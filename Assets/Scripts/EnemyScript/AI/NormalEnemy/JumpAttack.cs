@@ -14,6 +14,7 @@ namespace MetroidvaniaTools
         private float preMoveTime;
         private float postMoveTime;
         private float distanceOffset;
+        private float maxDistance;
         
         // Local
         // private Transform moveTarget;
@@ -22,9 +23,9 @@ namespace MetroidvaniaTools
         private int moveIndex; // 0 for premove, 1 for air, 2 for postmove
 
         public JumpAttack(NormalEnemyCharacter enemyCharacter,float detectRange, float jumpHeight, float preMoveTime,
-            float postMoveTime, float distanceOffset)
-            => (this.enemyCharacter, this.detectRange, this.jumpHeight, this.preMoveTime, this.postMoveTime, this.distanceOffset) =
-                (enemyCharacter, detectRange, jumpHeight, preMoveTime, postMoveTime, distanceOffset);
+            float postMoveTime, float distanceOffset, float maxDistance)
+            => (this.enemyCharacter, this.detectRange, this.jumpHeight, this.preMoveTime, this.postMoveTime, this.distanceOffset, this.maxDistance) =
+                (enemyCharacter, detectRange, jumpHeight, preMoveTime, postMoveTime, distanceOffset, maxDistance);
         
         public override NodeState Evaluate()
         {
@@ -59,6 +60,10 @@ namespace MetroidvaniaTools
                         distanceToPlayer += distanceOffset;
                     else
                         distanceToPlayer -= distanceOffset;
+                    if (distanceToPlayer > maxDistance)
+                        distanceToPlayer = maxDistance;
+                    if (distanceToPlayer < -maxDistance)
+                        distanceToPlayer = -maxDistance;
                     enemyCharacter.rb.AddForce(new Vector2(distanceToPlayer * enemyCharacter.rb.gravityScale, jumpHeight), ForceMode2D.Impulse);
                 }
                 else

@@ -16,7 +16,15 @@ namespace MetroidvaniaTools
             {
                 healthPoints = 0;
                 gameObject.SetActive(false);
+                Invoke("Revive", 5);
             }
+        }
+        
+        //This revives the enemy quickly so you can test out certain features when building game; this method probably shouldn't exist in real game
+        protected virtual void Revive()
+        {
+            gameObject.GetComponent<Health>().healthPoints += 100;
+            gameObject.SetActive(true);
         }
 
     }
