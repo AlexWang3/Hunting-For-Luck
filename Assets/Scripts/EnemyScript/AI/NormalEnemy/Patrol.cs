@@ -36,9 +36,9 @@ namespace MetroidvaniaTools
         
         public override NodeState Evaluate()
         {
-            if (enemyCharacter.isFighting)
+            if (enemyCharacter.curState != NormalEnemyStates.PATROL)
             {
-                enemyCharacter.isFighting = false;
+                enemyCharacter.curState = NormalEnemyStates.PATROL;
                 idleCountDown = Random.Range(minIdleTime, maxIdleTime);
                 patrolling = false;
             }
@@ -64,7 +64,7 @@ namespace MetroidvaniaTools
             }
             else
             {
-                enemyCharacter.rb.velocity = new Vector2(0, enemyCharacter.rb.velocity.y);
+                enemyCharacter.GeneralIdle();
                 idleCountDown -= Time.deltaTime;
             }
             state = NodeState.SUCCESS;

@@ -47,9 +47,8 @@ namespace MetroidvaniaTools
             character.isGettingHit = hit;
         }
 
-        protected override void FixedUpdate()
+        private void FixedUpdate()
         {
-            base.FixedUpdate();
             HandleIFrames();
             HandleRecovery();
         }
@@ -89,7 +88,7 @@ namespace MetroidvaniaTools
             }
         }
 
-        public override void HandleDamageMovement()
+        public void HandleDamageMovement()
         {
             if (hit)
             {
@@ -190,24 +189,5 @@ namespace MetroidvaniaTools
                 healthPoints = maxHealthPoints;
             }
         }
-
-        /*
-        //This method handles a lot of UI and special effects that would need to be toggled on when Player dies
-        protected virtual IEnumerator Dead()
-        {
-            
-        }
-        */
-
-        /*
-        //Loads Player back to the last point in which the game was saved; this is called when the Player dies as well as when you load a game from the main menu screen
-        public virtual void LoadGame()
-        {
-            levelManager.loadFromSave = true;
-            PlayerPrefs.SetInt(" " + character.gameFile + "LoadFromSave", levelManager.loadFromSave ? 1 : 0);
-            string scene = PlayerPrefs.GetString(" " + character.gameFile + "LoadGame");
-            SceneManager.LoadScene(scene);
-        }
-        */
     }
 }

@@ -24,10 +24,7 @@ namespace MetroidvaniaTools
                 state = NodeState.FAILURE;
                 return state;
             }
-            if (!enemyCharacter.isFighting)
-            {
-                enemyCharacter.isFighting = true;   
-            }
+            enemyCharacter.curState = NormalEnemyStates.CHASE;
             enemyCharacter.FacingPlayer();
             enemyCharacter.GeneralMovement(timeTillMaxSpeed, maxSpeed);
             

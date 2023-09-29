@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -13,13 +14,13 @@ namespace MetroidvaniaTools
         [HideInInspector] public bool facingLeft;
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public Collider2D col;
+        [HideInInspector] public Animator anim;
         [HideInInspector] public GameObject player;
         [HideInInspector] public Collider2D playerCollider;
         [HideInInspector] public LayerMask playerLayer;
         [HideInInspector] public LayerMask enemyLayer;
+        [HideInInspector] public LayerMask platformLayer;
         [HideInInspector] public LayerMask boundLayer;
-
-        [HideInInspector] public bool isFighting;
         
         private float acceleration;
         private float moveDirection;
@@ -35,16 +36,16 @@ namespace MetroidvaniaTools
         {
             rb = GetComponent<Rigidbody2D>();
             col = GetComponent<Collider2D>();
+            anim = GetComponentInChildren<Animator>();
             player = FindObjectOfType<Character>().gameObject;
             playerCollider = player.GetComponent<Collider2D>();
             playerLayer = 1 << LayerMask.NameToLayer("Player");
             enemyLayer = 1 << LayerMask.NameToLayer("Enemy");
+            platformLayer = 1 << LayerMask.NameToLayer("Platform");
             boundLayer = 1 << LayerMask.NameToLayer("Bound");
             if (!canCollideWithPlayer)
                 Physics2D.IgnoreCollision(col, playerCollider);
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"));
-
-            isFighting = true;
         }
         
         public virtual bool CollisionCheck(Vector2 direction, float distance, LayerMask collision)
@@ -60,7 +61,7 @@ namespace MetroidvaniaTools
             }
             return false;
         }
-
+        
         public void GeneralMovement(float timeTillMaxSpeed, float maxSpeed)
         {
             if (!facingLeft)
@@ -80,13 +81,26 @@ namespace MetroidvaniaTools
                 currentSpeed = -maxSpeed;
             }
             rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+            EdgeProtection();
+        }
+
+        public void EdgeProtection()
+        {
             if ((rb.velocity.x > 0 && CollisionCheck(Vector2.right, .5f, boundLayer))
                 || (rb.velocity.x < 0 && CollisionCheck(Vector2.left, .5f, boundLayer)))
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
         }
-
+        
+        public void GeneralIdle()
+        {
+            acceleration = 0;
+            runTime = 0;
+            currentSpeed = 0;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        
         public void Flip()
         {
             facingLeft = !facingLeft;

@@ -23,9 +23,21 @@ namespace MetroidvaniaTools
         [SerializeField] private float maxIdleTime;
         
         [Header("Chasing Parameters")]
-        [SerializeField] private float detectRange;
+        [SerializeField] private float C_detectRange;
         [SerializeField] private float C_TimeTillMaxSpeed;
         [SerializeField] private float C_MaxSpeed;
+
+        [Header("JumpAttack Parameters")] 
+        [SerializeField] private float JA_detectRange;
+        [SerializeField] private float JA_jumpHeight;
+        [SerializeField] private float JA_preMoveTime;
+        [SerializeField] private float JA_postMoveTime;
+        [SerializeField] private float JA_distanceOffset;
+
+        [Header("Stager Parameters")] 
+        [SerializeField] private float knockBackDistance;
+        [SerializeField] private float knockBackHeight;
+        [SerializeField] private float stagerTime;
 
         protected override void Initialization()
         {
@@ -36,13 +48,16 @@ namespace MetroidvaniaTools
 
         protected override Node SetupTree()
         {
-            Node chase = new Chase(enemyCharacter, detectRange, C_TimeTillMaxSpeed, C_MaxSpeed);
+            Node chase = new Chase(enemyCharacter, C_detectRange, C_TimeTillMaxSpeed, C_MaxSpeed);
             Node patrol = new Patrol(enemyCharacter, turnAroundOnCollision, collidersToTurnAroundOn,
                 P_TimeTillMaxSpeed, P_MaxSpeed, minPatrolTime, maxPatrolTime, minIdleTime, maxIdleTime);
-            // Node idle = new Idle(enemyCharacter);
-
+            Node jumpattack = new JumpAttack(enemyCharacter,JA_detectRange,  JA_jumpHeight,JA_preMoveTime, JA_postMoveTime, JA_distanceOffset);
+            Node stagger = new Stagger(enemyCharacter, enemyHealth, knockBackDistance, knockBackHeight, stagerTime);
+            
             Node root = new Selector(new List<Node>
             {
+                stagger,
+                jumpattack,
                 chase,
                 patrol
             });
