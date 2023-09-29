@@ -1,180 +1,194 @@
 
 PlayerProto.png
-size: 540,1031
+size: 655,1044
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BHair
-  rotate: false
-  xy: 2, 2
+  rotate: true
+  xy: 2, 129
   size: 230, 344
   orig: 230, 352
   offset: 0, 8
   index: -1
+BHairBack
+  rotate: false
+  xy: 177, 692
+  size: 228, 350
+  orig: 230, 352
+  offset: 1, 1
+  index: -1
 BL_Hair
   rotate: false
-  xy: 177, 364
+  xy: 407, 866
   size: 120, 176
   orig: 120, 176
   offset: 0, 0
   index: -1
 Body
-  rotate: false
-  xy: 177, 542
+  rotate: true
+  xy: 2, 2
   size: 125, 198
   orig: 125, 202
   offset: 0, 4
   index: -1
+BodyBack
+  rotate: true
+  xy: 202, 4
+  size: 123, 199
+  orig: 125, 202
+  offset: 1, 2
+  index: -1
 Gun
   rotate: true
-  xy: 436, 476
+  xy: 348, 286
   size: 188, 98
   orig: 188, 98
   offset: 0, 0
   index: -1
 Head
   rotate: true
-  xy: 177, 742
+  xy: 177, 524
   size: 166, 187
   orig: 166, 187
   offset: 0, 0
   index: -1
 LCalf
-  rotate: false
-  xy: 366, 719
+  rotate: true
+  xy: 407, 692
   size: 69, 189
   orig: 69, 190
   offset: 0, 0
   index: -1
 LFHair
-  rotate: false
-  xy: 449, 862
+  rotate: true
+  xy: 177, 388
   size: 86, 167
   orig: 192, 309
   offset: 22, 71
   index: -1
 LFoot
-  rotate: true
-  xy: 322, 104
+  rotate: false
+  xy: 532, 477
   size: 116, 92
   orig: 116, 92
   offset: 0, 0
   index: -1
 LHair
-  rotate: false
-  xy: 304, 506
+  rotate: true
+  xy: 177, 476
   size: 46, 234
   orig: 46, 234
   offset: 0, 0
   index: -1
 LHand
   rotate: false
-  xy: 317, 22
+  xy: 403, 32
   size: 86, 80
   orig: 86, 80
   offset: 0, 0
   index: -1
 LLowerArm
-  rotate: false
-  xy: 416, 85
+  rotate: true
+  xy: 538, 103
   size: 97, 92
   orig: 97, 92
   offset: 0, 0
   index: -1
 LThigh
-  rotate: false
-  xy: 352, 435
+  rotate: true
+  xy: 448, 409
   size: 66, 147
   orig: 66, 147
   offset: 0, 0
   index: -1
 LUpperArm
   rotate: true
-  xy: 416, 179
+  xy: 448, 289
   size: 118, 119
   orig: 118, 120
   offset: 0, 0
   index: -1
 Mask
-  rotate: true
-  xy: 437, 666
+  rotate: false
+  xy: 407, 763
   size: 194, 101
   orig: 194, 101
   offset: 0, 0
   index: -1
 RCalf
   rotate: false
-  xy: 420, 299
+  xy: 529, 867
   size: 111, 175
   orig: 111, 176
   offset: 0, 0
   index: -1
 RFHair
   rotate: false
-  xy: 234, 35
+  xy: 569, 314
   size: 81, 93
   orig: 81, 93
   offset: 0, 0
   index: -1
 RFoot
-  rotate: true
-  xy: 322, 222
+  rotate: false
+  xy: 413, 477
   size: 117, 92
   orig: 117, 92
   offset: 0, 0
   index: -1
 RHair
   rotate: true
-  xy: 177, 910
+  xy: 366, 571
   size: 119, 270
   orig: 119, 270
   offset: 0, 0
   index: -1
 RHand
   rotate: false
-  xy: 405, 9
+  xy: 491, 27
   size: 74, 74
   orig: 76, 74
   offset: 1, 0
   index: -1
 RLowerArm
   rotate: false
-  xy: 351, 341
+  xy: 582, 220
   size: 66, 92
   orig: 66, 92
   offset: 0, 0
   index: -1
 RThigh
-  rotate: false
-  xy: 234, 221
+  rotate: true
+  xy: 348, 198
   size: 86, 141
   orig: 86, 141
   offset: 0, 0
   index: -1
 RUpperArm
-  rotate: false
-  xy: 352, 584
+  rotate: true
+  xy: 403, 114
   size: 82, 133
   orig: 82, 133
   offset: 0, 0
   index: -1
 Ribbon
   rotate: false
-  xy: 299, 370
+  xy: 603, 731
   size: 50, 134
   orig: 50, 134
   offset: 0, 0
   index: -1
 Sword
   rotate: true
-  xy: 2, 348
+  xy: 2, 361
   size: 681, 173
   orig: 681, 173
   offset: 0, 0
   index: -1
 pelvis
-  rotate: true
-  xy: 234, 130
+  rotate: false
+  xy: 491, 202
   size: 89, 85
   orig: 90, 85
   offset: 0, 0
