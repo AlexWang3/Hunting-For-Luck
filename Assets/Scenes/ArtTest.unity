@@ -2916,7 +2916,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: AirAttackDown
+  _animationName: AirStab
   loop: 1
   timeScale: 1
 --- !u!23 &794083761
