@@ -11,6 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: a2307b82d75b0a7408784371c3de600f
+<<<<<<< HEAD
   - enabled: 0
     path: Assets/Scenes/EnemyTestScene.unity
     guid: bf4974b2c748e214b9c9c31c66b9d931
@@ -20,4 +21,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/AnimTest.unity
     guid: 27f8c443c83fdbb4ab1b869be863b8e2
+=======
+  - enabled: 1
+    path: Assets/Scenes/AlwaysLoad.unity
+    guid: e5c6c6249e8b0bb46bda0403786b6872
+>>>>>>> main
   m_configObjects: {}
