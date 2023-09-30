@@ -2460,7 +2460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 20
-  teleportAfterHit: 0
+  teleportAfterHit: 1
   teleportPosition: {fileID: 268565261}
   hasDirection: 0
   verticalDamageForce: 500
