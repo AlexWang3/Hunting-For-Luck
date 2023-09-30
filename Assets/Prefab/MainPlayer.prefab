@@ -72,7 +72,7 @@ Transform:
   m_Children:
   - {fileID: 8771209097706209993}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2505919318508841146
 Rigidbody2D:
@@ -268,11 +268,12 @@ MonoBehaviour:
   maxJumpSpeed: 10
   maxFallSpeed: -20
   acceptedFallSpeed: -5
-  glideTime: 0
   gravity: 0.5
   collisionLayer:
     serializedVersion: 2
     m_Bits: 128
+  fallSpeed: 2
+  gravityMultipler: 4
 --- !u!114 &4829387653789533348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +345,7 @@ MonoBehaviour:
   movementTime: 0.1
   movementForce: 5000
   postMoveInputInterval: 1
+  postMoveInputIntervalStab4: 1
   maxHoldTime: 0.5
 --- !u!114 &6695695811353711794
 MonoBehaviour:

@@ -2790,6 +2790,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6389489915325765385, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: postMoveInputInterval
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389489915325765385, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: postMoveInputIntervalStab4
+      value: 1.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

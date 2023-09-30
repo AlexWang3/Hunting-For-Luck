@@ -21,6 +21,7 @@ namespace MetroidvaniaTools
         public float movementTime = .1f;
         public float movementForce = 5000;
         public float postMoveInputInterval = .75f;
+        public float postMoveInputIntervalStab4 = 1f;
         public float maxHoldTime = 2f;
 
 
@@ -31,6 +32,7 @@ namespace MetroidvaniaTools
         private bool triggerMovement;
         private int curForwardSequence;
         private float postMoveInputCountDown;
+        private bool isForward3;
         private bool isForward4;
         private bool isForward4Hold;
         private bool isForward4Stabbing;
@@ -155,6 +157,11 @@ namespace MetroidvaniaTools
                 holdCountDown = maxHoldTime;
                 isForward4Hold = true;
             }
+            else if (isForward3)
+            {
+                isForward3 = false;
+                postMoveInputCountDown = postMoveInputIntervalStab4;
+            }
             else
             {
                 postMoveInputCountDown = postMoveInputInterval;
@@ -204,6 +211,7 @@ namespace MetroidvaniaTools
                 case 2:
                     anim.SetTrigger("Stab3");
                     triggerInfo = MeleeAttackType.STAB1;
+                    isForward3 = true;
                     curForwardSequence++;
                     break;
                 case 3:
