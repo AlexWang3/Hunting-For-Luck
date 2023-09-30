@@ -63,7 +63,7 @@ Material:
     - _BlendAmount: 0
     - _Brightness: 1
     - _BumpScale: 1
-    - _Cull: 2
+    - _Cull: 0
     - _CustomRenderQueue: 0
     - _Cutoff: 0
     - _DoubleSidedLighting: 0
