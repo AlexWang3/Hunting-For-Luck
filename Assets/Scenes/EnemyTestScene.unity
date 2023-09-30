@@ -1882,8 +1882,8 @@ MonoBehaviour:
   translator:
     autoReset: 1
     useCustomMixMode: 1
-    layerMixModes: 01000000010000000100000001000000
-    layerBlendModes: 01000000020000000200000002000000
+    layerMixModes: 0100000001000000010000000100000001000000
+    layerBlendModes: 0100000002000000020000000200000002000000
 --- !u!95 &1487915000
 Animator:
   serializedVersion: 5
@@ -2459,8 +2459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2cf7196861bd747888b1eeccd19439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
-  teleportAfterHit: 1
+  damageAmount: 100
+  teleportAfterHit: 0
   teleportPosition: {fileID: 268565261}
   hasDirection: 0
   verticalDamageForce: 500
@@ -2570,7 +2570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714259431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.9501, y: 14.59, z: 0}
+  m_LocalPosition: {x: 13.93, y: 22.02, z: 0}
   m_LocalScale: {x: 5.0402, y: 2.5363665, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

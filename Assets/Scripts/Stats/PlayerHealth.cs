@@ -52,6 +52,7 @@ namespace MetroidvaniaTools
             HandleIFrames();
             HandleDamageMovement();
             HandleRecovery();
+            HandleDeath();
         }
 
         public override void DealDamage(int amount)
@@ -63,26 +64,20 @@ namespace MetroidvaniaTools
                     return;
                 }
                 base.DealDamage(amount);
+                CharacterGetHit();
                 if (healthPoints <= 0)
                 {
                     character.isDead = true;
                     healthPoints = 0;
-                    // player.GetComponent<Animator>().SetBool("Dying", true);
-                    // StartCoroutine(Dead());
                 }
-
-                CharacterGetHit();
                 
                 originalTimeScale = Time.timeScale;
                 hit = true;
                 //Slows down time to the damage speed
                 Time.timeScale = slowDownSpeed;
                 applyForce = true;
-                // Cancle Iframe
                 Invoke("Cancel", iFrameTime);
-                //Cancle SlowDown
                 Invoke("HitCancel", slowDownTimeAmount);
-                // Cancle force Apply
                 Invoke("ForceCancel", forceApplyTime);
             }
         }
@@ -196,10 +191,31 @@ namespace MetroidvaniaTools
 
         protected override void Cancel()
         {
-            base.Cancel();
-            character.isGettingHit = false;
-            character.anim.SetBool("GettingHit", false);
-            character.input.EnableInput();
+            if (!character.isDead)
+            {
+                base.Cancel();
+                character.isGettingHit = false;
+                character.anim.SetBool("GettingHit", false);
+                character.input.EnableInput();
+            }
+        }
+
+        private void HandleDeath()
+        {
+            if (character.isDead)
+            {
+                if (character.isGrounded)
+                {
+                    character.anim.SetBool("Dying", true);
+                }
+                StartCoroutine(Dead());
+            }
+        }
+
+        private IEnumerator Dead()
+        {
+            yield return new WaitForSeconds(5);
+            character.gameObject.SetActive(false);
         }
     }
 }
