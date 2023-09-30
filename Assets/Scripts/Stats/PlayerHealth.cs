@@ -56,17 +56,13 @@ namespace MetroidvaniaTools
 
         public override void DealDamage(int amount)
         {
-            //If the Player is alive
             if (!character.isDead)
             {
-                //If invulnerable or dashing, we return out of this method and deal no damage
                 if (hit || character.isDashing)
                 {
                     return;
                 }
-                //If not invulnerable or dashing, then damage is dealt
                 base.DealDamage(amount);
-                //If health is less than or equal to zero, we manage the Player death state
                 if (healthPoints <= 0)
                 {
                     character.isDead = true;
@@ -74,7 +70,9 @@ namespace MetroidvaniaTools
                     // player.GetComponent<Animator>().SetBool("Dying", true);
                     // StartCoroutine(Dead());
                 }
-                //Puts the Player into a damage state, and quickly sets everything up so we can handle all the damage effects
+
+                CharacterGetHit();
+                
                 originalTimeScale = Time.timeScale;
                 hit = true;
                 //Slows down time to the damage speed
@@ -87,6 +85,16 @@ namespace MetroidvaniaTools
                 // Cancle force Apply
                 Invoke("ForceCancel", forceApplyTime);
             }
+        }
+
+        private void CharacterGetHit()
+        {
+            character.isGettingHit = true;
+            character.isJumping = false;
+            character.isShooting = false;
+            character.isMeleeAttacking = false;
+            character.anim.SetBool("GettingHit", true);
+            character.input.DisableInput();
         }
 
         public void HandleDamageMovement()
@@ -120,13 +128,11 @@ namespace MetroidvaniaTools
 
         }
 
-        //Special effect that makes Player transparent when hit
         protected virtual void HandleIFrames()
         {
             Color spriteColors = new Color();
             if (hit)
             {
-                character.input.disabled = true;
                 foreach (SpriteRenderer sprite in sprites)
                 {
                     spriteColors = sprite.color;
@@ -136,7 +142,6 @@ namespace MetroidvaniaTools
             }
             else
             {
-                character.input.disabled = false;
                 foreach (SpriteRenderer sprite in sprites)
                 {
                     spriteColors = sprite.color;
@@ -170,7 +175,6 @@ namespace MetroidvaniaTools
             }
         }
 
-        //Method that removes player from Damage state
         protected virtual void HitCancel()
         {
             Time.timeScale = originalTimeScale;
@@ -181,7 +185,6 @@ namespace MetroidvaniaTools
             applyForce = false;
         }
 
-        //This method is called when the Player grabs a health item and it restores Player health; it is called from the HealthConsumable script when player enters trigger collider
         public virtual void GainCurrentHealth(int amount)
         {
             healthPoints += amount;
@@ -189,6 +192,14 @@ namespace MetroidvaniaTools
             {
                 healthPoints = maxHealthPoints;
             }
+        }
+
+        protected override void Cancel()
+        {
+            base.Cancel();
+            character.isGettingHit = false;
+            character.anim.SetBool("GettingHit", false);
+            character.input.EnableInput();
         }
     }
 }

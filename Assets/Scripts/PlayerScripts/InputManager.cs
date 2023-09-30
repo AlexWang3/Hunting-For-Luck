@@ -35,6 +35,7 @@ namespace MetroidvaniaTools
         public bool jump;
         public bool meleeAttack;
         public bool rangeAttack;
+        public bool dash;
         public bool jumpDown;
         public bool meleeAttackDown;
         public virtual float GetHorizontal() {
@@ -69,7 +70,10 @@ namespace MetroidvaniaTools
         }
 
         public void OnDash(InputAction.CallbackContext ctx) {
-            
+            if (ctx.started) {
+                Character.Instance.dash.Dashing();
+            }
+            dash = ctx.performed;
         }
 
         private void Update() {
@@ -91,17 +95,14 @@ namespace MetroidvaniaTools
             return jump;
         }
 
-        public virtual bool JumpPressed() {
-            return jumpDown;
-        }
-
-        public virtual bool AttackPressed() {
+        public virtual bool MeleeHeld()
+        {
             return meleeAttack;
         }
 
-        public virtual bool WeaponFired() {
-            return rangeAttack;
-        }
+        // public virtual bool WeaponFired() {
+        //     return rangeAttack;
+        // }
     }
 
 }

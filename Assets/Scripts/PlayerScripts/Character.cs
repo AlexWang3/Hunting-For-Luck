@@ -29,8 +29,8 @@ namespace MetroidvaniaTools
         [HideInInspector] public Animator anim;
         [HideInInspector] public HorizontalMovement movement;
         [HideInInspector] public Jump jump;
+        [HideInInspector] public Dash dash;
         [HideInInspector] public ObjectPooler objectPooler;
-        [HideInInspector] public Weapon weapon;
         [HideInInspector] public WeaponAttackManager WAM;
         [HideInInspector] public MeleeAttackManager MAM;
 
@@ -48,10 +48,10 @@ namespace MetroidvaniaTools
             rb = GetComponent<Rigidbody2D>();
             movement = GetComponent<HorizontalMovement>();
             jump = GetComponent<Jump>();
+            dash = GetComponent<Dash>();
             input = GetComponent<InputManager>();
             anim = GetComponentInChildren<Animator>();
             objectPooler = ObjectPooler.Instance;
-            weapon = GetComponent<Weapon>();
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
             MAM = GetComponent<MeleeAttackManager>();
             WAM = GetComponent<WeaponAttackManager>();

@@ -20,7 +20,8 @@ namespace MetroidvaniaTools
         public float upwardsForce = 600;
         public float movementTime = .1f;
         public float movementForce = 5000;
-        public float postMoveInputInterval = .2f;
+        public float postMoveInputInterval = .75f;
+        public float maxHoldTime = 2f;
 
 
         private bool keepAttacking;
@@ -30,6 +31,8 @@ namespace MetroidvaniaTools
         private bool triggerMovement;
         private int curForwardSequence;
         private float postMoveInputCountDown;
+        private bool isForward4;
+        private float holdCountDown;
 
         protected override void Initialization()
         {
@@ -44,7 +47,7 @@ namespace MetroidvaniaTools
         }
         
         public void MeleeAttack() {
-            if (!character.isShooting)
+            if (!character.isShooting && !character.isDashing && !character.isGettingHit && !character.isDead)
             {
                 if (!character.isMeleeAttacking)
                 {
@@ -61,20 +64,7 @@ namespace MetroidvaniaTools
         {
             HandlePhysicMovement();
             HandleForwardMeleePostMoveInput();
-        }
-
-        private void HandleForwardMeleePostMoveInput()
-        {
-            if (postMoveInputCountDown <= 0)
-            {
-                postMoveInputCountDown = 0;
-                curForwardSequence = 0;
-            }
-            else
-            {
-                postMoveInputCountDown -= Time.deltaTime;
-            }
-                
+            HandleForwardMeleeHold();
         }
         
         private void HandlePhysicMovement()
@@ -93,6 +83,36 @@ namespace MetroidvaniaTools
                     {
                         rb.AddForce(Vector2.right * movementForce);
                     }
+                }
+            }
+        }
+        
+        private void HandleForwardMeleePostMoveInput()
+        {
+            if (postMoveInputCountDown <= 0)
+            {
+                postMoveInputCountDown = 0;
+                curForwardSequence = 0;
+            }
+            else
+            {
+                postMoveInputCountDown -= Time.deltaTime;
+            }
+                
+        }
+
+        private void HandleForwardMeleeHold()
+        {
+            if (isForward4)
+            {
+                if (!input.MeleeHeld() || holdCountDown <= 0)
+                {
+                    anim.SetTrigger("Stab4Release");
+                    isForward4 = false;
+                }
+                else if (input.MeleeHeld())
+                {
+                    holdCountDown -= Time.deltaTime;
                 }
             }
         }
@@ -149,6 +169,14 @@ namespace MetroidvaniaTools
                     break;
                 case 2:
                     anim.SetTrigger("Stab3");
+                    triggerInfo = MeleeAttackType.STAB1;
+                    curForwardSequence++;
+                    postMoveInputCountDown = postMoveInputInterval;
+                    break;
+                case 3:
+                    anim.SetTrigger("Stab4Hold");
+                    isForward4 = true;
+                    holdCountDown = maxHoldTime;
                     triggerInfo = MeleeAttackType.STAB1;
                     curForwardSequence = 0;
                     break;

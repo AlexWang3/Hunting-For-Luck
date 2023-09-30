@@ -15,8 +15,8 @@ TagManager:
   - Platform
   - Enemy
   - Bound
-  - 
-  - 
+  - EnemyDamage
+  - PlayerDamage
   - 
   - 
   - 

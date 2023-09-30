@@ -44,7 +44,7 @@ namespace MetroidvaniaTools
         }
         // Shoot bullet
         public void RangeFire() {
-            if(!character.isMeleeAttacking)
+            if(!character.isMeleeAttacking && !character.isDashing && !character.isGettingHit && !character.isDead)
             {
                 if (!character.isShooting)
                 {

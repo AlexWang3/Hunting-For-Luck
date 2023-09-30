@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3624256188755994782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6599998, y: 3.7299995, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.27, y: 4.63, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8771209097706209993}
@@ -42,15 +42,16 @@ GameObject:
   - component: {fileID: 4391973155934170921}
   - component: {fileID: 2505919318508841146}
   - component: {fileID: 664651361082928017}
-  - component: {fileID: 1712078311107155230}
   - component: {fileID: 7935844671435109377}
+  - component: {fileID: 510010732558049835}
   - component: {fileID: 1691689124750749858}
   - component: {fileID: 5595839096499355307}
-  - component: {fileID: 510010732558049835}
+  - component: {fileID: 4829387653789533348}
   - component: {fileID: 6389489915325765385}
   - component: {fileID: 6695695811353711794}
+  - component: {fileID: 1712078311107155230}
   - component: {fileID: 5125954199055950778}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,13 +66,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5962658054301295010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.89, y: 18.2, z: 0}
+  m_LocalPosition: {x: 19.2, y: 14.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8771209097706209993}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2505919318508841146
 Rigidbody2D:
@@ -132,29 +133,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012150943, y: 1.5928497}
+  m_Offset: {x: 0.012150943, y: 0.01}
   m_Size: {x: 1.5256981, y: 3.2302055}
   m_Direction: 0
---- !u!114 &1712078311107155230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5962658054301295010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b0387e335cb0d145a78701e2516c1bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
-  disabled: 0
-  moveInput: {x: 0, y: 0}
-  jump: 0
-  meleeAttack: 0
-  rangeAttack: 0
-  jumpDown: 0
-  meleeAttackDown: 0
 --- !u!114 &7935844671435109377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,10 +162,37 @@ MonoBehaviour:
   anim: {fileID: 0}
   movement: {fileID: 0}
   jump: {fileID: 0}
+  dash: {fileID: 0}
   objectPooler: {fileID: 0}
-  weapon: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
+--- !u!114 &510010732558049835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5962658054301295010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cc749f5b2d4b54f8318371159ea215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  damageable: 1
+  iFrameTime: 0.5
+  healthPoints: 0
+  left: 0
+  hit: 0
+  slowDownTimeAmount: 0.2
+  slowDownSpeed: 0.3
+  forceApplyTime: 0.2
+  recoverAmount: 0
+  recoverTime: 0
+  teleportAfterHit: 0
+  teleportPosition: {fileID: 0}
+  verticalDamageForce: 0
+  horizontalDamageForce: 0
 --- !u!114 &1691689124750749858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,8 +219,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   movement: {fileID: 0}
   jump: {fileID: 0}
+  dash: {fileID: 0}
   objectPooler: {fileID: 0}
-  weapon: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
   timeTillMaxSpeed: 0
@@ -247,12 +255,12 @@ MonoBehaviour:
   anim: {fileID: 0}
   movement: {fileID: 0}
   jump: {fileID: 0}
+  dash: {fileID: 0}
   objectPooler: {fileID: 0}
-  weapon: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
   limitAirJumps: 0
-  maxJumps: 1
+  maxJumps: 2
   jumpForce: 300
   holdForce: 30
   buttonHoldTime: 0.25
@@ -265,7 +273,7 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &510010732558049835
+--- !u!114 &4829387653789533348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,24 +282,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 5962658054301295010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cc749f5b2d4b54f8318371159ea215, type: 3}
+  m_Script: {fileID: 11500000, guid: f7ceb70bd1fcbd04fa4ce5396f57175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
-  damageable: 1
-  iFrameTime: 0.5
-  healthPoints: 0
-  left: 0
-  hit: 0
-  slowDownTimeAmount: 0
-  slowDownSpeed: 0
-  forceApplyTime: 0
-  recoverAmount: 0
-  recoverTime: 0
-  teleportAfterHit: 0
-  teleportPosition: {fileID: 0}
-  verticalDamageForce: 0
-  horizontalDamageForce: 0
+  isFacingLeft: 0
+  isJumping: 0
+  isGrounded: 0
+  isShooting: 0
+  isMeleeAttacking: 0
+  isGettingHit: 0
+  isDashing: 0
+  isDead: 0
+  input: {fileID: 0}
+  rb: {fileID: 0}
+  col: {fileID: 0}
+  anim: {fileID: 0}
+  movement: {fileID: 0}
+  jump: {fileID: 0}
+  dash: {fileID: 0}
+  objectPooler: {fileID: 0}
+  WAM: {fileID: 0}
+  MAM: {fileID: 0}
+  dashForce: 100
+  dashCoolDownTime: 1
+  dashAmountTime: 0.5
+  dashingLayers:
+    serializedVersion: 2
+    m_Bits: 1280
 --- !u!114 &6389489915325765385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,14 +335,16 @@ MonoBehaviour:
   anim: {fileID: 0}
   movement: {fileID: 0}
   jump: {fileID: 0}
+  dash: {fileID: 0}
   objectPooler: {fileID: 0}
-  weapon: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
-  defaultForce: 300
+  defaultForce: 600
   upwardsForce: 600
   movementTime: 0.1
   movementForce: 5000
+  postMoveInputInterval: 1
+  maxHoldTime: 0.5
 --- !u!114 &6695695811353711794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,8 +371,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   movement: {fileID: 0}
   jump: {fileID: 0}
+  dash: {fileID: 0}
   objectPooler: {fileID: 0}
-  weapon: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
   weaponTypes:
@@ -364,6 +383,27 @@ MonoBehaviour:
   shootInterval: 0.25
   disableTime: 0.25
   currentProjectile: {fileID: 0}
+--- !u!114 &1712078311107155230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5962658054301295010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0387e335cb0d145a78701e2516c1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+  disabled: 0
+  moveInput: {x: 0, y: 0}
+  jump: 0
+  meleeAttack: 0
+  rangeAttack: 0
+  dash: 0
+  jumpDown: 0
+  meleeAttackDown: 0
 --- !u!114 &5125954199055950778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +533,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6346cb96-b31e-4df8-a3e0-cbd41fa33013
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1712078311107155230}
+        m_TargetAssemblyTypeName: MetroidvaniaTools.InputManager, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5059ffb0-c863-488e-8905-8f83efe9ea0a
+    m_ActionName: Player/Dash[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -511,7 +567,8 @@ GameObject:
   - component: {fileID: 6053654773434352199}
   - component: {fileID: 2265837279532683417}
   - component: {fileID: 5542836216188375155}
-  m_Layer: 6
+  - component: {fileID: 5954550316683157031}
+  m_Layer: 0
   m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7488792824964386258}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.54, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -627,7 +684,7 @@ MonoBehaviour:
   zSpacing: 0
   useClipping: 1
   immutableTriangles: 0
-  pmaVertexColors: 1
+  pmaVertexColors: 0
   clearStateOnDisable: 0
   tintBlack: 0
   singleSubmesh: 0
@@ -643,8 +700,20 @@ MonoBehaviour:
   translator:
     autoReset: 1
     useCustomMixMode: 1
-    layerMixModes: 0100000001000000
-    layerBlendModes: 0100000002000000
+    layerMixModes: 0100000001000000010000000100000001000000
+    layerBlendModes: 0100000002000000020000000200000002000000
+--- !u!114 &5954550316683157031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7488792824964386258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13aa4224ebbc3640b06581388dd6170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7938281641510655070
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7938281641510655070}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9249992, y: -21.1975, z: 0}
+  m_LocalPosition: {x: 19.4475, y: -28.278751, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -789,7 +858,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.69, y: 3.23}
+    oldSize: {x: 3.18, y: 1.05}
     newSize: {x: 4.69, y: 3.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
