@@ -32,7 +32,10 @@ namespace MetroidvaniaTools
         private int curForwardSequence;
         private float postMoveInputCountDown;
         private bool isForward4;
+        private bool isForward4Hold;
+        private bool isForward4Stabbing;
         private float holdCountDown;
+        private bool triggerSet;
 
         protected override void Initialization()
         {
@@ -44,8 +47,10 @@ namespace MetroidvaniaTools
             triggerInfo = MeleeAttackType.NULL;
             triggerMovement = false;
             curForwardSequence = 0;
+            triggerSet = false;
         }
         
+        // Called By Input
         public void MeleeAttack() {
             if (!character.isShooting && !character.isDashing && !character.isGettingHit && !character.isDead)
             {
@@ -55,7 +60,7 @@ namespace MetroidvaniaTools
                 }
                 else if (takeNextInput)
                 {
-                    keepAttacking = true;
+                    PreInputRoutine();
                 }
             }
         }
@@ -103,12 +108,13 @@ namespace MetroidvaniaTools
 
         private void HandleForwardMeleeHold()
         {
-            if (isForward4)
+            if (isForward4Hold)
             {
                 if (!input.MeleeHeld() || holdCountDown <= 0)
                 {
                     anim.SetTrigger("Stab4Release");
-                    isForward4 = false;
+                    isForward4Stabbing = true;
+                    isForward4Hold = false;
                 }
                 else if (input.MeleeHeld())
                 {
@@ -117,23 +123,53 @@ namespace MetroidvaniaTools
             }
         }
         
+        private void PreInputRoutine()
+        {
+            if (isForward4Hold || isForward4Stabbing)
+            {
+                return;
+            }
+            keepAttacking = true;
+            triggerSet = true;
+            SetAnimationTriggers();
+        }
+        
         private void PerformMeleeAttack()
         {
             character.isMeleeAttacking = true;
             takeNextInput = false;
-            // anim.SetBool("MeleeAttack", true);
             if (character.isJumping)
             {
                 character.isJumping = false;
             }
 
-            /*
-            if (input.UpHeld())
+            if (triggerSet)
+                triggerSet = false;
+            else
             {
-                anim.SetTrigger("UpwardMelee");
-                meleeAnimator.SetTrigger("UpwardMeleeSwipe");
+                SetAnimationTriggers();
             }
-            */
+            if (isForward4)
+            {
+                isForward4 = false;
+                holdCountDown = maxHoldTime;
+                isForward4Hold = true;
+            }
+            else
+            {
+                postMoveInputCountDown = postMoveInputInterval;
+            }
+        }
+
+        private void SetAnimationTriggers()
+        {
+            /*
+                if (input.UpHeld())
+                {
+                    anim.SetTrigger("UpwardMelee");
+                    meleeAnimator.SetTrigger("UpwardMeleeSwipe");
+                }
+                */
 
             if (input.DownHeld() && !character.isGrounded)
             {
@@ -150,7 +186,7 @@ namespace MetroidvaniaTools
                 SetForwardMelee();
             }
         }
-
+        
         private void SetForwardMelee()
         {
             switch (curForwardSequence)
@@ -159,25 +195,21 @@ namespace MetroidvaniaTools
                     anim.SetTrigger("Stab1");
                     triggerInfo = MeleeAttackType.STAB1;
                     curForwardSequence++;
-                    postMoveInputCountDown = postMoveInputInterval;
                     break;
                 case 1:
                     anim.SetTrigger("Stab2");
                     triggerInfo = MeleeAttackType.STAB1;
                     curForwardSequence++;
-                    postMoveInputCountDown = postMoveInputInterval;
                     break;
                 case 2:
                     anim.SetTrigger("Stab3");
                     triggerInfo = MeleeAttackType.STAB1;
                     curForwardSequence++;
-                    postMoveInputCountDown = postMoveInputInterval;
                     break;
                 case 3:
                     anim.SetTrigger("Stab4Hold");
-                    isForward4 = true;
-                    holdCountDown = maxHoldTime;
                     triggerInfo = MeleeAttackType.STAB1;
+                    isForward4 = true;
                     curForwardSequence = 0;
                     break;
                 default:
@@ -191,13 +223,14 @@ namespace MetroidvaniaTools
             if (!keepAttacking)
             {
                 character.isMeleeAttacking = false;
-                // anim.SetBool("MeleeAttack", false);
             }
             else
             {
                 keepAttacking = false;
                 PerformMeleeAttack();
             }
+
+            isForward4Stabbing = false;
         }
 
         public void TriggerMeleeWeapon()
