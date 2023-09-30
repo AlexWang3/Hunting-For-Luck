@@ -45,7 +45,7 @@ namespace MetroidvaniaTools
                 playerHealth.verticalDamageForce = verticalDamageForce;
                 playerHealth.horizontalDamageForce = horizontalDamageForce;
                 playerHealth.DealDamage(damageAmount);
-                if (!teleportAfterHit)
+                if (!teleportAfterHit && !character.isDashing)
                 {
                     gameObject.GetComponent<Collider2D>().enabled = false;
                 }
