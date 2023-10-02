@@ -860,7 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
@@ -2785,6 +2785,14 @@ PrefabInstance:
     - target: {fileID: 4391973155934170921, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829387653789533348, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: dashForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829387653789533348, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: dashAmountTime
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5124445468339687539, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_Mesh
