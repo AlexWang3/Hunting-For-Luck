@@ -5,14 +5,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.Serialization;
+
 [System.Serializable]
-public class UIPlayerHealthState : UIState {
-    public int playerHealth;
+public class UIEnemyHealthState : UIState {
+    public int enemyHealth;
     public int maxHealth;
-    public int playerCurrentLuckValue;
+    public int enemyCurrentLuckValue;
 }
 
-public class UIPlayerHealth : UIBase<UIPlayerHealthState> {
+public class UIEnemyHealth : UIBase<UIEnemyHealthState> {
     
     public Image frontHealthBar;
     public Image backHealthBar;
@@ -32,13 +34,13 @@ public class UIPlayerHealth : UIBase<UIPlayerHealthState> {
 
     public override void ApplyNewStateInternal() {
         float previousFill = frontHealthBar.fillAmount;
-        float newTargetFill = (float)state.playerHealth / state.maxHealth;
+        float newTargetFill = (float)state.enemyHealth / state.maxHealth;
        
-        DOTween.To(SetLuckNumber,currentLuck, state.playerHealth, 1.6f);
+        DOTween.To(SetLuckNumber,currentLuck, state.enemyHealth, 1.6f);
         slider.DOValue(midBarLuckValue / state.maxHealth, midBarTransitDuration);
-        DOTween.To(SetMidBarNumber,midBarLuckValue, state.playerCurrentLuckValue, midBarTransitDuration);
-        currentLuck = state.playerHealth;
-        midBarLuckValue = state.playerCurrentLuckValue;
+        DOTween.To(SetMidBarNumber,midBarLuckValue, state.enemyCurrentLuckValue, midBarTransitDuration);
+        currentLuck = state.enemyHealth;
+        midBarLuckValue = state.enemyCurrentLuckValue;
         if (newTargetFill >= previousFill) {
             // Regain Health
             frontHealthBar.DOFillAmount(newTargetFill, slowFillSpeed);

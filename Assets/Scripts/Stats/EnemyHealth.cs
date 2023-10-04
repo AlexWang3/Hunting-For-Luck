@@ -8,7 +8,9 @@ namespace MetroidvaniaTools
     public class EnemyHealth : Health
     {
         public bool giveUpwardForce = true;
-
+        [SerializeField] protected int recoverAmount;
+        [SerializeField] protected float recoverTime;
+        private float recoverTimeCountdown;
         public override void DealDamage(int amount)
         {
             base.DealDamage(amount);
@@ -26,7 +28,40 @@ namespace MetroidvaniaTools
             gameObject.GetComponent<Health>().healthPoints += 100;
             gameObject.SetActive(true);
         }
-
+        protected virtual void HandleRecovery()
+        {
+            if (character.isDead)
+            {
+                return;
+            }
+            if (hit)
+            {
+                recoverTimeCountdown = recoverTime;
+            }
+            else
+            {
+                if (recoverTimeCountdown > 0)
+                {
+                    recoverTimeCountdown -= Time.deltaTime;
+                }
+                else
+                {
+                    recoverTimeCountdown = recoverTime;
+                    GainCurrentHealth(recoverAmount);
+                }
+            }
+        }
+        
+        public virtual void GainCurrentHealth(int amount)
+        {
+            healthPoints += amount;
+            if (healthPoints > maxHealthPoints)
+            {
+                healthPoints = maxHealthPoints;
+            }
+            G.UI.playerHealthState.playerHealth = healthPoints;
+            G.UI.playerHealthState.MarkDirty();
+        }
     }
 
 }

@@ -27,8 +27,8 @@ public class GameSystem : MonoBehaviour {
     public Character character;
 
     private void Awake() {
-        player = FindObjectOfType<Character>().gameObject;
-        character = player.GetComponent<Character>();
+        player = Character.Instance.gameObject;
+        character = Character.Instance;
         InitializeUIMain();
     }
     public void Update() {
@@ -37,12 +37,18 @@ public class GameSystem : MonoBehaviour {
 
     public void InitializeUIMain() {
         UIMain.state = new UIMainState() {
-            playerDiceState = new UIPlayerDiceState() {
-                activeDiceList = new List<UIPlayerSingleDiceState>()
-            },
             playerHealthState = new UIPlayerHealthState() {
                 maxHealth = player.GetComponent<Health>().maxHealthPoints,
-                playerHealth = player.GetComponent<Health>().maxHealthPoints,
+                playerHealth = 0,
+                playerCurrentLuckValue = player.GetComponent<PlayerHealth>().playerCurrentLuckValue,
+            },
+            enemyHealthState = new UIEnemyHealthState() {
+                maxHealth = 100,
+                enemyHealth = 0,
+                enemyCurrentLuckValue = 0,
+            },
+            uiMiddleDiceState = new UIMiddleDiceState() {
+                diceNumber = 0,
             }
         };
     }
