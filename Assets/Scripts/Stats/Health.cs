@@ -8,6 +8,7 @@ namespace MetroidvaniaTools
     public class Health : Managers
     {
         public int maxHealthPoints = 100;
+        public int initialHealthPoints;
         [SerializeField] protected bool damageable = true;
         [SerializeField] protected float iFrameTime = .5f;
         //[SerializeField] protected float verticalDamageForce = 50;
@@ -15,11 +16,11 @@ namespace MetroidvaniaTools
         [HideInInspector] public int healthPoints;
         [HideInInspector] public bool left;
         [HideInInspector] public bool hit;
-
+        
         protected override void Initialization()
         {
             base.Initialization();
-            healthPoints = maxHealthPoints;
+            healthPoints = initialHealthPoints;
         }
 
         public virtual void DealDamage(int amount)

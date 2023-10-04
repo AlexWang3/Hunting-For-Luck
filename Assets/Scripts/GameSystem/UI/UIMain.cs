@@ -5,26 +5,32 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class UIMainState : UIState {
-    public UIPlayerDiceState playerDiceState;
     public UIPlayerHealthState playerHealthState;
+    public UIEnemyHealthState enemyHealthState;
+    public UIMiddleDiceState uiMiddleDiceState;
 }
 
 public class UIMain : UIBase<UIMainState> {
-    public UIPlayerDice playerDice;
     public UIPlayerHealth playerHealth;
+    public GameObject enemyStatusBar;
+    public UIEnemyHealth enemyHealth;
+    public UIMiddleDice middleDice;
     public override void ApplyNewStateInternal() {
         
     }
 
     private void Start() {
-        playerDice = GetComponentInChildren<UIPlayerDice>();
         playerHealth = GetComponentInChildren<UIPlayerHealth>();
+        enemyHealth = GetComponentInChildren<UIEnemyHealth>();
+        middleDice = GetComponentInChildren<UIMiddleDice>();
     }
 
     public override void UpdateChildren() {
-        playerDice.state = state.playerDiceState;
-        playerDice.ApplyNewState();
         playerHealth.state = state.playerHealthState;
         playerHealth.ApplyNewState();
+        enemyHealth.state = state.enemyHealthState;
+        enemyHealth.ApplyNewState();
+        middleDice.state = state.uiMiddleDiceState;
+        middleDice.ApplyNewState();
     }
 }
