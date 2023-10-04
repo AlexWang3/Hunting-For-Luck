@@ -27,8 +27,8 @@ public class GameSystem : MonoBehaviour {
     public Character character;
 
     private void Awake() {
-        player = FindObjectOfType<Character>().gameObject;
-        character = player.GetComponent<Character>();
+        player = Character.Instance.gameObject;
+        character = Character.Instance;
         InitializeUIMain();
     }
     public void Update() {

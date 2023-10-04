@@ -208,7 +208,6 @@ namespace MetroidvaniaTools
 
         public void GainHealthFromAttack(int amount) {
             GainCurrentHealth(amount);
-            
         }
 
         protected override void Cancel()
