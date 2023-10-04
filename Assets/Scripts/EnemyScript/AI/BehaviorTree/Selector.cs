@@ -46,6 +46,7 @@ namespace BehaviorTree
                 curNodeIndex++;
             }
 
+            curNodeIndex = 0;
             state = NodeState.FAILURE;
             return state;
         }

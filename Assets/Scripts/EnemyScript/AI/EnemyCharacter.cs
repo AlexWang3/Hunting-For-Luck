@@ -71,7 +71,7 @@ namespace MetroidvaniaTools
             return false;
         }
         
-        public void GeneralMovement(float timeTillMaxSpeed, float maxSpeed)
+        public virtual void GeneralMovement(float timeTillMaxSpeed, float maxSpeed)
         {
             if (!facingLeft)
                 moveDirection = 1;
@@ -102,7 +102,7 @@ namespace MetroidvaniaTools
             }
         }
         
-        public void GeneralIdle()
+        public virtual void GeneralIdle()
         {
             acceleration = 0;
             runTime = 0;
