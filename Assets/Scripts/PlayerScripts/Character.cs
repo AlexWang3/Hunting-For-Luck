@@ -33,7 +33,7 @@ namespace MetroidvaniaTools
         [HideInInspector] public ObjectPooler objectPooler;
         [HideInInspector] public WeaponAttackManager WAM;
         [HideInInspector] public MeleeAttackManager MAM;
-
+        [HideInInspector] public Health health;
         private Vector2 facingLeft;
         
         // Start is called before the first frame update
@@ -55,6 +55,7 @@ namespace MetroidvaniaTools
             facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
             MAM = GetComponent<MeleeAttackManager>();
             WAM = GetComponent<WeaponAttackManager>();
+            health = GetComponent<PlayerHealth>();
         }
 
         protected virtual void Flip()

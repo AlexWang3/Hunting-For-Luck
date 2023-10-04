@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MetroidvaniaTools
@@ -15,7 +17,9 @@ namespace MetroidvaniaTools
         [SerializeField] protected float slowDownSpeed;
         [SerializeField] protected float forceApplyTime;
         [SerializeField] protected int recoverAmount;
-        [SerializeField] protected float recoverTime;
+        [SerializeField] protected float recoverTimeAfterGainHealth;
+        [SerializeField] protected float recoverTimeAfterHit;
+        [SerializeField] protected float recoverInterval;
 
         //A reference to all the different sprites that make up the Player; this is used to make the Player slightly transparent when hit to visualize the Player received damage
         protected SpriteRenderer[] sprites;
@@ -28,16 +32,20 @@ namespace MetroidvaniaTools
         [HideInInspector] public Transform teleportPosition;
         [HideInInspector] public float verticalDamageForce;
         [HideInInspector] public float horizontalDamageForce;
-
+        
+        public int playerCurrentLuckValue;
         private bool applyForce;
-        private float recoverTimeCountdown;
+        public float recoverTimeCountdown;
         private Rigidbody2D rb;
-
+        private bool gainHealthFromAttack = false;
         protected override void Initialization()
         {
             base.Initialization();
             sprites = GetComponentsInChildren<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
+            playerCurrentLuckValue = maxHealthPoints / 2;
+            G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
+            G.UI.playerHealthState.MarkDirty();
             // deadScreenImage = uiManager.deadScreen.GetComponent<Image>();
             // deadScreenText = uiManager.deadScreen.GetComponentInChildren<Text>();
         }
@@ -80,6 +88,8 @@ namespace MetroidvaniaTools
                 Invoke("HitCancel", slowDownTimeAmount);
                 Invoke("ForceCancel", forceApplyTime);
             }
+            G.UI.playerHealthState.playerHealth = healthPoints;
+            G.UI.playerHealthState.MarkDirty();
         }
 
         private void CharacterGetHit()
@@ -152,9 +162,14 @@ namespace MetroidvaniaTools
             {
                 return;
             }
+
+            if (gainHealthFromAttack) {
+                recoverTimeCountdown = healthPoints < playerCurrentLuckValue? recoverInterval : recoverTimeAfterGainHealth;
+            }
+
             if (hit)
             {
-                recoverTimeCountdown = recoverTime;
+                recoverTimeCountdown = recoverTimeAfterHit;
             }
             else
             {
@@ -164,8 +179,12 @@ namespace MetroidvaniaTools
                 }
                 else
                 {
-                    recoverTimeCountdown = recoverTime;
-                    GainCurrentHealth(recoverAmount);
+                    recoverTimeCountdown = recoverInterval;
+                    if (healthPoints > playerCurrentLuckValue) {
+                        GainCurrentHealth(Mathf.Max(-recoverAmount, playerCurrentLuckValue - healthPoints));
+                    } else {
+                        GainCurrentHealth(Mathf.Min(recoverAmount, playerCurrentLuckValue - healthPoints));
+                    }
                 }
             }
         }
@@ -182,11 +201,13 @@ namespace MetroidvaniaTools
 
         public virtual void GainCurrentHealth(int amount)
         {
-            healthPoints += amount;
-            if (healthPoints > maxHealthPoints)
-            {
-                healthPoints = maxHealthPoints;
-            }
+            healthPoints = Mathf.Clamp(healthPoints + amount, 0, maxHealthPoints);
+            G.UI.playerHealthState.playerHealth = healthPoints;
+            G.UI.playerHealthState.MarkDirty();
+        }
+
+        public void GainHealthFromAttack(int amount) {
+            GainCurrentHealth(amount);
         }
 
         protected override void Cancel()
@@ -216,6 +237,12 @@ namespace MetroidvaniaTools
         {
             yield return new WaitForSeconds(5);
             character.gameObject.SetActive(false);
+        }
+
+        public void ModifyPlayerLuckBarValue(int amount) {
+            playerCurrentLuckValue = Mathf.Clamp(playerCurrentLuckValue + amount, 0, maxHealthPoints);
+            G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
+            G.UI.playerHealthState.MarkDirty();
         }
     }
 }
