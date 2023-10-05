@@ -4,22 +4,22 @@ using System.Collections.Generic;
 using MetroidvaniaTools;
 using UnityEngine;
 
-public class G {
-    public static GameSystem I {
-        get {
-            if (_I == null) {
-                _I = GameObject.FindObjectOfType<GameSystem>();
-            }
-            return _I;
-        }
-    }
-    public static UIMainState UI {
-        get {
-            return G.I.UIMain.state;
-        }
-    }
-    static GameSystem _I;
-}
+// public class G {
+//     public static GameSystem I {
+//         get {
+//             if (_I == null) {
+//                 _I = GameObject.FindObjectOfType<GameSystem>();
+//             }
+//             return _I;
+//         }
+//     }
+//     public static UIMainState UI {
+//         get {
+//             return G.I.UIMain.state;
+//         }
+//     }
+//     static GameSystem _I;
+// }
 
 public class GameSystem : MonoBehaviour {
     public UIMain UIMain;

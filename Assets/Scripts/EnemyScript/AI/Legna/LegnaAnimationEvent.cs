@@ -25,6 +25,7 @@ namespace MetroidvaniaTools
         public void NormalAttackFinish()
         {
             character.NA_finishTrigger = true;
+            character.TriggerSeriesDelayExplosion(5, 5f, .1f, .2f);
         }
     }
 }

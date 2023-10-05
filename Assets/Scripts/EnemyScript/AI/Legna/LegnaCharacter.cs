@@ -18,6 +18,7 @@ namespace MetroidvaniaTools
     {
         public float longRangeThreshold;
         public float shortRangeThreshold;
+        public GameObject explosions;
         
         
         [HideInInspector] public LegnaStates curState;
@@ -125,6 +126,24 @@ namespace MetroidvaniaTools
             }
 
             return false;
+        }
+
+        public void TriggerSeriesDelayExplosion(int amount, float distanceInterval, float minDelayTime,
+            float delayTimeIncrement)
+        {
+            if (facingLeft)
+            {
+                distanceInterval *= -1;
+            }
+            
+            for (int i = 0; i < amount; i++)
+            {
+                GameObject currentItem = Instantiate(explosions);
+                currentItem.GetComponent<DelayExplosion>().delayTime = minDelayTime + i * delayTimeIncrement;
+                currentItem.transform.position = new Vector2(explosions.transform.position.x + i * distanceInterval,
+                    explosions.transform.position.y);
+                currentItem.SetActive(true);
+            }
         }
     }   
 }
