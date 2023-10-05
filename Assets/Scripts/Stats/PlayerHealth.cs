@@ -44,8 +44,8 @@ namespace MetroidvaniaTools
             sprites = GetComponentsInChildren<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
             playerCurrentLuckValue = maxHealthPoints / 2;
-            //G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
-            //G.UI.playerHealthState.MarkDirty();
+            G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
+            G.UI.playerHealthState.MarkDirty();
             // deadScreenImage = uiManager.deadScreen.GetComponent<Image>();
             // deadScreenText = uiManager.deadScreen.GetComponentInChildren<Text>();
         }
@@ -88,8 +88,8 @@ namespace MetroidvaniaTools
                 Invoke("HitCancel", slowDownTimeAmount);
                 Invoke("ForceCancel", forceApplyTime);
             }
-            //G.UI.playerHealthState.playerHealth = healthPoints;
-            //G.UI.playerHealthState.MarkDirty();
+            G.UI.playerHealthState.playerHealth = healthPoints;
+            G.UI.playerHealthState.MarkDirty();
         }
 
         private void CharacterGetHit()
@@ -202,8 +202,8 @@ namespace MetroidvaniaTools
         public virtual void GainCurrentHealth(int amount)
         {
             healthPoints = Mathf.Clamp(healthPoints + amount, 0, maxHealthPoints);
-            //G.UI.playerHealthState.playerHealth = healthPoints;
-            //G.UI.playerHealthState.MarkDirty();
+            G.UI.playerHealthState.playerHealth = healthPoints;
+            G.UI.playerHealthState.MarkDirty();
         }
 
         public void GainHealthFromAttack(int amount) {
@@ -241,8 +241,8 @@ namespace MetroidvaniaTools
 
         public void ModifyPlayerLuckBarValue(int amount) {
             playerCurrentLuckValue = Mathf.Clamp(playerCurrentLuckValue + amount, 0, maxHealthPoints);
-            //G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
-            //G.UI.playerHealthState.MarkDirty();
+            G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
+            G.UI.playerHealthState.MarkDirty();
         }
     }
 }

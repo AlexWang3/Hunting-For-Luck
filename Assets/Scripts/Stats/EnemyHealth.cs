@@ -59,8 +59,8 @@ namespace MetroidvaniaTools
             {
                 healthPoints = maxHealthPoints;
             }
-            //G.UI.playerHealthState.playerHealth = healthPoints;
-            //G.UI.playerHealthState.MarkDirty();
+            G.UI.playerHealthState.playerHealth = healthPoints;
+            G.UI.playerHealthState.MarkDirty();
         }
     }
 
