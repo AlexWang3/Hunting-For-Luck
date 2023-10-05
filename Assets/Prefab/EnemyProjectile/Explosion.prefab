@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1345197773437809069}
   - component: {fileID: 1345197773437809068}
   - component: {fileID: 1345197773437809067}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FX_Shoot_10_projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345197773437809066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.623175, y: -4.269312, z: 3.969387}
+  m_LocalPosition: {x: 0, y: 0, z: 3.969387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4920,7 +4920,7 @@ GameObject:
   - component: {fileID: 2935096153806558951}
   - component: {fileID: 2935096153806558949}
   - component: {fileID: 2935096153806558950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dust_up_apb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9818,7 +9818,7 @@ GameObject:
   - component: {fileID: 2935096153914694774}
   - component: {fileID: 2935096153914694772}
   - component: {fileID: 2935096153914694773}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dust_up_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14716,7 +14716,7 @@ GameObject:
   - component: {fileID: 3923362424414346978}
   - component: {fileID: 3923362424414346980}
   - component: {fileID: 3923362424414346981}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dust_spread_add_bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19623,7 +19623,7 @@ GameObject:
   - component: {fileID: 3923362424471484147}
   - component: {fileID: 3923362424471484149}
   - component: {fileID: 3923362424471484146}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sharp_out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24521,7 +24521,7 @@ GameObject:
   - component: {fileID: 3923362425047230531}
   - component: {fileID: 3923362425047230533}
   - component: {fileID: 3923362425047230530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29446,7 +29446,7 @@ GameObject:
   - component: {fileID: 3923362425225965188}
   - component: {fileID: 3923362425225965189}
   - component: {fileID: 3923362425225965186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FX_explosion_03_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29461,7 +29461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3923362425225965187}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.58, y: -4.41, z: 3.969387}
+  m_LocalPosition: {x: 0, y: 0, z: 3.969387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34379,7 +34379,7 @@ GameObject:
   - component: {fileID: 3923362425556650049}
   - component: {fileID: 3923362425556650051}
   - component: {fileID: 3923362425556650048}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39335,7 +39335,7 @@ GameObject:
   - component: {fileID: 3923362426048136333}
   - component: {fileID: 3923362426048136335}
   - component: {fileID: 3923362426048136332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor_crack_particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44346,7 +44346,7 @@ GameObject:
   - component: {fileID: 3923362426084451539}
   - component: {fileID: 3923362426084451541}
   - component: {fileID: 3923362426084451538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dust_spread_apb_bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49253,7 +49253,7 @@ GameObject:
   - component: {fileID: 4379193577461090908}
   - component: {fileID: 3737714507074746136}
   - component: {fileID: 7890441387451857591}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor_splash_apb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54160,7 +54160,7 @@ GameObject:
   - component: {fileID: 6919045785775782828}
   - component: {fileID: 6999278215680508104}
   - component: {fileID: 4751882873543624214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: smoke_up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59018,7 +59018,7 @@ GameObject:
   - component: {fileID: 5525603251800745574}
   - component: {fileID: 5525603251800745572}
   - component: {fileID: 5525603251800745573}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dust_spread_add_middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63925,7 +63925,7 @@ GameObject:
   - component: {fileID: 5525603252381964164}
   - component: {fileID: 5525603252381964282}
   - component: {fileID: 5525603252381964283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dust_spread_apb_middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68832,7 +68832,7 @@ GameObject:
   - component: {fileID: 5936529571460199594}
   - component: {fileID: 5936529571460199595}
   - component: {fileID: 5936529571460199596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dust_out_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73748,7 +73748,7 @@ GameObject:
   - component: {fileID: 6035457857808440867}
   - component: {fileID: 6035457857808440866}
   - component: {fileID: 6035457857808440865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78655,7 +78655,7 @@ GameObject:
   - component: {fileID: 6604183320407182964}
   - component: {fileID: 2104822386667028319}
   - component: {fileID: 7392281252062875450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor_crack_apb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83562,7 +83562,7 @@ GameObject:
   - component: {fileID: 6839459536468873483}
   - component: {fileID: 6839459536468873481}
   - component: {fileID: 6839459536468873480}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: splash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88459,7 +88459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4162078963963444885}
   - component: {fileID: 7026641630791814648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88481,7 +88481,7 @@ Transform:
   - {fileID: 1345197773437809069}
   - {fileID: 3923362425225965188}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7026641630791814648
 MonoBehaviour:
@@ -88497,7 +88497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smokingParticle: {fileID: 1345197773437809068}
   explodingParticle: {fileID: 3923362425225965189}
-  delayTime: 5
+  delayTime: 0.1
 --- !u!1 &8055957983326569447
 GameObject:
   m_ObjectHideFlags: 0
@@ -88509,7 +88509,7 @@ GameObject:
   - component: {fileID: 8055957983326569444}
   - component: {fileID: 8055957983326569446}
   - component: {fileID: 8055957983326569445}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fire_apb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93358,7 +93358,7 @@ GameObject:
   - component: {fileID: 8055957984412423497}
   - component: {fileID: 8055957984412423498}
   - component: {fileID: 8055957984412423499}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fire_trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98290,7 +98290,7 @@ GameObject:
   - component: {fileID: 8055957984843611319}
   - component: {fileID: 8055957984843611313}
   - component: {fileID: 8055957984843611312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fire_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103139,7 +103139,7 @@ GameObject:
   - component: {fileID: 6656240084960141180}
   - component: {fileID: 1159553855390722469}
   - component: {fileID: 4240881008158472773}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor_splash_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108055,7 +108055,7 @@ GameObject:
   - component: {fileID: 9085178642940756831}
   - component: {fileID: 9085178642940756829}
   - component: {fileID: 9085178642940756828}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: circle_spread
   m_TagString: Untagged
   m_Icon: {fileID: 0}

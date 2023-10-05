@@ -36,6 +36,12 @@ namespace MetroidvaniaTools
         [HideInInspector] public bool NA_finishTrigger;
         
         private bool groundCheckDisabled;
+
+        private MeshRenderer mr;
+        private MaterialPropertyBlock mpb_red;
+        private MaterialPropertyBlock mpb_white;
+        private float tintResetCountDown;
+        private bool needResetTint;
         protected override void Initialization()
         {
             base.Initialization();
@@ -43,6 +49,12 @@ namespace MetroidvaniaTools
             health = GetComponent<LegnaHealth>();
             groundCheckDisabled = false;
             canStagger = false;
+            
+            mr = GetComponentInChildren<MeshRenderer>();
+            mpb_red = new MaterialPropertyBlock();
+            mpb_white = new MaterialPropertyBlock();
+            mpb_red.SetColor("_Color", Color.red);
+            mpb_white.SetColor("_Color", Color.white);
         }
         
         protected override void OnEnable()
@@ -56,6 +68,7 @@ namespace MetroidvaniaTools
         {
             GroundCheck();
             PlayerCheck();
+            ResetTint();
         }
 
         private void PlayerCheck()
@@ -118,6 +131,9 @@ namespace MetroidvaniaTools
             if (health.hit)
             {
                 health.hit = false;
+                mr.SetPropertyBlock(mpb_red);
+                needResetTint = true;
+                tintResetCountDown = .3f;
                 if (canStagger)
                 {
                     isStagger = true;
@@ -126,6 +142,19 @@ namespace MetroidvaniaTools
             }
 
             return false;
+        }
+
+        private void ResetTint()
+        {
+            if (tintResetCountDown > 0)
+            {
+                tintResetCountDown -= Time.deltaTime;
+            }
+            else if (needResetTint)
+            {
+                mr.SetPropertyBlock(mpb_white);
+                needResetTint = false;
+            }
         }
 
         public void TriggerSeriesDelayExplosion(int amount, float distanceInterval, float minDelayTime,
