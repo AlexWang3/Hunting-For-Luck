@@ -1363,12 +1363,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
+  initialHealthPoints: 0
   damageable: 0
   iFrameTime: 0.5
   healthPoints: 0
   left: 0
   hit: 0
   giveUpwardForce: 1
+  recoverAmount: 0
+  recoverTime: 0
 --- !u!1 &956485422
 GameObject:
   m_ObjectHideFlags: 0
