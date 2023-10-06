@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 namespace MetroidvaniaTools
 { 
@@ -65,7 +67,6 @@ namespace MetroidvaniaTools
             if (ctx.started) {
                 Character.Instance.WAM.RangeFire();
             }
-
             rangeAttack = ctx.performed;
         }
 
@@ -74,6 +75,19 @@ namespace MetroidvaniaTools
                 Character.Instance.dash.Dashing();
             }
             dash = ctx.performed;
+        }
+
+        private Sequence lastSequence;
+        public void OnBurnLuck(InputAction.CallbackContext ctx) {
+            if (ctx.started) {
+                lastSequence.Kill();
+                G.I.playerHealth.luckSkill = true;
+                G.I.playerHealth.ModifyPlayerLuckBarValue(-Mathf.RoundToInt( G.I.playerHealth.BurningReduceMaximumProportion * G.I.playerHealth.playerCurrentLuckValue));
+                Sequence sequence = DOTween.Sequence();
+                sequence.InsertCallback(G.I.playerHealth.BurningLuckTime, () => { G.I.playerHealth.luckSkill = false; });
+                sequence.Play();
+                lastSequence = sequence;
+            }
         }
 
         private void Update() {

@@ -20,7 +20,6 @@ namespace MetroidvaniaTools
         protected override void Initialization()
         {
             base.Initialization();
-            healthPoints = initialHealthPoints;
         }
 
         public virtual void DealDamage(int amount)
