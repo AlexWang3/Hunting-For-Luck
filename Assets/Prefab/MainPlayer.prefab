@@ -71,8 +71,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8771209097706209993}
+  - {fileID: 8948059138431730147}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2505919318508841146
 Rigidbody2D:
@@ -166,6 +167,7 @@ MonoBehaviour:
   objectPooler: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
+  health: {fileID: 0}
 --- !u!114 &510010732558049835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cc749f5b2d4b54f8318371159ea215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
+  maxHealthPoints: 200
+  initialHealthPoints: 50
   damageable: 1
   iFrameTime: 0.5
   healthPoints: 0
@@ -187,12 +190,20 @@ MonoBehaviour:
   slowDownTimeAmount: 0.2
   slowDownSpeed: 0.3
   forceApplyTime: 0.2
-  recoverAmount: 0
-  recoverTime: 0
+  recoverAmount: 2
+  recoverTimeAfterGainHealth: 10
+  recoverTimeAfterHit: 5
+  recoverInterval: 0.1
   teleportAfterHit: 0
   teleportPosition: {fileID: 0}
   verticalDamageForce: 0
   horizontalDamageForce: 0
+  playerCurrentLuckValue: 0
+  recoverTimeCountdown: 0
+  playerName: ProtoType
+  luckSkill: 0
+  BurningLuckTime: 5
+  BurningReduceMaximumProportion: 0.2
 --- !u!114 &1691689124750749858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +234,7 @@ MonoBehaviour:
   objectPooler: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
+  health: {fileID: 0}
   timeTillMaxSpeed: 0
   maxSpeed: 20
   distanceToCollider: 0.05
@@ -259,6 +271,7 @@ MonoBehaviour:
   objectPooler: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
+  health: {fileID: 0}
   limitAirJumps: 0
   maxJumps: 2
   jumpForce: 300
@@ -304,6 +317,7 @@ MonoBehaviour:
   objectPooler: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
+  health: {fileID: 0}
   dashForce: 100
   dashCoolDownTime: 1
   dashAmountTime: 0.5
@@ -340,6 +354,7 @@ MonoBehaviour:
   objectPooler: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
+  health: {fileID: 0}
   defaultForce: 600
   upwardsForce: 600
   movementTime: 0.1
@@ -377,6 +392,7 @@ MonoBehaviour:
   objectPooler: {fileID: 0}
   WAM: {fileID: 0}
   MAM: {fileID: 0}
+  health: {fileID: 0}
   weaponTypes:
   - {fileID: 11400000, guid: 432a070f84f6a8b439eca499e8005758, type: 2}
   gunBarrel: {fileID: 8467448031209895077}
@@ -551,11 +567,145 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5059ffb0-c863-488e-8905-8f83efe9ea0a
     m_ActionName: Player/Dash[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1712078311107155230}
+        m_TargetAssemblyTypeName: MetroidvaniaTools.InputManager, Assembly-CSharp
+        m_MethodName: OnBurnLuck
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9abe6419-1bd2-415c-95fb-a9a64800963e
+    m_ActionName: Player/BurnLuck[/Keyboard/o]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &6747633872863225275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8948059138431730147}
+  - component: {fileID: 6447424235425932935}
+  - component: {fileID: 3986627517272842698}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8948059138431730147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747633872863225275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.18, y: 0.36, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4391973155934170921}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &6447424235425932935
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747633872863225275}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.9566808, b: 0.68553454, a: 1}
+  m_Intensity: 4
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 1
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &3986627517272842698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747633872863225275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 0
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &7488792824964386258
 GameObject:
   m_ObjectHideFlags: 0

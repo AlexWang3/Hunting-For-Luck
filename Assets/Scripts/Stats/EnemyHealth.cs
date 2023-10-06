@@ -5,12 +5,20 @@ using UnityEngine;
 
 namespace MetroidvaniaTools
 {
-    public class EnemyHealth : Health
+    public class EnemyHealth : Health, IDamagebale
     {
         public bool giveUpwardForce = true;
         [SerializeField] protected int recoverAmount;
         [SerializeField] protected float recoverTime;
         private float recoverTimeCountdown;
+        public void TakeDamage(int amount) {
+            DealDamage(amount);
+        }
+
+        public bool IsGiveUpwardForce() {
+            return giveUpwardForce;
+        }
+
         public override void DealDamage(int amount)
         {
             base.DealDamage(amount);
@@ -61,6 +69,10 @@ namespace MetroidvaniaTools
             }
             G.UI.playerHealthState.playerHealth = healthPoints;
             G.UI.playerHealthState.MarkDirty();
+        }
+
+        public int ReturnHealthPoint() {
+            return healthPoints;
         }
     }
 
