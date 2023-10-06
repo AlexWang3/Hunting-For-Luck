@@ -54,6 +54,7 @@ public class GameSystem : MonoBehaviour {
                 maxHealth = playerHealth.maxHealthPoints,
                 playerHealth = 0,
                 playerCurrentLuckValue = playerHealth.playerCurrentLuckValue,
+                previousFill = (float)playerHealth.playerCurrentLuckValue/playerHealth.maxHealthPoints,
             },
             enemyHealthState = new UIEnemyHealthState() {
                 maxHealth = 10,

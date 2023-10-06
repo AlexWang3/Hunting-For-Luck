@@ -14,6 +14,7 @@ public class UIPlayerHealthState : UIState {
     public int playerCurrentLuckValue;
     public string playerName;
     [FormerlySerializedAs("setPlayerName")] public bool hasSetPlayerName;
+    public float previousFill;
     public void SetPlayerName(string playerName) {
         this.playerName = playerName;
         hasSetPlayerName = true;
@@ -32,6 +33,7 @@ public class UIPlayerHealth : UIBase<UIPlayerHealthState> {
     public Slider slider;
     public TMP_Text MidbarText;
     [FormerlySerializedAs("name")] public TMP_Text playerName;
+    
     private void Start() {
         currentLuck = 0;
         midBarLuckValue = 0;
@@ -39,28 +41,34 @@ public class UIPlayerHealth : UIBase<UIPlayerHealthState> {
     public float nameTransitDuration = 1.2f;
     public float luckNumbnerTransitDuration = 1.2f;
     public float midBarTransitDuration = 1.2f;
+    public Sequence oldSequence;
     public override void ApplyNewStateInternal() {
+        oldSequence.Kill();
+        Sequence newSequence = DOTween.Sequence();
         if (state.hasSetPlayerName) {
-            playerName.DOText(state.playerName,  nameTransitDuration, true, ScrambleMode.All);
+            newSequence.Insert(0f, playerName.DOText(state.playerName,  nameTransitDuration, true, ScrambleMode.All));
             state.hasSetPlayerName = false;
         }
-        float previousFill = frontHealthBar.fillAmount;
         float newTargetFill = (float)state.playerHealth / state.maxHealth;
        
-        DOTween.To(SetLuckNumber,currentLuck, state.playerHealth, luckNumbnerTransitDuration);
-        slider.DOValue(midBarLuckValue / state.maxHealth, midBarTransitDuration);
-        DOTween.To(SetMidBarNumber,midBarLuckValue, state.playerCurrentLuckValue, midBarTransitDuration);
+        newSequence.Insert(0,DOTween.To(SetLuckNumber,currentLuck, state.playerHealth, luckNumbnerTransitDuration));
+        newSequence.Insert(0,slider.DOValue(midBarLuckValue / state.maxHealth, midBarTransitDuration));
+        newSequence.Insert(0, DOTween.To(SetMidBarNumber,midBarLuckValue, state.playerCurrentLuckValue, midBarTransitDuration));
         currentLuck = state.playerHealth;
         midBarLuckValue = state.playerCurrentLuckValue;
-        if (newTargetFill >= previousFill) {
+        if (newTargetFill >= state.previousFill) {
             // Regain Health
-            frontHealthBar.DOFillAmount(newTargetFill, slowFillSpeed);
-            backHealthBar.DOFillAmount(newTargetFill, fastFillSpeed);
+            newSequence.Insert(0,frontHealthBar.DOFillAmount(newTargetFill, slowFillSpeed));
+            newSequence.Insert(0,backHealthBar.DOFillAmount(newTargetFill, fastFillSpeed));
         } else {
             // Take Damage
-            frontHealthBar.DOFillAmount(newTargetFill, fastFillSpeed);
-            backHealthBar.DOFillAmount(newTargetFill, slowFillSpeed);
+            newSequence.Insert(0,frontHealthBar.DOFillAmount(newTargetFill, fastFillSpeed));
+            newSequence.Insert(0,backHealthBar.DOFillAmount(newTargetFill, slowFillSpeed));
         }
+
+        newSequence.Play();
+        oldSequence = newSequence;
+        state.previousFill = newTargetFill;
     }
     public void SetLuckNumber(float targetValue) {
         int value = Mathf.RoundToInt(targetValue);

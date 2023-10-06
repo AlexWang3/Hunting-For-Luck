@@ -32,6 +32,7 @@ public class UIEnemyHealth : UIBase<UIEnemyHealthState> {
     public Slider slider;
     public TMP_Text MidbarText;
     [FormerlySerializedAs("name")] public TMP_Text enemyName;
+    public Sequence oldSequence;
     private void Start() {
         currentLuck = 0;
         midBarLuckValue = 0;
@@ -42,26 +43,30 @@ public class UIEnemyHealth : UIBase<UIEnemyHealthState> {
     public float midBarTransitDuration = 1.2f;
 
     public override void ApplyNewStateInternal() {
+        oldSequence.Kill();
+        Sequence newSequence = DOTween.Sequence();
         if (state.hasSetEnemyName) {
-            enemyName.DOText(state.enemyName, nameTransitDuration, true, ScrambleMode.All);
+            newSequence.Insert(0,enemyName.DOText(state.enemyName, nameTransitDuration, true, ScrambleMode.All));
             state.hasSetEnemyName = false;
         }
         float previousFill = frontHealthBar.fillAmount;
         float newTargetFill = (float)state.enemyHealth / state.maxHealth;
-        DOTween.To(SetLuckNumber,currentLuck, state.enemyHealth, luckNumbnerTransitDuration);
-        slider.DOValue(state.enemyCurrentLuckValue / state.maxHealth, midBarTransitDuration);
-        DOTween.To(SetMidBarNumber,midBarLuckValue, state.enemyCurrentLuckValue, midBarTransitDuration);
+        newSequence.Insert(0,DOTween.To(SetLuckNumber,currentLuck, state.enemyHealth, luckNumbnerTransitDuration));
+        newSequence.Insert(0,slider.DOValue(state.enemyCurrentLuckValue / state.maxHealth, midBarTransitDuration));
+        newSequence.Insert(0,DOTween.To(SetMidBarNumber,midBarLuckValue, state.enemyCurrentLuckValue, midBarTransitDuration));
         currentLuck = state.enemyHealth;
         midBarLuckValue = state.enemyCurrentLuckValue;
         if (newTargetFill >= previousFill) {
             // Regain Health
-            frontHealthBar.DOFillAmount(newTargetFill, slowFillSpeed);
-            backHealthBar.DOFillAmount(newTargetFill, fastFillSpeed);
+            newSequence.Insert(0,frontHealthBar.DOFillAmount(newTargetFill, slowFillSpeed));
+            newSequence.Insert(0,backHealthBar.DOFillAmount(newTargetFill, fastFillSpeed));
         } else {
             // Take Damage
-            frontHealthBar.DOFillAmount(newTargetFill, fastFillSpeed);
-            backHealthBar.DOFillAmount(newTargetFill, slowFillSpeed);
+            newSequence.Insert(0,frontHealthBar.DOFillAmount(newTargetFill, fastFillSpeed));
+            newSequence.Insert(0,backHealthBar.DOFillAmount(newTargetFill, slowFillSpeed));
         }
+        newSequence.Play();
+        oldSequence = newSequence;
     }
     public void SetLuckNumber(float targetValue) {
         int value = Mathf.RoundToInt(targetValue);
