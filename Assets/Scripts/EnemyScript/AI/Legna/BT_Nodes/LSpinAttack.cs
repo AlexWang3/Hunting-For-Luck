@@ -55,7 +55,6 @@ namespace MetroidvaniaTools
                     moveIndex = 3;
                     character.GeneralIdle();
                     character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", false);
-                    Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
                     character.anim.SetTrigger("SpinAttackFinish");
                 }
                 else
@@ -69,6 +68,7 @@ namespace MetroidvaniaTools
                 if (character.SA_finishTrigger)
                 {
                     character.SA_finishTrigger = false;
+                    Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
                     character.curState = LegnaStates.NULL;
                     state = NodeState.SUCCESS;
                 }

@@ -32,6 +32,7 @@ namespace MetroidvaniaTools
                 character.JA_finishTrigger = false;
                 moveIndex = 0;
                 character.GeneralIdle();
+                Physics2D.IgnoreCollision(character.col, character.playerCollider, true);
                 character.anim.SetTrigger("JumpAttackStart");
             }
             
@@ -71,6 +72,7 @@ namespace MetroidvaniaTools
                 if (character.JA_finishTrigger)
                 {
                     character.JA_finishTrigger = false;
+                    Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
                     character.curState = LegnaStates.NULL;
                     state = NodeState.SUCCESS;
                 }

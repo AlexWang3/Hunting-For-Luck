@@ -50,13 +50,13 @@ namespace MetroidvaniaTools
             {
                 chase,
                 jumpAttack,
-                new LIdle(character, .5f)
+                new LIdle(character, 1.5f)
             });;
 
             Node spinAttackSequence = new Sequence(new List<Node>
             {
                 spinAttack,
-                new LIdle(character, .5f)
+                new LIdle(character, 1.5f)
             });
             
             Node veryShortBehavior = dodge;
