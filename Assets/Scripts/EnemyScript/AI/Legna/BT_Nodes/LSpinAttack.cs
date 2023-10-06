@@ -30,6 +30,7 @@ namespace MetroidvaniaTools
                 character.anim.SetTrigger("SpinAttackStart");
                 character.FacingPlayer();
                 moveIndex = 1;
+                character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit = false;
                 character.SA_dashTrigger = false;
                 character.SA_finishTrigger = false;
             }
@@ -54,7 +55,6 @@ namespace MetroidvaniaTools
                     moveIndex = 3;
                     character.GeneralIdle();
                     character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", false);
-                    character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit = false;
                     Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
                     character.anim.SetTrigger("SpinAttackFinish");
                 }
