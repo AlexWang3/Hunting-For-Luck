@@ -78,9 +78,9 @@ namespace MetroidvaniaTools
             
             Node root = new Selector(new List<Node>
             {
-                //unSeenBehavior,
-                //veryShortDetector,
-                //shortDetector,
+                unSeenBehavior,
+                veryShortDetector,
+                shortDetector,
                 longDetector
             });
             return root;
