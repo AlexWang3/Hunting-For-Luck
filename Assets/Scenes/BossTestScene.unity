@@ -1322,6 +1322,10 @@ PrefabInstance:
       propertyPath: explosions
       value: 
       objectReference: {fileID: 1422032111}
+    - target: {fileID: 3580908215059449655, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
+      propertyPath: longRangeThreshold
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3654405014922646633, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
       propertyPath: m_Materials.Array.size
       value: 3

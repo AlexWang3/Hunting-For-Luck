@@ -22,7 +22,6 @@ namespace MetroidvaniaTools
         protected override void Initialization()
         {
             character = GetComponent<LegnaCharacter>();
-            // enemyHealth = GetComponent<EnemyHealth>();
             base.Initialization();
         }
 
@@ -30,11 +29,11 @@ namespace MetroidvaniaTools
         {
             Node chase = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed);
             Node jumpAttack = new LJumpAttack(character, JA_jumpHeight, JA_distanceOffset, JA_maxDistance);
-            Node normalAttack = new LNormalAttack(character);
+            Node crossAttack = new LCrossAttack(character);
             Node veryShortBehavior = null;
             Node shortBehavior = new Sequence(new List<Node>
             {
-                normalAttack,
+                crossAttack,
                 new LIdle(character, .5f)
             });
             Node longBehavior = new Sequence(new List<Node>

@@ -12,7 +12,9 @@ namespace MetroidvaniaTools
         CHASE,
         IDLE,
         JUMPATTACK,
-        NORMALATTACK
+        CROSSATTACK1,
+        CROSSATTACK2,
+        CROSSATTACK3
     }
     public class LegnaCharacter : EnemyCharacter
     {
