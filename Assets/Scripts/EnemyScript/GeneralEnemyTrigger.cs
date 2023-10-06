@@ -14,17 +14,19 @@ namespace MetroidvaniaTools
         public bool hasDirection;
         public float verticalDamageForce;
         public float horizontalDamageForce;
-        public LegnaHealth legnaHealth;
+        
+        [HideInInspector] public LegnaHealth legnaHealth;
+        [HideInInspector] public bool alreadyHit;
 
         private void Start() {
-            legnaHealth = GetComponentInParent<LegnaHealth>();
+            legnaHealth = FindObjectOfType<LegnaHealth>();
+            alreadyHit = false;
         }
 
         private void OnTriggerEnter2D(Collider2D collision) {
             if (G.I.UIMain.currentTarget != legnaHealth) {
                 legnaHealth.UpdateEnemyInformation();
             }
-            Debug.Log(collision.transform);
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             
             if (playerHealth)
@@ -39,6 +41,7 @@ namespace MetroidvaniaTools
                     {
                         playerHealth.left = true;
                     }
+                    
                 }
                 else
                 {
@@ -59,6 +62,7 @@ namespace MetroidvaniaTools
                 if (!teleportAfterHit && !G.I.character.isDashing)
                 {
                     gameObject.GetComponent<Collider2D>().enabled = false;
+                    alreadyHit = true;
                 }
             }
         }

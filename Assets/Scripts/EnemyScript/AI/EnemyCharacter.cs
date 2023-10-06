@@ -116,11 +116,16 @@ namespace MetroidvaniaTools
             transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         }
 
-        public void FacingPlayer()
+        public bool FacingPlayer()
         {
-            if ((facingLeft && transform.position.x < player.transform.position.x) || 
+            if ((facingLeft && transform.position.x < player.transform.position.x) ||
                 (!facingLeft && transform.position.x > player.transform.position.x))
+            {
                 Flip();
+                return true;
+            }
+
+            return false;
         }
         
     }   

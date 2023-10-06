@@ -11,7 +11,8 @@ namespace MetroidvaniaTools
         AIR,
         STAB1,
         STAB2,
-        STAB3
+        STAB3,
+        STAB4
     }
     
     public class MeleeAttackManager : Abilities
@@ -20,6 +21,7 @@ namespace MetroidvaniaTools
         public float upwardsForce = 600;
         public float movementTime = .1f;
         public float movementForce = 5000;
+        public float movementForceStab4 = 10000;
         public float postMoveInputInterval = .75f;
         public float postMoveInputIntervalStab4 = 1f;
         public float maxHoldTime = 2f;
@@ -80,7 +82,8 @@ namespace MetroidvaniaTools
             {
                 triggerMovement = false;
                 rb.velocity = Vector2.zero;
-                if (triggerInfo == MeleeAttackType.STAB1)
+                if (triggerInfo == MeleeAttackType.STAB1 || triggerInfo == MeleeAttackType.STAB2 || triggerInfo == MeleeAttackType.STAB3
+                    || triggerInfo == MeleeAttackType.AIR)
                 {
                     if (character.isFacingLeft)
                     {
@@ -89,6 +92,17 @@ namespace MetroidvaniaTools
                     else
                     {
                         rb.AddForce(Vector2.right * movementForce);
+                    }
+                }
+                else if (triggerInfo == MeleeAttackType.STAB4)
+                {
+                    if (character.isFacingLeft)
+                    {
+                        rb.AddForce(Vector2.left * movementForceStab4);
+                    }
+                    else
+                    {
+                        rb.AddForce(Vector2.right * movementForceStab4);
                     }
                 }
             }
@@ -186,7 +200,7 @@ namespace MetroidvaniaTools
             else if (!character.isGrounded)
             {
                 anim.SetTrigger(("AirStab"));
-                triggerInfo = MeleeAttackType.STAB1;
+                triggerInfo = MeleeAttackType.AIR;
             }
             else if (character.isGrounded)
             {
@@ -205,18 +219,18 @@ namespace MetroidvaniaTools
                     break;
                 case 1:
                     anim.SetTrigger("Stab2");
-                    triggerInfo = MeleeAttackType.STAB1;
+                    triggerInfo = MeleeAttackType.STAB2;
                     curForwardSequence++;
                     break;
                 case 2:
                     anim.SetTrigger("Stab3");
-                    triggerInfo = MeleeAttackType.STAB1;
+                    triggerInfo = MeleeAttackType.STAB3;
                     isForward3 = true;
                     curForwardSequence++;
                     break;
                 case 3:
                     anim.SetTrigger("Stab4Hold");
-                    triggerInfo = MeleeAttackType.STAB1;
+                    triggerInfo = MeleeAttackType.STAB4;
                     isForward4 = true;
                     curForwardSequence = 0;
                     break;
@@ -247,14 +261,26 @@ namespace MetroidvaniaTools
             triggerMovement = true;
             switch (triggerInfo)
             {
-                case MeleeAttackType.STAB1:
-                    meleeAnimator.SetTrigger("ForwardMeleeSwipe");
-                    break;
                 case MeleeAttackType.DOWN:
-                    meleeAnimator.SetTrigger("DownwardMeleeSwipe");
+                    meleeAnimator.SetTrigger("DOWN");
+                    break;
+                case MeleeAttackType.AIR:
+                    meleeAnimator.SetTrigger("AIR");
+                    break;
+                case MeleeAttackType.STAB1:
+                    meleeAnimator.SetTrigger("STAB1");
+                    break;
+                case MeleeAttackType.STAB2:
+                    meleeAnimator.SetTrigger("STAB2");
+                    break;
+                case MeleeAttackType.STAB3:
+                    meleeAnimator.SetTrigger("STAB3");
+                    break;
+                case MeleeAttackType.STAB4:
+                    meleeAnimator.SetTrigger("STAB4");
                     break;
                 default:
-                    meleeAnimator.SetTrigger("ForwardMeleeSwipe");
+                    meleeAnimator.SetTrigger("STAB1");
                     Debug.Log("Unexpected Trigger Info Used for MeleeAttack");
                     break;
             }

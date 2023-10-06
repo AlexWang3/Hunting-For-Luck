@@ -53,7 +53,7 @@ namespace MetroidvaniaTools
                         distanceToPlayer = maxDistance;
                     if (distanceToPlayer < -maxDistance)
                         distanceToPlayer = -maxDistance;
-                    character.rb.AddForce(new Vector2(distanceToPlayer, jumpHeight), ForceMode2D.Impulse);
+                    character.rb.AddForce(new Vector2(distanceToPlayer, jumpHeight) * character.rb.mass, ForceMode2D.Impulse);
                 }
                 character.FacingPlayer();
             }

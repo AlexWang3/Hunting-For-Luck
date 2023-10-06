@@ -71,7 +71,7 @@ namespace MetroidvaniaTools
             if ((rb.velocity.x > 0 && CollisionCheck(Vector2.right, distanceToCollider, collisionLayer))
                 || (rb.velocity.x < 0 && CollisionCheck(Vector2.left, distanceToCollider, collisionLayer)))
             {
-                rb.velocity = new Vector2(.01f, rb.velocity.y);
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
         }
 

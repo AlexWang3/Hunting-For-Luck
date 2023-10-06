@@ -9,9 +9,9 @@ namespace MetroidvaniaTools
     {
         public int maxHealthPoints = 100;
         public int initialLuck;
-        public int currentLuck;
+        [HideInInspector] public int currentLuck;
         public string enemyName;
-         public int healthPoints;
+        [HideInInspector] public int healthPoints;
         [HideInInspector] public bool giveUpwardForce;
         [HideInInspector] public bool left;
         [HideInInspector] public bool hit;
@@ -19,7 +19,7 @@ namespace MetroidvaniaTools
         [SerializeField] protected float recoverTimeAfterGainHealth;
         [SerializeField] protected float recoverTimeAfterHit;
         [SerializeField] protected float recoverInterval;
-        public float recoverTimeCountdown;
+        [HideInInspector] public float recoverTimeCountdown;
         private bool gainHealthFromAttack = false;
         private void Start()
         {
@@ -56,7 +56,7 @@ namespace MetroidvaniaTools
             if (healthPoints <= 0 )
             {
                 healthPoints = 0;
-                Invoke("Death", 5);
+                Invoke("Death", .1f);
             }
         }
 

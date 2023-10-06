@@ -12,15 +12,15 @@ namespace MetroidvaniaTools
         CHASE,
         IDLE,
         JUMPATTACK,
-        CROSSATTACK1,
-        CROSSATTACK2,
-        CROSSATTACK3
+        CROSSATTACK,
+        SPINATTACK
     }
     public class LegnaCharacter : EnemyCharacter
     {
         public float longRangeThreshold;
         public float shortRangeThreshold;
         public GameObject explosions;
+        public GameObject spinAttackHitBox;
         
         
         [HideInInspector] public LegnaStates curState;
@@ -34,8 +34,12 @@ namespace MetroidvaniaTools
         [HideInInspector] public bool JA_airTrigger;
         [HideInInspector] public bool JA_finishTrigger;
         
-        // NormalAttack
+        // NormalCrossAttack
         [HideInInspector] public bool NA_finishTrigger;
+        
+        // SpinAttack
+        [HideInInspector] public bool SA_dashTrigger;
+        [HideInInspector] public bool SA_finishTrigger;
         
         private bool groundCheckDisabled;
 

@@ -12,11 +12,14 @@ public class DelayExplosion : MonoBehaviour
     
     private float countDown;
     private bool triggered;
+    private Collider2D col;
     private void OnEnable()
     {
         countDown = delayTime;
         smokingParticle.Play();
         explodingParticle.Stop();
+        col = GetComponent<Collider2D>();
+        col.enabled = false;
         triggered = false;
     }
 
@@ -35,11 +38,18 @@ public class DelayExplosion : MonoBehaviour
         {
             smokingParticle.Stop();
             explodingParticle.Play();
+            col.enabled = true;
+            Invoke("CancleCollider", .2f);
             triggered = true;
         }
         else
         {
             countDown -= Time.deltaTime;   
         }
+    }
+
+    private void CancleCollider()
+    {
+        col.enabled = false;
     }
 }

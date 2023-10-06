@@ -13,10 +13,10 @@ namespace MetroidvaniaTools
 
         public override NodeState Evaluate()
         {
-            if (character.curState != LegnaStates.CROSSATTACK1)
+            if (character.curState != LegnaStates.CROSSATTACK)
             {
                 // Enter move
-                character.curState = LegnaStates.CROSSATTACK1;
+                character.curState = LegnaStates.CROSSATTACK;
                 character.FacingPlayer();
                 character.GeneralIdle();
                 character.NA_finishTrigger = false;
