@@ -55,7 +55,7 @@ public class UIMain : UIBase<UIMainState> {
         middleDice.ApplyNewState();
     }
     
-    public async void UpdateCurrentEnemy(string enemyName, int currentHealth,int maxHealth, int currentLuck, LegnaHealth target) {
+    public  void UpdateCurrentEnemy(string enemyName, int currentHealth,int maxHealth, int currentLuck, LegnaHealth target) {
         currentTarget = target;
         Sequence mySequence = DOTween.Sequence();
         foreach (var image in enemyStatusImages) {
@@ -70,7 +70,6 @@ public class UIMain : UIBase<UIMainState> {
         foreach (var text in middleDiceText) {
             mySequence.Insert(0.5f, text.DOFade(1, midDiceFadeTime));
         }
-        await mySequence.AsyncWaitForCompletion();
         state.enemyHealthState.enemyHealth = currentHealth;
         state.enemyHealthState.maxHealth = maxHealth;
         state.enemyHealthState.enemyCurrentLuckValue = currentLuck;

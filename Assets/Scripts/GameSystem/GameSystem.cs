@@ -38,8 +38,8 @@ public class GameSystem : MonoBehaviour {
     public GameObject player;
     public Character character;
     public PlayerHealth playerHealth;
-    private void Awake() {
-        player = Character.Instance.gameObject;
+    private void Start() {
+        player = PlayerHealth.Instance.gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
         character = Character.Instance;
         InitializeUIMain();

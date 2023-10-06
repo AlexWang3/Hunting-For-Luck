@@ -9,8 +9,13 @@ using UnityEngine.UI;
 namespace MetroidvaniaTools
 {
     //Health script specific to Player; it houses a lot of extra data that normally an Enemy wouldn't need
-    public class PlayerHealth : Health
-    {
+    public class PlayerHealth : Health {
+        public static PlayerHealth Instance;
+
+        private void Awake() {
+            Instance = this;
+        }
+
         //How long the time value needs to be adjusted to better visualize when the player is hit; this is an effects feature, not needed for actual gameplay
         [SerializeField] protected float slowDownTimeAmount;
         //How much the time value needs to be adjusted to better visualize when the player is hit; this is an effects feature, not needed for actual gameplay
