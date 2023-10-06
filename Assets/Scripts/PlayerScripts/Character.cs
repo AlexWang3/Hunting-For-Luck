@@ -33,7 +33,7 @@ namespace MetroidvaniaTools
         [HideInInspector] public ObjectPooler objectPooler;
         [HideInInspector] public WeaponAttackManager WAM;
         [HideInInspector] public MeleeAttackManager MAM;
-        [HideInInspector] public Health health;
+        [HideInInspector] public PlayerHealth health;
         private Vector2 facingLeft;
         
         // Start is called before the first frame update

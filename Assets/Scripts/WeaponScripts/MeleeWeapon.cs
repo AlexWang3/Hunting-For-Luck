@@ -8,6 +8,7 @@ namespace MetroidvaniaTools
     {
         [SerializeField] private int damageAmount = 20;
         private Character character;
+        private PlayerHealth playerHealth;
         private Rigidbody2D rb;
         private MeleeAttackManager meleeAttackManager;
         private Vector2 direction;
@@ -17,6 +18,7 @@ namespace MetroidvaniaTools
         private void Start()
         {
             character = GetComponentInParent<Character>();
+            playerHealth = GetComponentInParent<PlayerHealth>();
             rb = GetComponentInParent<Rigidbody2D>();
             meleeAttackManager = GetComponentInParent<MeleeAttackManager>();
         }
@@ -28,15 +30,15 @@ namespace MetroidvaniaTools
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.GetComponent<EnemyHealth>())
-            {
-                HandleCollision(collision.GetComponent<EnemyHealth>());
+            
+            if (collision.TryGetComponent(out IDamagebale damagebale)) {
+                HandleCollision(damagebale);
             }
         }
 
-        private void HandleCollision(EnemyHealth objHealth)
+        private void HandleCollision(IDamagebale objHealth)
         {
-            if(objHealth.giveUpwardForce && character.input.DownHeld() && !character.isGrounded)
+            if(objHealth.IsGiveUpwardForce() && character.input.DownHeld() && !character.isGrounded)
             {
                 direction = Vector2.up;
                 downwardStrike = true;
@@ -60,7 +62,8 @@ namespace MetroidvaniaTools
                 }
                 collided = true;
             }
-            objHealth.DealDamage(damageAmount);
+            
+            objHealth.TakeDamage(G.I.DamageCalculation(playerHealth.healthPoints, objHealth.ReturnHealthPoint(), damageAmount, GameSystem.AttackSource.Player));
             StartCoroutine(NoLongerColliding());
         }
 

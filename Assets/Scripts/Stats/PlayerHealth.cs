@@ -9,8 +9,13 @@ using UnityEngine.UI;
 namespace MetroidvaniaTools
 {
     //Health script specific to Player; it houses a lot of extra data that normally an Enemy wouldn't need
-    public class PlayerHealth : Health
-    {
+    public class PlayerHealth : Health {
+        public static PlayerHealth Instance;
+
+        private void Awake() {
+            Instance = this;
+        }
+
         //How long the time value needs to be adjusted to better visualize when the player is hit; this is an effects feature, not needed for actual gameplay
         [SerializeField] protected float slowDownTimeAmount;
         //How much the time value needs to be adjusted to better visualize when the player is hit; this is an effects feature, not needed for actual gameplay
@@ -38,13 +43,20 @@ namespace MetroidvaniaTools
         public float recoverTimeCountdown;
         private Rigidbody2D rb;
         private bool gainHealthFromAttack = false;
+        public string playerName;
+        public bool luckSkill;
+        public float BurningLuckTime;
+        public float BurningReduceMaximumProportion;
         protected override void Initialization()
         {
             base.Initialization();
             sprites = GetComponentsInChildren<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
             playerCurrentLuckValue = maxHealthPoints / 2;
+            healthPoints = playerCurrentLuckValue;
+            G.UI.playerHealthState.playerHealth = healthPoints;
             G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
+            G.UI.playerHealthState.SetPlayerName(playerName);
             G.UI.playerHealthState.MarkDirty();
             // deadScreenImage = uiManager.deadScreen.GetComponent<Image>();
             // deadScreenText = uiManager.deadScreen.GetComponentInChildren<Text>();
@@ -165,6 +177,7 @@ namespace MetroidvaniaTools
 
             if (gainHealthFromAttack) {
                 recoverTimeCountdown = healthPoints < playerCurrentLuckValue? recoverInterval : recoverTimeAfterGainHealth;
+                gainHealthFromAttack = false;
             }
 
             if (hit)
@@ -208,7 +221,9 @@ namespace MetroidvaniaTools
 
         public void GainHealthFromAttack(int amount) {
             GainCurrentHealth(amount);
+            gainHealthFromAttack = true;
         }
+        
 
         protected override void Cancel()
         {

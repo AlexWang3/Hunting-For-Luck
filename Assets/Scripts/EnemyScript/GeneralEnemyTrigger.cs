@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace MetroidvaniaTools
@@ -12,15 +14,24 @@ namespace MetroidvaniaTools
         public bool hasDirection;
         public float verticalDamageForce;
         public float horizontalDamageForce;
+        public LegnaHealth legnaHealth;
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
+        private void Start() {
+            legnaHealth = GetComponentInParent<LegnaHealth>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision) {
+            if (G.I.UIMain.currentTarget != legnaHealth) {
+                legnaHealth.UpdateEnemyInformation();
+            }
+            Debug.Log(collision.transform);
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            
             if (playerHealth)
             {
                 if (hasDirection)
                 {
-                    if (gameObject.transform.position.x < player.transform.position.x)
+                    if (gameObject.transform.position.x < G.I.player.transform.position.x)
                     {
                         playerHealth.left = false;
                     }
@@ -31,7 +42,7 @@ namespace MetroidvaniaTools
                 }
                 else
                 {
-                    playerHealth.left = !character.isFacingLeft;
+                    playerHealth.left = !G.I.character.isFacingLeft;
                 }
                 if (teleportAfterHit)
                 {
@@ -44,8 +55,8 @@ namespace MetroidvaniaTools
                 }
                 playerHealth.verticalDamageForce = verticalDamageForce;
                 playerHealth.horizontalDamageForce = horizontalDamageForce;
-                playerHealth.DealDamage(damageAmount);
-                if (!teleportAfterHit && !character.isDashing)
+                playerHealth.DealDamage(G.I.DamageCalculation( legnaHealth.healthPoints,playerHealth.healthPoints, damageAmount, GameSystem.AttackSource.Enemy));
+                if (!teleportAfterHit && !G.I.character.isDashing)
                 {
                     gameObject.GetComponent<Collider2D>().enabled = false;
                 }

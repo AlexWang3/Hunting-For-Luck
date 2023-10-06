@@ -12,6 +12,12 @@ public class UIEnemyHealthState : UIState {
     public int enemyHealth;
     public int maxHealth;
     public int enemyCurrentLuckValue;
+    public string enemyName;
+    [FormerlySerializedAs("setEnemyName")] public bool hasSetEnemyName;
+    public void SetEnemyName(string name) {
+        enemyName = name;
+        hasSetEnemyName = true;
+    }
 }
 
 public class UIEnemyHealth : UIBase<UIEnemyHealthState> {
@@ -25,19 +31,25 @@ public class UIEnemyHealth : UIBase<UIEnemyHealthState> {
     public float midBarLuckValue;
     public Slider slider;
     public TMP_Text MidbarText;
+    [FormerlySerializedAs("name")] public TMP_Text enemyName;
     private void Start() {
         currentLuck = 0;
         midBarLuckValue = 0;
     }
 
-    private float midBarTransitDuration = 1.2f;
+    public float nameTransitDuration = 1.2f;
+    public float luckNumbnerTransitDuration = 1.2f;
+    public float midBarTransitDuration = 1.2f;
 
     public override void ApplyNewStateInternal() {
+        if (state.hasSetEnemyName) {
+            enemyName.DOText(state.enemyName, nameTransitDuration, true, ScrambleMode.All);
+            state.hasSetEnemyName = false;
+        }
         float previousFill = frontHealthBar.fillAmount;
         float newTargetFill = (float)state.enemyHealth / state.maxHealth;
-       
-        DOTween.To(SetLuckNumber,currentLuck, state.enemyHealth, 1.6f);
-        slider.DOValue(midBarLuckValue / state.maxHealth, midBarTransitDuration);
+        DOTween.To(SetLuckNumber,currentLuck, state.enemyHealth, luckNumbnerTransitDuration);
+        slider.DOValue(state.enemyCurrentLuckValue / state.maxHealth, midBarTransitDuration);
         DOTween.To(SetMidBarNumber,midBarLuckValue, state.enemyCurrentLuckValue, midBarTransitDuration);
         currentLuck = state.enemyHealth;
         midBarLuckValue = state.enemyCurrentLuckValue;
