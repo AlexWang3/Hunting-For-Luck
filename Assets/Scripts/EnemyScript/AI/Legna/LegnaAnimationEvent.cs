@@ -6,10 +6,13 @@ namespace MetroidvaniaTools
 {
     public class LegnaAnimationEvent : MonoBehaviour
     {
+        public GameObject hitBox;
         private LegnaCharacter character;
+        private Animator hitAim;
         void Start()
         {
             character = GetComponentInParent<LegnaCharacter>();
+            hitAim = hitBox.GetComponent<Animator>();
         }
 
         public void JumpAttackAir()
@@ -25,7 +28,21 @@ namespace MetroidvaniaTools
         public void NormalAttackFinish()
         {
             character.NA_finishTrigger = true;
-            // character.TriggerSeriesDelayExplosion(5, 5f, .2f, .2f);
+        }
+
+        public void TriggerSeriesExplosion1D()
+        {
+            character.TriggerSeriesDelayExplosion1D(5, 5f, .2f, .2f);
+        }
+        
+        public void TriggerSeriesExplosion2D()
+        {
+            character.TriggerSeriesDelayExplosion2D(5, 5f, .2f, .2f);
+        }
+
+        public void TriggerSingleExplosion()
+        {
+            character.TriggerSingleDelayExplosion(.3f);
         }
 
         public void SpinAttackDashStart()
@@ -36,6 +53,31 @@ namespace MetroidvaniaTools
         public void SpinAttackFinish()
         {
             character.SA_finishTrigger = true;
+        }
+
+        public void DodgeStart()
+        {
+            character.Dodge_startTrigger = true;
+        }
+        
+        public void DodgeFinish()
+        {
+            character.Dodge_finishTrigger = true;
+        }
+
+        public void TriggerNA1HitBox()
+        {
+            hitAim.SetTrigger("CA1");
+        }
+
+        public void TriggerNA2HitBox()
+        {
+            hitAim.SetTrigger("CA2");
+        }
+
+        public void TriggerJAHitBox()
+        {
+            hitAim.SetTrigger("JA");
         }
     }
 }

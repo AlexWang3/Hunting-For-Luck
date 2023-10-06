@@ -30,7 +30,7 @@ namespace MetroidvaniaTools
                 character.NA_finishTrigger = false;
 
                 int rand = Random.Range(0, 2);
-                if (moveIndex == 2 || character.playerDistanceClass != 2 || rand != 0)
+                if (moveIndex == 2 || character.playerDistanceClass > 2 || rand != 0)
                 {
                     character.curState = LegnaStates.NULL;
                     character.anim.SetTrigger("CrossAttackFinish");

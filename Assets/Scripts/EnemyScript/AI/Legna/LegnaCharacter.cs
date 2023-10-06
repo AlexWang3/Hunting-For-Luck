@@ -13,14 +13,17 @@ namespace MetroidvaniaTools
         IDLE,
         JUMPATTACK,
         CROSSATTACK,
-        SPINATTACK
+        SPINATTACK,
+        POS_ADJUST
     }
     public class LegnaCharacter : EnemyCharacter
     {
         public float longRangeThreshold;
         public float shortRangeThreshold;
+        public ParticleSystem hitPoint;
         public GameObject explosions;
         public GameObject spinAttackHitBox;
+        public Transform centerRef;
         
         
         [HideInInspector] public LegnaStates curState;
@@ -40,6 +43,10 @@ namespace MetroidvaniaTools
         // SpinAttack
         [HideInInspector] public bool SA_dashTrigger;
         [HideInInspector] public bool SA_finishTrigger;
+        
+        // Dodge
+        [HideInInspector] public bool Dodge_startTrigger;
+        [HideInInspector] public bool Dodge_finishTrigger;
         
         private bool groundCheckDisabled;
 
@@ -61,6 +68,8 @@ namespace MetroidvaniaTools
             mpb_white = new MaterialPropertyBlock();
             mpb_red.SetColor("_Color", Color.red);
             mpb_white.SetColor("_Color", Color.white);
+            
+            hitPoint.Stop();
         }
         
         protected override void OnEnable()
@@ -68,6 +77,7 @@ namespace MetroidvaniaTools
             base.OnEnable();
             curState = LegnaStates.NULL;
             groundCheckDisabled = false;
+            hitPoint.Stop();
         }
 
         protected virtual void FixedUpdate()
@@ -140,6 +150,7 @@ namespace MetroidvaniaTools
                 mr.SetPropertyBlock(mpb_red);
                 needResetTint = true;
                 tintResetCountDown = .3f;
+                hitPoint.Play();
                 if (canStagger)
                 {
                     isStagger = true;
@@ -163,7 +174,7 @@ namespace MetroidvaniaTools
             }
         }
 
-        public void TriggerSeriesDelayExplosion(int amount, float distanceInterval, float minDelayTime,
+        public void TriggerSeriesDelayExplosion1D(int amount, float distanceInterval, float minDelayTime,
             float delayTimeIncrement)
         {
             if (facingLeft)
@@ -179,6 +190,38 @@ namespace MetroidvaniaTools
                     explosions.transform.position.y);
                 currentItem.SetActive(true);
             }
+        }
+        
+        public void TriggerSeriesDelayExplosion2D(int amount, float distanceInterval, float minDelayTime,
+            float delayTimeIncrement)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                GameObject currentItem = Instantiate(explosions);
+                currentItem.GetComponent<DelayExplosion>().delayTime = minDelayTime + i * delayTimeIncrement;
+                currentItem.transform.position = new Vector2(explosions.transform.position.x + i * distanceInterval,
+                    explosions.transform.position.y);
+                currentItem.SetActive(true);
+            }
+
+            distanceInterval *= -1;
+            
+            for (int i = 0; i < amount; i++)
+            {
+                GameObject currentItem = Instantiate(explosions);
+                currentItem.GetComponent<DelayExplosion>().delayTime = minDelayTime + i * delayTimeIncrement;
+                currentItem.transform.position = new Vector2(explosions.transform.position.x + i * distanceInterval,
+                    explosions.transform.position.y);
+                currentItem.SetActive(true);
+            }
+        }
+
+        public void TriggerSingleDelayExplosion(float delayTime)
+        {
+            GameObject currentItem = Instantiate(explosions);
+            currentItem.GetComponent<DelayExplosion>().delayTime = delayTime;
+            currentItem.transform.position = explosions.transform.position;
+            currentItem.SetActive(true);
         }
     }   
 }

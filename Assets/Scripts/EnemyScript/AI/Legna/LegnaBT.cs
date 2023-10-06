@@ -23,6 +23,8 @@ namespace MetroidvaniaTools
         [SerializeField] private float SA_TimeTillMaxSpeed;
         [SerializeField] private float SA_MaxSpeed;
         [SerializeField] private float SA_MaxSpinTime;
+
+        [Header("闪避")] [SerializeField] private float Dodge_distance;
         
         protected override void Initialization()
         {
@@ -36,6 +38,13 @@ namespace MetroidvaniaTools
             Node jumpAttack = new LJumpAttack(character, JA_jumpHeight, JA_distanceOffset, JA_maxDistance);
             Node spinAttack = new LSpinAttack(character, SA_TimeTillMaxSpeed, SA_MaxSpeed, SA_MaxSpinTime);
             Node crossAttack = new LCrossAttack(character);
+            Node dodge = new LBackToCenter(character, Dodge_distance);
+
+            Node crossAttackSequence = new Sequence(new List<Node>
+            {
+                crossAttack,
+                new LIdle(character, .5f)
+            });
             
             Node chaseAndJumpAttackSequence = new Sequence(new List<Node>
             {
@@ -50,28 +59,28 @@ namespace MetroidvaniaTools
                 new LIdle(character, .5f)
             });
             
-            Node veryShortBehavior = null;
-            Node shortBehavior = new Sequence(new List<Node>
+            Node veryShortBehavior = dodge;
+            Node shortBehavior = new RandomSelector(new List<Node>
             {
-                crossAttack,
-                new LIdle(character, .5f)
+                crossAttackSequence,
+                dodge
             });
             Node longBehavior = new RandomSelector(new List<Node>
             {
-                // chaseAndJumpAttackSequence,
+                chaseAndJumpAttackSequence,
                 spinAttackSequence
             });
-            // Node unSeenBehavior = null;
-            // Node veryShortDetector = new DetectPlayer(character, 1, veryShortBehavior);
+            Node unSeenBehavior = new DetectPlayer(character, 0, dodge);
+            Node veryShortDetector = new DetectPlayer(character, 1, veryShortBehavior);
             Node shortDetector = new DetectPlayer(character, 2, shortBehavior);
             Node longDetector = new DetectPlayer(character, 3, longBehavior);
-            // Node unSeenDetector = new DetectPlayer(character, 0, unSeenBehavior);
             
             
             Node root = new Selector(new List<Node>
             {
-                // veryShortDetector,
-                // shortDetector,
+                unSeenBehavior,
+                veryShortDetector,
+                shortDetector,
                 longDetector
             });
             return root;

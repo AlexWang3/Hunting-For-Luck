@@ -43,7 +43,7 @@ namespace MetroidvaniaTools
                     character.FacingPlayer();
                     spinTimeCountDown = maxSpinTime;
                     Physics2D.IgnoreCollision(character.col, character.playerCollider, true);
-                    character.spinAttackHitBox.GetComponent<Collider2D>().enabled = true;
+                    character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", true);
                     moveIndex = 2;
                 }
             }
@@ -53,7 +53,7 @@ namespace MetroidvaniaTools
                 {
                     moveIndex = 3;
                     character.GeneralIdle();
-                    character.spinAttackHitBox.GetComponent<Collider2D>().enabled = false;
+                    character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", false);
                     character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit = false;
                     Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
                     character.anim.SetTrigger("SpinAttackFinish");

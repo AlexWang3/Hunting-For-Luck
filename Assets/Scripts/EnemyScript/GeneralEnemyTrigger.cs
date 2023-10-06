@@ -10,6 +10,7 @@ namespace MetroidvaniaTools
     {
         public int damageAmount = 20;
         public bool teleportAfterHit;
+        public bool disableColliderAfterHit;
         public Transform teleportPosition = null;
         public bool hasDirection;
         public float verticalDamageForce;
@@ -59,9 +60,10 @@ namespace MetroidvaniaTools
                 playerHealth.verticalDamageForce = verticalDamageForce;
                 playerHealth.horizontalDamageForce = horizontalDamageForce;
                 playerHealth.DealDamage(G.I.DamageCalculation( legnaHealth.healthPoints,playerHealth.healthPoints, damageAmount, GameSystem.AttackSource.Enemy));
-                if (!teleportAfterHit && !G.I.character.isDashing)
+                if (!G.I.character.isDashing)
                 {
-                    gameObject.GetComponent<Collider2D>().enabled = false;
+                    if (disableColliderAfterHit)
+                        gameObject.GetComponent<Collider2D>().enabled = false;
                     alreadyHit = true;
                 }
             }
