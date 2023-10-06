@@ -1740,6 +1740,7 @@ MonoBehaviour:
   hasDirection: 0
   verticalDamageForce: 800
   horizontalDamageForce: 500
+  legnaHealth: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5968,6 +5969,7 @@ MonoBehaviour:
   hasDirection: 1
   verticalDamageForce: 500
   horizontalDamageForce: 500
+  legnaHealth: {fileID: 0}
 --- !u!1 &1796855758
 GameObject:
   m_ObjectHideFlags: 0
