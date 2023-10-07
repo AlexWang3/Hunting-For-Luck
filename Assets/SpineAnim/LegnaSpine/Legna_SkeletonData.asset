@@ -24,8 +24,14 @@ MonoBehaviour:
     multiplyMaterials: []
     screenMaterials: []
   skeletonDataModifiers: []
-  fromAnimation: []
-  toAnimation: []
-  duration: []
+  fromAnimation:
+  - SpinAttack
+  - JumpAttackAir
+  toAnimation:
+  - SpinAttackEnd
+  - JumpAttackEnd
+  duration:
+  - 0
+  - 0
   defaultMix: 0.2
   controller: {fileID: 9100000, guid: 710dd800443b9b94ca5a5ca030220e58, type: 2}

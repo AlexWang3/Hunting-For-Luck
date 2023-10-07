@@ -1,194 +1,222 @@
 
 PlayerProto.png
-size: 655,1044
+size: 2017,767
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BHair
   rotate: true
-  xy: 2, 129
+  xy: 1111, 92
   size: 230, 344
   orig: 230, 352
   offset: 0, 8
   index: -1
-BHairBack
-  rotate: false
-  xy: 177, 692
-  size: 228, 350
-  orig: 230, 352
-  offset: 1, 1
-  index: -1
 BL_Hair
-  rotate: false
-  xy: 407, 866
+  rotate: true
+  xy: 1837, 548
   size: 120, 176
   orig: 120, 176
   offset: 0, 0
   index: -1
 Body
   rotate: true
-  xy: 2, 2
+  xy: 1637, 543
   size: 125, 198
   orig: 125, 202
   offset: 0, 4
   index: -1
-BodyBack
-  rotate: true
-  xy: 202, 4
-  size: 123, 199
-  orig: 125, 202
-  offset: 1, 2
+BurstVFX0
+  rotate: false
+  xy: 1648, 229
+  size: 159, 312
+  orig: 163, 341
+  offset: 0, 0
+  index: -1
+BurstVFX1
+  rotate: false
+  xy: 1285, 369
+  size: 172, 396
+  orig: 200, 414
+  offset: 16, 0
+  index: -1
+BurstVFX2
+  rotate: false
+  xy: 1063, 324
+  size: 220, 441
+  orig: 286, 466
+  offset: 36, 15
+  index: -1
+DodgeShadow
+  rotate: false
+  xy: 2, 21
+  size: 884, 744
+  orig: 936, 811
+  offset: 32, 12
   index: -1
 Gun
   rotate: true
-  xy: 348, 286
+  xy: 1809, 245
   size: 188, 98
   orig: 188, 98
   offset: 0, 0
   index: -1
 Head
   rotate: true
-  xy: 177, 524
+  xy: 1459, 371
   size: 166, 187
   orig: 166, 187
   offset: 0, 0
   index: -1
 LCalf
   rotate: true
-  xy: 407, 692
+  xy: 1052, 13
   size: 69, 189
   orig: 69, 190
   offset: 0, 0
   index: -1
 LFHair
   rotate: true
-  xy: 177, 388
+  xy: 1243, 4
   size: 86, 167
   orig: 192, 309
   offset: 22, 71
   index: -1
 LFoot
-  rotate: false
-  xy: 532, 477
+  rotate: true
+  xy: 1792, 111
   size: 116, 92
   orig: 116, 92
   offset: 0, 0
   index: -1
 LHair
-  rotate: true
-  xy: 177, 476
+  rotate: false
+  xy: 1063, 88
   size: 46, 234
   orig: 46, 234
   offset: 0, 0
   index: -1
 LHand
   rotate: false
-  xy: 403, 32
+  xy: 888, 2
   size: 86, 80
   orig: 86, 80
   offset: 0, 0
   index: -1
 LLowerArm
   rotate: true
-  xy: 538, 103
+  xy: 1638, 2
   size: 97, 92
   orig: 97, 92
   offset: 0, 0
   index: -1
 LThigh
-  rotate: true
-  xy: 448, 409
+  rotate: false
+  xy: 1578, 222
   size: 66, 147
   orig: 66, 147
   offset: 0, 0
   index: -1
 LUpperArm
-  rotate: true
-  xy: 448, 289
+  rotate: false
+  xy: 1578, 101
   size: 118, 119
   orig: 118, 120
   offset: 0, 0
   index: -1
 Mask
   rotate: false
-  xy: 407, 763
+  xy: 1732, 7
   size: 194, 101
   orig: 194, 101
   offset: 0, 0
   index: -1
 RCalf
-  rotate: false
-  xy: 529, 867
+  rotate: true
+  xy: 1837, 435
   size: 111, 175
   orig: 111, 176
   offset: 0, 0
   index: -1
 RFHair
   rotate: false
-  xy: 569, 314
+  xy: 1555, 2
   size: 81, 93
   orig: 81, 93
   offset: 0, 0
   index: -1
 RFoot
-  rotate: false
-  xy: 413, 477
+  rotate: true
+  xy: 1698, 110
   size: 117, 92
   orig: 117, 92
   offset: 0, 0
   index: -1
 RHair
-  rotate: true
-  xy: 366, 571
+  rotate: false
+  xy: 1457, 97
   size: 119, 270
   orig: 119, 270
   offset: 0, 0
   index: -1
 RHand
   rotate: false
-  xy: 491, 27
+  xy: 976, 8
   size: 74, 74
   orig: 76, 74
   offset: 1, 0
   index: -1
 RLowerArm
   rotate: false
-  xy: 582, 220
+  xy: 1886, 115
   size: 66, 92
   orig: 66, 92
   offset: 0, 0
   index: -1
 RThigh
   rotate: true
-  xy: 348, 198
+  xy: 1412, 4
   size: 86, 141
   orig: 86, 141
   offset: 0, 0
   index: -1
 RUpperArm
-  rotate: true
-  xy: 403, 114
+  rotate: false
+  xy: 1928, 209
   size: 82, 133
   orig: 82, 133
   offset: 0, 0
   index: -1
 Ribbon
   rotate: false
-  xy: 603, 731
+  xy: 1954, 73
   size: 50, 134
   orig: 50, 134
   offset: 0, 0
   index: -1
 Sword
   rotate: true
-  xy: 2, 361
+  xy: 888, 84
   size: 681, 173
   orig: 681, 173
   offset: 0, 0
   index: -1
-pelvis
+SwordVFX0
   rotate: false
-  xy: 491, 202
+  xy: 1638, 670
+  size: 377, 95
+  orig: 386, 104
+  offset: 9, 5
+  index: -1
+SwordVFX1
+  rotate: true
+  xy: 1459, 539
+  size: 226, 176
+  orig: 234, 205
+  offset: 6, 16
+  index: -1
+pelvis
+  rotate: true
+  xy: 1928, 344
   size: 89, 85
   orig: 90, 85
   offset: 0, 0
