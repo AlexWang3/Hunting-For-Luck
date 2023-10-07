@@ -47,7 +47,7 @@ namespace MetroidvaniaTools
         public bool luckSkill;
         public float BurningLuckTime;
         public float BurningReduceMaximumProportion;
-        protected override async void Initialization()
+        protected override void Initialization()
         {
             base.Initialization();
             sprites = GetComponentsInChildren<SpriteRenderer>();
