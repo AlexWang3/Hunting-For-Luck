@@ -20,9 +20,10 @@ namespace MetroidvaniaTools
         [SerializeField] private float JA_maxDistance;
         
         [Header("龙车")]
-        [SerializeField] private float SA_TimeTillMaxSpeed;
-        [SerializeField] private float SA_MaxSpeed;
-        [SerializeField] private float SA_MaxSpinTime;
+        [SerializeField] private float SA_SlowSpinTime;
+        [SerializeField] private float SA_SlowMaxSpeed;
+        [SerializeField] private float SA_FastSpinTime;
+        [SerializeField] private float SA_FastMaxSpeed;
 
         [Header("闪避")] [SerializeField] private float Dodge_distance;
         
@@ -36,7 +37,7 @@ namespace MetroidvaniaTools
         {
             Node chase = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed);
             Node jumpAttack = new LJumpAttack(character, JA_jumpHeight, JA_distanceOffset, JA_maxDistance);
-            Node spinAttack = new LSpinAttack(character, SA_TimeTillMaxSpeed, SA_MaxSpeed, SA_MaxSpinTime);
+            Node spinAttack = new LSpinAttack(character, SA_SlowSpinTime, SA_SlowMaxSpeed, SA_FastSpinTime, SA_FastMaxSpeed);
             Node crossAttack = new LCrossAttack(character);
             Node dodge = new LBackToCenter(character, Dodge_distance);
 

@@ -9,17 +9,19 @@ namespace MetroidvaniaTools
     {
         // Passing in
         private LegnaCharacter character;
-        private float timeTillMaxSpeed;
-        private float maxSpeed;
-        private float maxSpinTime;
+        private float slowSpinTime;
+        private float slowMaxSpeed;
+        private float fastSpinTime;
+        private float fastMaxSpeed;
         
         // Local
         private int moveIndex = 0;
-        private float spinTimeCountDown;
+        private float slowSpinTimeCountDown;
+        private float fastSpinTimeCountDown;
         
-        public LSpinAttack(LegnaCharacter character, float timeTillMaxSpeed, float maxSpeed, float maxSpinTime)
-            => (this.character, this.timeTillMaxSpeed, this.maxSpeed, this.maxSpinTime) =
-                (character, timeTillMaxSpeed, maxSpeed, maxSpinTime);
+        public LSpinAttack(LegnaCharacter character, float slowSpinTime, float slowMaxSpeed, float fastSpinTime, float fastMaxSpeed)
+            => (this.character, this.slowSpinTime, this.slowMaxSpeed, this.fastSpinTime, this.fastMaxSpeed) =
+                (character, slowSpinTime, slowMaxSpeed, fastSpinTime, fastMaxSpeed);
         
         public override NodeState Evaluate()
         {
@@ -42,7 +44,7 @@ namespace MetroidvaniaTools
                 {
                     character.SA_dashTrigger = false;
                     character.FacingPlayer();
-                    spinTimeCountDown = maxSpinTime;
+                    slowSpinTimeCountDown = slowSpinTime;
                     // Physics2D.IgnoreCollision(character.col, character.playerCollider, true);
                     character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", true);
                     moveIndex = 2;
@@ -50,20 +52,33 @@ namespace MetroidvaniaTools
             }
             else if (moveIndex == 2)
             {
-                if (spinTimeCountDown <= 0 || character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit)
+                if (slowSpinTimeCountDown <= 0 || character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit)
                 {
                     moveIndex = 3;
+                    fastSpinTimeCountDown = fastSpinTime;
+                }
+                else
+                {
+                    character.GeneralMovement(slowSpinTime, slowMaxSpeed);
+                    slowSpinTimeCountDown -= Time.deltaTime;
+                }
+            }
+            else if (moveIndex == 3)
+            {
+                if (fastSpinTimeCountDown <= 0 || character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit)
+                {
+                    moveIndex = 4;
                     character.GeneralIdle();
                     character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", false);
                     character.anim.SetTrigger("SpinAttackFinish");
                 }
                 else
                 {
-                    character.GeneralMovement(timeTillMaxSpeed, maxSpeed);
-                    spinTimeCountDown -= Time.deltaTime;
+                    character.GeneralMovement(.5f, fastMaxSpeed);
+                    fastSpinTimeCountDown -= Time.deltaTime;
                 }
             }
-            else if (moveIndex == 3)
+            else if (moveIndex == 4)
             {
                 if (character.SA_finishTrigger)
                 {

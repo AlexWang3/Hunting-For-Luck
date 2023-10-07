@@ -65,8 +65,8 @@ namespace MetroidvaniaTools
                     if (disableColliderAfterHit)
                     {
                         gameObject.GetComponent<Collider2D>().enabled = false;
-                        alreadyHit = true;   
                     }
+                    alreadyHit = true; 
                 }
             }
         }
