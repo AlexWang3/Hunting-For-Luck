@@ -29,7 +29,7 @@ namespace MetroidvaniaTools
                 character.GeneralIdle();
                 character.Dodge_startTrigger = false;
                 character.Dodge_finishTrigger = false;
-                Physics2D.IgnoreCollision(character.col, character.playerCollider, true);
+                // Physics2D.IgnoreCollision(character.col, character.playerCollider, true);
                 centerIsOnLeft = character.centerRef.position.x < character.transform.position.x;
                 dir = centerIsOnLeft ? -1 : 1;
                 if (character.facingLeft == centerIsOnLeft)
@@ -58,7 +58,7 @@ namespace MetroidvaniaTools
                 if (character.Dodge_finishTrigger)
                 {
                     character.GeneralIdle();
-                    Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
+                    // Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
                     character.curState = LegnaStates.NULL;
                     moveIndex = 0;
                     state = NodeState.SUCCESS;

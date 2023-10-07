@@ -43,7 +43,7 @@ namespace MetroidvaniaTools
                     character.SA_dashTrigger = false;
                     character.FacingPlayer();
                     spinTimeCountDown = maxSpinTime;
-                    Physics2D.IgnoreCollision(character.col, character.playerCollider, true);
+                    // Physics2D.IgnoreCollision(character.col, character.playerCollider, true);
                     character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", true);
                     moveIndex = 2;
                 }
@@ -68,7 +68,7 @@ namespace MetroidvaniaTools
                 if (character.SA_finishTrigger)
                 {
                     character.SA_finishTrigger = false;
-                    Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
+                    // Physics2D.IgnoreCollision(character.col, character.playerCollider, false);
                     character.curState = LegnaStates.NULL;
                     state = NodeState.SUCCESS;
                 }
