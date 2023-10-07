@@ -38,10 +38,12 @@ public class GameSystem : MonoBehaviour {
     public GameObject player;
     public Character character;
     public PlayerHealth playerHealth;
+    public bool finishInitialize;
     private void Start() {
         player = PlayerHealth.Instance.gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
         character = Character.Instance;
+        finishInitialize = false;
         InitializeUIMain();
     }
     public void Update() {
@@ -66,6 +68,7 @@ public class GameSystem : MonoBehaviour {
                 diceOwner = AttackSource.None,
             }
         };
+        finishInitialize = true;
     }
     public enum AttackSource {
         None,

@@ -7,6 +7,13 @@ using DG.Tweening;
 using MetroidvaniaTools;
 using UnityEngine.Serialization;
 
+
+public enum UITye {
+    TitleScreen,
+    InGame,
+}
+
+
 public class UIMainState : UIState {
     public UIPlayerHealthState playerHealthState;
     public UIEnemyHealthState enemyHealthState;
@@ -90,6 +97,28 @@ public class UIMain : UIBase<UIMainState> {
         }
         foreach (var text in middleDiceText) {
             mySequence.Insert(0f, text.DOFade(0, 0));
+        }
+        mySequence.Play();
+    }
+
+    public void HidePlayerStatus() {
+        Sequence mySequence = DOTween.Sequence();
+        foreach (var image in playerHealthImages) {
+            mySequence.Insert(0f, image.DOFade(0, 0));
+        }
+        foreach (var text in playerStatusText) {
+            mySequence.Insert(0f, text.DOFade(0, 0));
+        }
+        mySequence.Play();
+    }
+
+    public void ShowPlayerStatus() {
+        Sequence mySequence = DOTween.Sequence();
+        foreach (var image in playerHealthImages) {
+            mySequence.Insert(0, image.DOFade(1, imageFadeTime));
+        }
+        foreach (var text in playerStatusText) {
+            mySequence.Insert(0.1f, text.DOFade(1, textFadeTime));
         }
         mySequence.Play();
     }
