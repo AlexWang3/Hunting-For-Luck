@@ -47,19 +47,24 @@ namespace MetroidvaniaTools
         public bool luckSkill;
         public float BurningLuckTime;
         public float BurningReduceMaximumProportion;
-        protected override void Initialization()
+        protected override async void Initialization()
         {
             base.Initialization();
             sprites = GetComponentsInChildren<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
             playerCurrentLuckValue = maxHealthPoints / 2;
             healthPoints = playerCurrentLuckValue;
+            StartCoroutine(initialize());
+            // deadScreenImage = uiManager.deadScreen.GetComponent<Image>();
+            // deadScreenText = uiManager.deadScreen.GetComponentInChildren<Text>();
+        }
+
+        public IEnumerator initialize() {
+            yield return new WaitUntil(() =>G.I.finishInitialize);
             G.UI.playerHealthState.playerHealth = healthPoints;
             G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
             G.UI.playerHealthState.SetPlayerName(playerName);
             G.UI.playerHealthState.MarkDirty();
-            // deadScreenImage = uiManager.deadScreen.GetComponent<Image>();
-            // deadScreenText = uiManager.deadScreen.GetComponentInChildren<Text>();
         }
 
         protected virtual void Update()

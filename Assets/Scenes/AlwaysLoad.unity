@@ -2549,6 +2549,7 @@ MonoBehaviour:
   player: {fileID: 0}
   character: {fileID: 0}
   playerHealth: {fileID: 0}
+  finishInitialize: 0
 --- !u!4 &1200447816
 Transform:
   m_ObjectHideFlags: 0
@@ -3195,6 +3196,7 @@ MonoBehaviour:
     playerCurrentLuckValue: 0
     playerName: 
     hasSetPlayerName: 0
+    previousFill: 0
   frontHealthBar: {fileID: 1273175960}
   backHealthBar: {fileID: 1877496771}
   fastFillSpeed: 0.5
