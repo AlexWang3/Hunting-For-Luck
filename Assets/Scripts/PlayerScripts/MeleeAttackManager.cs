@@ -39,7 +39,6 @@ namespace MetroidvaniaTools
         private bool isForward4Hold;
         private bool isForward4Stabbing;
         private float holdCountDown;
-        private bool triggerSet;
 
         protected override void Initialization()
         {
@@ -51,7 +50,6 @@ namespace MetroidvaniaTools
             triggerInfo = MeleeAttackType.NULL;
             triggerMovement = false;
             curForwardSequence = 0;
-            triggerSet = false;
         }
         
         // Called By Input
@@ -146,8 +144,6 @@ namespace MetroidvaniaTools
                 return;
             }
             keepAttacking = true;
-            triggerSet = true;
-            SetAnimationTriggers();
         }
         
         private void PerformMeleeAttack()
@@ -158,13 +154,8 @@ namespace MetroidvaniaTools
             {
                 character.isJumping = false;
             }
-
-            if (triggerSet)
-                triggerSet = false;
-            else
-            {
-                SetAnimationTriggers();
-            }
+            
+            SetAnimationTriggers();
             if (isForward4)
             {
                 isForward4 = false;
@@ -184,14 +175,6 @@ namespace MetroidvaniaTools
 
         private void SetAnimationTriggers()
         {
-            /*
-                if (input.UpHeld())
-                {
-                    anim.SetTrigger("UpwardMelee");
-                    meleeAnimator.SetTrigger("UpwardMeleeSwipe");
-                }
-                */
-
             if (input.DownHeld() && !character.isGrounded)
             {
                 anim.SetTrigger("DownwardMelee");

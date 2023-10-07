@@ -639,7 +639,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 1
-  - time: 0.8667
+  - time: 1.1
     functionName: FinishMeleeAttack
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -865,7 +865,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 1
-  - time: 0.9
+  - time: 0.98333335
     functionName: FinishMeleeAttack
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -1253,7 +1253,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.41666666
+  - time: 0.48333332
     functionName: FinishMeleeAttack
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -1965,7 +1965,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 1
-  - time: 0.3333
+  - time: 0.48333332
     functionName: FinishMeleeAttack
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -2548,7 +2548,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 1
-  - time: 0.3
+  - time: 0.35
     functionName: FinishMeleeAttack
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -3865,7 +3865,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 1
-  - time: 0.4
+  - time: 0.48333332
     functionName: FinishMeleeAttack
     data: 
     objectReferenceParameter: {fileID: 0}
