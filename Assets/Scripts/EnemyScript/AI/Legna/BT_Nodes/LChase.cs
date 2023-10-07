@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,15 @@ namespace MetroidvaniaTools
         private LegnaCharacter character;
         private float timeTillMaxSpeed;
         private float maxSpeed;
+        private float successDistance;
         
-        public LChase(LegnaCharacter character, float timeTillMaxSpeed, float maxSpeed)
-            => (this.character, this.timeTillMaxSpeed, this.maxSpeed) =
-                (character, timeTillMaxSpeed, maxSpeed);
+        public LChase(LegnaCharacter character, float timeTillMaxSpeed, float maxSpeed, float successDistance)
+            => (this.character, this.timeTillMaxSpeed, this.maxSpeed, this.successDistance) =
+                (character, timeTillMaxSpeed, maxSpeed, successDistance);
         
         public override NodeState Evaluate()
         {
-            if (character.playerDistanceClass < 3)
+            if (Math.Abs(character.transform.position.x - character.player.transform.position.x) < successDistance)
             {
                 state = NodeState.SUCCESS;
                 return state;

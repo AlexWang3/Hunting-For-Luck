@@ -10,11 +10,10 @@ namespace MetroidvaniaTools
         private LegnaCharacter character;
         // private EnemyHealth enemyHealth;
         
-        [Header("追击")]
+        [Header("跳劈")]
         [SerializeField] private float C_TimeTillMaxSpeed;
         [SerializeField] private float C_MaxSpeed;
-        
-        [Header("跳劈")]
+        [SerializeField] private float C_SuccessDistance;
         [SerializeField] private float JA_jumpHeight;
         [SerializeField] private float JA_distanceOffset;
         [SerializeField] private float JA_maxDistance;
@@ -35,7 +34,7 @@ namespace MetroidvaniaTools
 
         protected override Node SetupTree()
         {
-            Node chase = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed);
+            Node chase = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, C_SuccessDistance);
             Node jumpAttack = new LJumpAttack(character, JA_jumpHeight, JA_distanceOffset, JA_maxDistance);
             Node spinAttack = new LSpinAttack(character, SA_SlowSpinTime, SA_SlowMaxSpeed, SA_FastSpinTime, SA_FastMaxSpeed);
             Node crossAttack = new LCrossAttack(character);
@@ -68,7 +67,7 @@ namespace MetroidvaniaTools
             });
             Node longBehavior = new RandomSelector(new List<Node>
             {
-                chaseAndJumpAttackSequence,
+                // chaseAndJumpAttackSequence,
                 spinAttackSequence
             });
             Node unSeenBehavior = new DetectPlayer(character, 0, dodge);
@@ -79,9 +78,9 @@ namespace MetroidvaniaTools
             
             Node root = new Selector(new List<Node>
             {
-                unSeenBehavior,
-                veryShortDetector,
-                shortDetector,
+                // unSeenBehavior,
+                // veryShortDetector,
+                // shortDetector,
                 longDetector
             });
             return root;
