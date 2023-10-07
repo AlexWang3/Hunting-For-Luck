@@ -20,7 +20,7 @@ namespace MetroidvaniaTools
     {
         public float longRangeThreshold;
         public float shortRangeThreshold;
-        public ParticleSystem hitPoint;
+        public GameObject hitPoint;
         public GameObject explosions;
         public GameObject spinAttackHitBox;
         public Transform centerRef;
@@ -68,8 +68,6 @@ namespace MetroidvaniaTools
             mpb_white = new MaterialPropertyBlock();
             mpb_red.SetColor("_Color", Color.red);
             mpb_white.SetColor("_Color", Color.white);
-            
-            hitPoint.Stop();
         }
         
         protected override void OnEnable()
@@ -77,7 +75,6 @@ namespace MetroidvaniaTools
             base.OnEnable();
             curState = LegnaStates.NULL;
             groundCheckDisabled = false;
-            hitPoint.Stop();
         }
 
         protected virtual void FixedUpdate()
@@ -150,7 +147,7 @@ namespace MetroidvaniaTools
                 mr.SetPropertyBlock(mpb_red);
                 needResetTint = true;
                 tintResetCountDown = .3f;
-                hitPoint.Play();
+                TriggerHitPointEffect();
                 if (canStagger)
                 {
                     isStagger = true;
@@ -222,6 +219,14 @@ namespace MetroidvaniaTools
             currentItem.GetComponent<DelayExplosion>().delayTime = delayTime;
             currentItem.transform.position = explosions.transform.position;
             currentItem.SetActive(true);
+        }
+
+        public void TriggerHitPointEffect()
+        {
+            GameObject currentItem = Instantiate(hitPoint);
+            currentItem.transform.position = hitPoint.transform.position;
+            currentItem.SetActive(true);
+            currentItem.GetComponent<ParticleSystem>().Play();
         }
     }   
 }

@@ -15,14 +15,24 @@ namespace MetroidvaniaTools
 
         [SerializeField] protected LayerMask dashingLayers;
 
+        [SerializeField] protected GameObject dashLooping;
+
         private bool canDash;
 
         private float dashCountDown;
-
-        // Update is called once per frame
-        void Update()
-        {
         
+        private bool effectBackTrigger;
+
+        private float effectBackTriggerTime;
+
+        protected override void Initialization()
+        {
+            base.Initialization();
+            dashLooping.SetActive(false);
+            canDash = true;
+            effectBackTrigger = false;
+            dashCountDown = -1f;
+            effectBackTriggerTime = .15f;
         }
 
         public void Dashing()
@@ -30,7 +40,7 @@ namespace MetroidvaniaTools
             if (canDash && !character.isShooting && !character.isMeleeAttacking && !character.isGettingHit && !character.isDead)
             {
                 anim.SetBool("Dashing", true);
-                dashCountDown = dashCoolDownTime;
+                startDashCoolDown();
                 character.isDashing = true;
                 StartCoroutine(FinishDashing());   
             }
@@ -67,10 +77,16 @@ namespace MetroidvaniaTools
             {
                 canDash = false;
                 dashCountDown -= Time.deltaTime;
+                if (effectBackTrigger && dashCountDown <= effectBackTriggerTime)
+                {
+                    effectBackTrigger = false;
+                    EffectBack();
+                }
             }
-            else
+            else if (!canDash)
             {
                 canDash = true;
+                endDashCoolDown();
             }
         }
 
@@ -105,6 +121,27 @@ namespace MetroidvaniaTools
         {
             yield return new WaitForSeconds(dashAmountTime);
             Physics2D.IgnoreCollision(col, obj.GetComponent<Collider2D>(), false);
+        }
+
+        private void startDashCoolDown()
+        {
+            dashCountDown = dashCoolDownTime;
+            effectBackTrigger = true;
+            dashLooping.SetActive(true);
+            var dashLoopingVelocity = dashLooping.GetComponent<ParticleSystem>().velocityOverLifetime;
+            dashLoopingVelocity.radial = new ParticleSystem.MinMaxCurve(0f);
+            dashLooping.GetComponent<ParticleSystem>().Play();
+        }
+
+        private void EffectBack()
+        {
+            var dashLoopingVelocity = dashLooping.GetComponent<ParticleSystem>().velocityOverLifetime;
+            dashLoopingVelocity.radial = new ParticleSystem.MinMaxCurve(-10f);
+        }
+        
+        private void endDashCoolDown()
+        {
+            dashLooping.SetActive(false);
         }
     }   
 }
