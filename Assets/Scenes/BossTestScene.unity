@@ -115482,6 +115482,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5542836216188375155, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: zSpacing
+      value: -0.0044
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542836216188375155, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: addNormals
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542836216188375155, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: calculateTangents
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5595839096499355307, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: fallSpeed
       value: 3
