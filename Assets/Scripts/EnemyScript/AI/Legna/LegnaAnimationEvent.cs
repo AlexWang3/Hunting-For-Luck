@@ -65,6 +65,26 @@ namespace MetroidvaniaTools
             character.Dodge_finishTrigger = true;
         }
 
+        public void GuardCounterPrepareEnd()
+        {
+            character.Guard_startTrigger = true;
+        }
+
+        public void ActivateShield()
+        {
+            character.shield.SetActive(true);
+        }
+
+        public void CounterStart()
+        {
+            character.Counter_startTrigger = true;
+        }
+        
+        public void CounterEnd()
+        {
+            character.Counter_finishTrigger = true;
+        }
+
         public void TriggerNA1HitBox()
         {
             hitAim.SetTrigger("CA1");
@@ -78,6 +98,11 @@ namespace MetroidvaniaTools
         public void TriggerJAHitBox()
         {
             hitAim.SetTrigger("JA");
+        }
+
+        public void TriggerCounterHitBox()
+        {
+            hitAim.SetTrigger("CT");
         }
     }
 }

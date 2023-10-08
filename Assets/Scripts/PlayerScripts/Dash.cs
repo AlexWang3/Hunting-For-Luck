@@ -110,7 +110,8 @@ namespace MetroidvaniaTools
                 {
                     if (!Physics2D.GetIgnoreCollision(col, hits[i].collider))
                     {
-                        Physics2D.IgnoreCollision(col, hits[i].collider, true);
+                        // Physics2D.IgnoreCollision(col, hits[i].collider, true);
+                        hits[i].collider.enabled = false;
                         StartCoroutine(TurnColliderBackOn(hits[i].collider.gameObject));   
                     }
                 }
@@ -120,7 +121,8 @@ namespace MetroidvaniaTools
         protected virtual IEnumerator TurnColliderBackOn(GameObject obj)
         {
             yield return new WaitForSeconds(dashAmountTime);
-            Physics2D.IgnoreCollision(col, obj.GetComponent<Collider2D>(), false);
+            // Physics2D.IgnoreCollision(col, obj.GetComponent<Collider2D>(), false);
+            obj.GetComponent<Collider2D>().enabled = true;
         }
 
         private void startDashCoolDown()

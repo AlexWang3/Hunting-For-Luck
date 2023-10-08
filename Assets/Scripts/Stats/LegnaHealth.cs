@@ -21,6 +21,8 @@ namespace MetroidvaniaTools
         [SerializeField] protected float recoverInterval;
         [HideInInspector] public float recoverTimeCountdown;
         private bool gainHealthFromAttack = false;
+
+        [HideInInspector] public bool isGuarding;
         private void Start()
         {
             Initialization();
@@ -30,6 +32,7 @@ namespace MetroidvaniaTools
             currentLuck = initialLuck;
             healthPoints = currentLuck;
             giveUpwardForce = true;
+            isGuarding = false;
         }
 
         public bool IsGiveUpwardForce() {
@@ -37,6 +40,11 @@ namespace MetroidvaniaTools
         }
 
         public void TakeDamage(int amount) {
+            if (isGuarding)
+            {
+                hit = true;
+                return;
+            }
             DealDamage(amount);
             if (G.I.UIMain.currentTarget == this) {
                 G.UI.enemyHealthState.enemyHealth = healthPoints;
