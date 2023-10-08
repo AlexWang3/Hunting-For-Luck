@@ -5,11 +5,15 @@ namespace MetroidvaniaTools
 {
     public class LCrossAttack : Node
     {
+        // Pass In
         private LegnaCharacter character;
+        private float n2Distance;
+        
+        
         private int moveIndex = 0;
-        public LCrossAttack(LegnaCharacter character)
-            => (this.character) =
-                (character);
+        public LCrossAttack(LegnaCharacter character,float n2Distance)
+            => (this.character, this.n2Distance) =
+                (character, n2Distance);
 
         public override NodeState Evaluate()
         {
@@ -29,8 +33,8 @@ namespace MetroidvaniaTools
             {
                 character.NA_finishTrigger = false;
 
-                int rand = Random.Range(0, 2);
-                if (moveIndex == 2 || character.playerDistanceClass > 2 || rand != 0)
+                int rand = Random.Range(0, 4);
+                if (moveIndex == 3 || character.GetPlayerDistance() > n2Distance || rand == 0)
                 {
                     character.curState = LegnaStates.NULL;
                     character.anim.SetTrigger("CrossAttackFinish");
@@ -44,6 +48,8 @@ namespace MetroidvaniaTools
                     character.GeneralIdle();
                     if (moveIndex == 2)
                         character.anim.SetTrigger("CrossAttack2");
+                    if (moveIndex == 3)
+                        character.anim.SetTrigger("CrossAttack3");
                 }
             }
 

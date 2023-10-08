@@ -10,10 +10,12 @@ namespace MetroidvaniaTools
         private LegnaCharacter character;
         // private EnemyHealth enemyHealth;
         
-        [Header("跳劈")]
+        [Header("追击")]
         [SerializeField] private float C_TimeTillMaxSpeed;
         [SerializeField] private float C_MaxSpeed;
-        [SerializeField] private float C_SuccessDistance;
+        
+        [Header("跳劈")]
+        [SerializeField] private float JC_SuccessDistance;
         [SerializeField] private float JA_jumpHeight;
         [SerializeField] private float JA_distanceOffset;
         [SerializeField] private float JA_maxDistance;
@@ -26,6 +28,15 @@ namespace MetroidvaniaTools
 
         [Header("闪避")] [SerializeField] private float Dodge_distance;
         
+        [Header("平A")] 
+        [SerializeField] private float NC_SuccessDistance;
+        [SerializeField] private float N2_distance;
+        
+        [Header("防反")]
+        [SerializeField] private float GC_maxGuardTime;
+        [SerializeField] private float GC_maxDistance;
+        [SerializeField] private float GC_closeDistance;
+        [SerializeField] private float GC_dodgeForce;
         protected override void Initialization()
         {
             character = GetComponent<LegnaCharacter>();
@@ -34,40 +45,51 @@ namespace MetroidvaniaTools
 
         protected override Node SetupTree()
         {
-            Node chase = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, C_SuccessDistance);
+            Node chaseForJump = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, JC_SuccessDistance);
+            Node chaseForNormalAttack = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, NC_SuccessDistance);
             Node jumpAttack = new LJumpAttack(character, JA_jumpHeight, JA_distanceOffset, JA_maxDistance);
             Node spinAttack = new LSpinAttack(character, SA_SlowSpinTime, SA_SlowMaxSpeed, SA_FastSpinTime, SA_FastMaxSpeed);
-            Node crossAttack = new LCrossAttack(character);
+            Node crossAttack = new LCrossAttack(character, N2_distance);
+            Node guardCounter = new LGuardCounter(character, GC_maxGuardTime, GC_maxDistance, GC_closeDistance, GC_dodgeForce);
             Node dodge = new LBackToCenter(character, Dodge_distance);
+            Node shortIdle = new LIdle(character, .5f);
+            Node longIdle = new LIdle(character, 2f);
 
             Node crossAttackSequence = new Sequence(new List<Node>
             {
+                chaseForNormalAttack,
                 crossAttack,
-                new LIdle(character, .5f)
+                shortIdle
             });
             
             Node chaseAndJumpAttackSequence = new Sequence(new List<Node>
             {
-                chase,
+                chaseForJump,
                 jumpAttack,
-                new LIdle(character, 1.5f)
+                longIdle
             });;
 
             Node spinAttackSequence = new Sequence(new List<Node>
             {
                 spinAttack,
-                new LIdle(character, 1.5f)
+                longIdle
             });
             
-            Node veryShortBehavior = dodge;
+            Node veryShortBehavior = new RandomSelector(new List<Node>
+            {
+                crossAttackSequence,
+                dodge,
+                guardCounter
+            });
             Node shortBehavior = new RandomSelector(new List<Node>
             {
                 crossAttackSequence,
-                dodge
+                dodge,
+                guardCounter
             });
             Node longBehavior = new RandomSelector(new List<Node>
             {
-                // chaseAndJumpAttackSequence,
+                chaseAndJumpAttackSequence,
                 spinAttackSequence
             });
             Node unSeenBehavior = new DetectPlayer(character, 0, dodge);
@@ -78,9 +100,9 @@ namespace MetroidvaniaTools
             
             Node root = new Selector(new List<Node>
             {
-                // unSeenBehavior,
-                // veryShortDetector,
-                // shortDetector,
+                unSeenBehavior,
+                veryShortDetector,
+                shortDetector,
                 longDetector
             });
             return root;

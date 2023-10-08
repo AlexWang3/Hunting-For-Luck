@@ -20,8 +20,9 @@ namespace MetroidvaniaTools
         
         public override NodeState Evaluate()
         {
-            if (Math.Abs(character.transform.position.x - character.player.transform.position.x) < successDistance)
+            if (character.GetPlayerDistance() < successDistance)
             {
+                character.anim.SetBool("Running", false);
                 state = NodeState.SUCCESS;
                 return state;
             }

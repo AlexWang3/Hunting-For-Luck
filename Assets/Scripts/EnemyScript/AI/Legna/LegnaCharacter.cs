@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using MetroidvaniaTools;
+using System;
 using UnityEngine;
 using BehaviorTree;
+using Unity.VisualScripting;
 
 namespace MetroidvaniaTools
 {
@@ -14,7 +16,8 @@ namespace MetroidvaniaTools
         JUMPATTACK,
         CROSSATTACK,
         SPINATTACK,
-        POS_ADJUST
+        POS_ADJUST,
+        GUARD_COUNTER
     }
     public class LegnaCharacter : EnemyCharacter
     {
@@ -24,6 +27,7 @@ namespace MetroidvaniaTools
         public GameObject explosions;
         public GameObject spinAttackHitBox;
         public Transform centerRef;
+        public GameObject shield;
         
         
         [HideInInspector] public LegnaStates curState;
@@ -48,6 +52,17 @@ namespace MetroidvaniaTools
         [HideInInspector] public bool Dodge_startTrigger;
         [HideInInspector] public bool Dodge_finishTrigger;
         
+        // Guard Counter
+        [HideInInspector] public bool Guard_startTrigger;
+        [HideInInspector] public bool Guard_endTrigger;
+        [HideInInspector] public bool Counter_startTrigger;
+        [HideInInspector] public bool Counter_finishTrigger;
+        [HideInInspector] public bool guardCancelTriggered;
+        [HideInInspector] public ContactFilter2D shieldFilter;
+        private List<Collider2D> shildOverlapResult;
+        private Collider2D shieldCollider;
+        
+        
         private bool groundCheckDisabled;
 
         private MeshRenderer mr;
@@ -55,6 +70,8 @@ namespace MetroidvaniaTools
         private MaterialPropertyBlock mpb_white;
         private float tintResetCountDown;
         private bool needResetTint;
+
+
         protected override void Initialization()
         {
             base.Initialization();
@@ -68,6 +85,13 @@ namespace MetroidvaniaTools
             mpb_white = new MaterialPropertyBlock();
             mpb_red.SetColor("_Color", Color.red);
             mpb_white.SetColor("_Color", Color.white);
+            
+            guardCancelTriggered = false;
+            shield.SetActive(false);
+            shieldFilter = new ContactFilter2D();
+            shieldFilter.SetLayerMask(playerLayer);
+            shildOverlapResult = new List<Collider2D>();
+            shieldCollider = shield.GetComponent<Collider2D>();
         }
         
         protected override void OnEnable()
@@ -82,6 +106,11 @@ namespace MetroidvaniaTools
             GroundCheck();
             PlayerCheck();
             ResetTint();
+        }
+
+        public float GetPlayerDistance()
+        {
+            return Math.Abs(transform.position.x - player.transform.position.x);
         }
 
         private void PlayerCheck()
@@ -130,10 +159,15 @@ namespace MetroidvaniaTools
             groundCheckDisabled = false;
         }
 
-        public override void GeneralIdle()
+        public void shieldCheck()
         {
-            base.GeneralIdle();
-            anim.SetBool("Running", false);
+            if (!shield.activeSelf)
+                return;
+            
+            if (shieldCollider.OverlapCollider(shieldFilter, shildOverlapResult) > 0)
+            {
+                shildOverlapResult[0].transform.position = new Vector2(shield.transform.position.x, shildOverlapResult[0].transform.position.y);
+            }
         }
         
         public bool HandleHit()
@@ -144,10 +178,22 @@ namespace MetroidvaniaTools
             if (health.hit)
             {
                 health.hit = false;
-                mr.SetPropertyBlock(mpb_red);
-                needResetTint = true;
-                tintResetCountDown = .3f;
-                TriggerHitPointEffect();
+                if (health.isGuarding)
+                {
+                    if (!guardCancelTriggered)
+                    {
+                        guardCancelTriggered = true; // 等isGuarding变为false时变为false
+                        Guard_endTrigger = true; // 触发等待一小段时间cancle
+                    }
+                }
+                else
+                {
+                    mr.SetPropertyBlock(mpb_red);
+                    needResetTint = true;
+                    tintResetCountDown = .3f;
+                    TriggerHitPointEffect();    
+                }
+                
                 if (canStagger)
                 {
                     isStagger = true;
