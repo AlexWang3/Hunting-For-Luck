@@ -245,8 +245,9 @@ namespace MetroidvaniaTools
             }
         }
 
-        private IEnumerator Dead()
-        {
+        private IEnumerator Dead() {
+            G.UI.overlayUIType = OverlayUIType.DeadScreen;
+            G.UI.MarkDirty();
             yield return new WaitForSeconds(5);
             character.gameObject.SetActive(false);
             

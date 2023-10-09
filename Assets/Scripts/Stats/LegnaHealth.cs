@@ -115,6 +115,8 @@ namespace MetroidvaniaTools
         private void Death()
         {
             gameObject.SetActive(false);
+            G.UI.overlayUIType = OverlayUIType.WinScreen;
+            G.UI.MarkDirty();
         }
     [ContextMenu("Set This As Current Enemy")]
         public void UpdateEnemyInformation() {

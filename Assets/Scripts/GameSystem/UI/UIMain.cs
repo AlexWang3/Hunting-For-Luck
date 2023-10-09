@@ -13,6 +13,8 @@ public enum OverlayUIType {
     None,
     TitleSetting,
     InGameSetting,
+    DeadScreen,
+    WinScreen,
 }
 
 public enum MainUITye {
@@ -46,13 +48,17 @@ public class UIMain : UIBase<UIMainState> {
     public TMP_Text[] playerStatusText;
     public TMP_Text[] middleDiceText;
     public Image[] middleDiceImage;
+    public GameObject DeadScreen;
+    public GameObject WinScreen;
     [FormerlySerializedAs("imageFadeTIme")] public float imageFadeTime = 1.2f;
     public float textFadeTime = 1.2f;
     public float midDiceFadeTime = 1.2f;
     
     public LegnaHealth currentTarget;
     public override void ApplyNewStateInternal() {
-        if (state.overlayUIType == OverlayUIType.None) {
+        if (state.overlayUIType == OverlayUIType.None || 
+            state.overlayUIType == OverlayUIType.DeadScreen || 
+            state.overlayUIType == OverlayUIType.WinScreen) {
             G.I.ResumeGame();
         } else {
             G.I.StopGame();
@@ -72,6 +78,8 @@ public class UIMain : UIBase<UIMainState> {
         titleSetting.SetActive(state.overlayUIType == OverlayUIType.TitleSetting);
         inGameSetting.SetActive(state.overlayUIType == OverlayUIType.InGameSetting);
         UICamera.SetActive(state.mainUITye != MainUITye.InGame);
+        WinScreen.SetActive(state.overlayUIType == OverlayUIType.WinScreen);
+        DeadScreen.SetActive(state.overlayUIType == OverlayUIType.DeadScreen);
         if (state.mainUITye != MainUITye.InGame) {
             HideEnemyStatus();
             HidePlayerStatus();

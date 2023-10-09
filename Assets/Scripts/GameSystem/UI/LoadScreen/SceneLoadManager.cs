@@ -31,9 +31,23 @@ public class SceneLoadManager : MonoBehaviour {
         SceneManager.UnloadSceneAsync(name);
     }
 
+    public void RestartScene(string name, Action callBack = null) {
+        G.UI.mainUITye = MainUITye.LoadingScreen;
+        G.UI.uiLoadScreenState.progress = 0;
+        G.UI.MarkDirty();
+        StartCoroutine(Restart(name, callBack));
+    }
+
+    private IEnumerator Restart(string name, Action callBack = null) {
+        AsyncOperation asyncUnLoad = SceneManager.UnloadSceneAsync(name);
+        while (!asyncUnLoad.isDone) {
+            yield return null;
+        }
+        LoadScene(name, callBack);
+    }
+
     private IEnumerator LoadSceneAsync(string sceneName,LoadSceneMode loadMode, Action callBack = null) {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, loadMode);
-
         while (!asyncLoad.isDone) {
             G.UI.uiLoadScreenState.progress = asyncLoad.progress;
             G.UI.uiLoadScreenState.MarkDirty();
