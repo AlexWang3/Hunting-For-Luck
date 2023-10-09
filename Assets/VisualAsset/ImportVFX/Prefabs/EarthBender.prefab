@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3728943950929995456}
   m_Layer: 0
-  m_Name: vfxgraph_Earthbender_v10
+  m_Name: EarthBender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
