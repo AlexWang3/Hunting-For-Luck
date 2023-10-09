@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: Legna_Atlas
+  m_Name: Normal_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 9f41f000aa6d81346b6f288af18c166d, type: 3}
+  atlasFile: {fileID: 4900000, guid: cb6f4c93bb97224479a631f4bddfb325, type: 3}
   materials:
-  - {fileID: 2100000, guid: 85ff594da1daefa4682e4956badbc5ef, type: 2}
-  - {fileID: 2100000, guid: b51ae988bbfe9d9478dc643d5db84c0f, type: 2}
-  - {fileID: 2100000, guid: 8c23ab15b42f7ef47a6f31ac855d6cec, type: 2}
+  - {fileID: 2100000, guid: e2448205a678a35428194a0f99890414, type: 2}
+  - {fileID: 2100000, guid: a2bd58455afd49d4bad4f40ed524e0fd, type: 2}
+  - {fileID: 2100000, guid: c2befb9676ec6ad40ba884e9d17eff2f, type: 2}

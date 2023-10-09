@@ -1,5 +1,5 @@
 
-Legna.png
+Normal.png
 size: 2038,1508
 format: RGBA8888
 filter: Linear,Linear
@@ -320,7 +320,7 @@ vfx_4
   offset: 0, 0
   index: -1
 
-Legna2.png
+Normal2.png
 size: 2011,1707
 format: RGBA8888
 filter: Linear,Linear
@@ -340,7 +340,7 @@ CrossSwordEX
   offset: 0, 0
   index: -1
 
-Legna3.png
+Normal3.png
 size: 1532,1099
 format: RGBA8888
 filter: Linear,Linear
