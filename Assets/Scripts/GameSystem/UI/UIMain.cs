@@ -5,39 +5,79 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using MetroidvaniaTools;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 
-public enum UITye {
-    TitleScreen,
-    InGame,
+public enum OverlayUIType {
+    None,
+    TitleSetting,
+    InGameSetting,
 }
 
+public enum MainUITye {
+    TitleScreen,
+    InGame,
+    LoadingScreen,
+}
 
+[System.Serializable]
 public class UIMainState : UIState {
     public UIPlayerHealthState playerHealthState;
     public UIEnemyHealthState enemyHealthState;
     public UIMiddleDiceState uiMiddleDiceState;
+    public UILoadScreenState uiLoadScreenState;
+    public MainUITye mainUITye;
+    public OverlayUIType overlayUIType;
 }
 
 public class UIMain : UIBase<UIMainState> {
+    public GameObject UICamera;
+    public GameObject titleSetting;
+    public GameObject inGameSetting;
+    public TitleScreen titlePage;
     public UIPlayerHealth playerHealth;
     public UIEnemyHealth enemyHealth;
     public UIMiddleDice middleDice;
+    public UILoadScreen LoadScreen;
     public Image[] enemyStatusImages;
     public TMP_Text[] enemyStatusText;
     public Image[] playerHealthImages;
     public TMP_Text[] playerStatusText;
     public TMP_Text[] middleDiceText;
-    public Image[] middleDiceImage; 
+    public Image[] middleDiceImage;
     [FormerlySerializedAs("imageFadeTIme")] public float imageFadeTime = 1.2f;
     public float textFadeTime = 1.2f;
     public float midDiceFadeTime = 1.2f;
-
+    
     public LegnaHealth currentTarget;
     public override void ApplyNewStateInternal() {
+        if (state.overlayUIType == OverlayUIType.None) {
+            G.I.ResumeGame();
+        } else {
+            G.I.StopGame();
+        }
         
+        if (state.overlayUIType == OverlayUIType.None && state.mainUITye == MainUITye.InGame) {
+            Cursor.visible = false;
+            Cursor.lockState= CursorLockMode.Locked;
+            StartCoroutine(G.I.InitializePlayer());
+        } else {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        LoadScreen.gameObject.SetActive(state.mainUITye == MainUITye.LoadingScreen);
+        titlePage.gameObject.SetActive(state.mainUITye == MainUITye.TitleScreen);
+        titleSetting.SetActive(state.overlayUIType == OverlayUIType.TitleSetting);
+        inGameSetting.SetActive(state.overlayUIType == OverlayUIType.InGameSetting);
+        UICamera.SetActive(state.mainUITye != MainUITye.InGame);
+        if (state.mainUITye != MainUITye.InGame) {
+            HideEnemyStatus();
+            HidePlayerStatus();
+        }
     }
+    
     
 
     private void Start() {
@@ -51,6 +91,7 @@ public class UIMain : UIBase<UIMainState> {
         middleDiceImage= middleDice.GetComponentsInChildren<Image>();
         middleDiceText = middleDice.GetComponentsInChildren<TMP_Text>();
         HideEnemyStatus();
+        HidePlayerStatus();
     }
     
     public override void UpdateChildren() {
@@ -60,9 +101,11 @@ public class UIMain : UIBase<UIMainState> {
         enemyHealth.ApplyNewState();
         middleDice.state = state.uiMiddleDiceState;
         middleDice.ApplyNewState();
+        LoadScreen.state = state.uiLoadScreenState;
+        LoadScreen.ApplyNewState();
     }
     
-    public  void UpdateCurrentEnemy(string enemyName, int currentHealth,int maxHealth, int currentLuck, LegnaHealth target) {
+    public void UpdateCurrentEnemy(string enemyName, int currentHealth,int maxHealth, int currentLuck, LegnaHealth target) {
         currentTarget = target;
         Sequence mySequence = DOTween.Sequence();
         foreach (var image in enemyStatusImages) {
@@ -82,6 +125,15 @@ public class UIMain : UIBase<UIMainState> {
         state.enemyHealthState.enemyCurrentLuckValue = currentLuck;
         state.enemyHealthState.SetEnemyName(enemyName);
         state.enemyHealthState.MarkDirty();
+    }
+    public void UpdateCurrentPlayer(string playerName, int currentHealth,int maxHealth, int currentLuck) {
+        Sequence mySequence = DOTween.Sequence();
+        ShowPlayerStatus();
+        state.playerHealthState.playerHealth = currentHealth;
+        state.playerHealthState.maxHealth = maxHealth;
+        state.playerHealthState.playerCurrentLuckValue = currentLuck;
+        state.playerHealthState.SetPlayerName(playerName);
+        state.playerHealthState.MarkDirty();
     }
 
     public void HideEnemyStatus() {
@@ -121,5 +173,21 @@ public class UIMain : UIBase<UIMainState> {
             mySequence.Insert(0.1f, text.DOFade(1, textFadeTime));
         }
         mySequence.Play();
+    }
+
+    public void SetFullScreen(bool setFullScreen) {
+        Screen.fullScreen = setFullScreen;
+    }
+
+    public void SetOverlayUIType(int index) {
+        G.UI.overlayUIType = (OverlayUIType)index;
+        G.UI.MarkDirty();
+    }
+    public void SetMainUIType(int index) {
+        if ((MainUITye)index == MainUITye.TitleScreen) {
+            SceneLoadManager.Instance.UnLoadScene(G.I.UIMain.titlePage.newGameScene);
+        }
+        G.UI.mainUITye = (MainUITye) index;
+        G.UI.MarkDirty();
     }
 }

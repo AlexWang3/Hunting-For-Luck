@@ -1,10 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using MetroidvaniaTools;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
+public enum Resolution {
+    test,
+    test2,
+    test3,
+}
 
 public interface IDamagebale {
     public void TakeDamage(int amount);
@@ -40,12 +44,17 @@ public class GameSystem : MonoBehaviour {
     public PlayerHealth playerHealth;
     public bool finishInitialize;
     private void Start() {
+        InitializeUIMain();
+    }
+
+    public IEnumerator InitializePlayer() {
+        yield return new WaitUntil(() => PlayerHealth.Instance);
+        yield return new WaitUntil(() => Character.Instance);
         player = PlayerHealth.Instance.gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
         character = Character.Instance;
-        finishInitialize = false;
-        InitializeUIMain();
     }
+
     public void Update() {
         UIMain.ApplyNewState();
     }
@@ -53,10 +62,9 @@ public class GameSystem : MonoBehaviour {
     public void InitializeUIMain() {
         UIMain.state = new UIMainState() {
             playerHealthState = new UIPlayerHealthState() {
-                maxHealth = playerHealth.maxHealthPoints,
+                maxHealth = 10,
                 playerHealth = 0,
-                playerCurrentLuckValue = playerHealth.playerCurrentLuckValue,
-                previousFill = (float)playerHealth.playerCurrentLuckValue/playerHealth.maxHealthPoints,
+                playerCurrentLuckValue = 0,
             },
             enemyHealthState = new UIEnemyHealthState() {
                 maxHealth = 10,
@@ -66,9 +74,13 @@ public class GameSystem : MonoBehaviour {
             uiMiddleDiceState = new UIMiddleDiceState() {
                 diceNumber = 0,
                 diceOwner = AttackSource.None,
+            },
+            mainUITye = MainUITye.TitleScreen,
+            overlayUIType = OverlayUIType.None,
+            uiLoadScreenState = new UILoadScreenState() {
+                progress = 0f,
             }
         };
-        finishInitialize = true;
     }
     public enum AttackSource {
         None,
@@ -120,4 +132,12 @@ public class GameSystem : MonoBehaviour {
         return Mathf.RoundToInt(damageAmount * 0.3f);
     }
 
+    public void StopGame() {
+        Time.timeScale = 0;
+    }
+    
+    public void ResumeGame() {
+        Time.timeScale = 1;
+    }
 }
+

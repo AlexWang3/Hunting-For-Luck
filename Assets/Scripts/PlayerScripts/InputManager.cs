@@ -90,9 +90,17 @@ namespace MetroidvaniaTools
             }
         }
 
-        private void Update() {
-            // Debug.Log(moveInput);
+        public void OnInGameSetting(InputAction.CallbackContext ctx) {
+            if (ctx.started) {
+                if (G.UI.overlayUIType != OverlayUIType.None) {
+                    G.UI.overlayUIType = OverlayUIType.None;
+                } else if (G.UI.mainUITye == MainUITye.InGame) {
+                    G.UI.overlayUIType = OverlayUIType.InGameSetting;
+                }
+                G.UI.MarkDirty();
+            }
         }
+
         #endregion
 
         public virtual bool DownHeld() {

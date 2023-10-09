@@ -54,17 +54,9 @@ namespace MetroidvaniaTools
             rb = GetComponent<Rigidbody2D>();
             playerCurrentLuckValue = maxHealthPoints / 2;
             healthPoints = playerCurrentLuckValue;
-            StartCoroutine(initialize());
+            G.I.UIMain.UpdateCurrentPlayer(playerName, healthPoints, maxHealthPoints, playerCurrentLuckValue);
             // deadScreenImage = uiManager.deadScreen.GetComponent<Image>();
             // deadScreenText = uiManager.deadScreen.GetComponentInChildren<Text>();
-        }
-
-        public IEnumerator initialize() {
-            yield return new WaitUntil(() =>G.I.finishInitialize);
-            G.UI.playerHealthState.playerHealth = healthPoints;
-            G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
-            G.UI.playerHealthState.SetPlayerName(playerName);
-            G.UI.playerHealthState.MarkDirty();
         }
 
         protected virtual void Update()
@@ -257,6 +249,7 @@ namespace MetroidvaniaTools
         {
             yield return new WaitForSeconds(5);
             character.gameObject.SetActive(false);
+            
         }
 
         public void ModifyPlayerLuckBarValue(int amount) {
