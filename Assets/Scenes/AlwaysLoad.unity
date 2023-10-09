@@ -143,14 +143,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSystem
       objectReference: {fileID: 0}
-    - target: {fileID: 3271905859781117673, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7113466287660761542, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8514866642896158859, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
       propertyPath: m_RootOrder
       value: 0

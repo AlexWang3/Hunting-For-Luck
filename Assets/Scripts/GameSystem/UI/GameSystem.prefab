@@ -2412,7 +2412,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &6390905502879582240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4689,6 +4689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9560858cbe0e4d44d9473721266ad2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectNeedTobeTransfered: []
 --- !u!1 &5786250193410674864
 GameObject:
   m_ObjectHideFlags: 0
@@ -7400,7 +7401,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &7791647763380575206
 MonoBehaviour:
   m_ObjectHideFlags: 0
