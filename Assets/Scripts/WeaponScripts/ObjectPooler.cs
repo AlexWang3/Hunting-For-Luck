@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace MetroidvaniaTools
 {
     public class ObjectPooler : MonoBehaviour
@@ -43,7 +44,7 @@ namespace MetroidvaniaTools
                 currentItem.transform.SetParent(projectileParentFolder.transform);
             }
             projectileParentFolder.name = weapon.name;
-
+            SceneLoadManager.Instance.objectNeedTobeTransfered.Add(projectileParentFolder);
         }
 
         public virtual GameObject GetObject(List<GameObject> currentPool)

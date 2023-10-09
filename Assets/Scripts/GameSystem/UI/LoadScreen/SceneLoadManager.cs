@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System;
-using BehaviorTree;
 using DG.Tweening;
 using Sequence = DG.Tweening.Sequence;
 
 public class SceneLoadManager : MonoBehaviour {
     public static SceneLoadManager Instance;
-
+    public List<GameObject> objectNeedTobeTransfered;
     public void Awake() {
         Instance = this;
+        objectNeedTobeTransfered = new List<GameObject>();
     }
 
     public void LoadScene(string sceneName,Action callBack = null, LoadSceneMode loadMode = LoadSceneMode.Additive,bool useLoadScreen = true) {
+        objectNeedTobeTransfered.Clear();
         if (useLoadScreen) {
             G.UI.mainUITye = MainUITye.LoadingScreen;
             G.UI.MarkDirty();
@@ -61,5 +62,14 @@ public class SceneLoadManager : MonoBehaviour {
             sequence.InsertCallback(0.5f, () => callBack());
         }
         sequence.Play();
+        yield return new WaitUntil(SceneManager.GetSceneByPath(sceneName).IsValid);
+        HandleSceneObjectTransfer(sceneName);
+    }
+
+    private void HandleSceneObjectTransfer(string sceneName) {
+        Scene scene = SceneManager.GetSceneByPath(sceneName);
+        foreach (var transferObject in objectNeedTobeTransfered) {
+            SceneManager.MoveGameObjectToScene(transferObject, scene);
+        }
     }
 }
