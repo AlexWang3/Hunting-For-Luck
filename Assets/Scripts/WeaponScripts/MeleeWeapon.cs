@@ -62,8 +62,15 @@ namespace MetroidvaniaTools
                 }
                 collided = true;
             }
-            
-            objHealth.TakeDamage(G.I.DamageCalculation(playerHealth.healthPoints, objHealth.ReturnHealthPoint(), damageAmount, GameSystem.AttackSource.Player));
+
+            int damage = G.I.DamageCalculation(playerHealth.healthPoints, objHealth.ReturnHealthPoint(), damageAmount,
+                GameSystem.AttackSource.Player);
+            playerHealth.GainHealthFromAttack(5);
+            objHealth.TakeDamage(damage);
+            if (playerHealth.luckSkill) {
+                objHealth.TakeMidBarDamage(damage);
+            }
+
             StartCoroutine(NoLongerColliding());
         }
 

@@ -12,6 +12,7 @@ public enum Resolution {
 
 public interface IDamagebale {
     public void TakeDamage(int amount);
+    public void TakeMidBarDamage(int amount);
     public bool IsGiveUpwardForce();
     public int ReturnHealthPoint();
 }
@@ -106,6 +107,12 @@ public class GameSystem : MonoBehaviour {
             G.UI.uiMiddleDiceState.diceNumber = 0;
             G.UI.uiMiddleDiceState.MarkDirty();
             return damageAmount * 3;
+        }
+        if (playerHealth.luckSkill && attackSource == AttackSource.Enemy) {
+            G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatSuccess;
+            G.UI.uiMiddleDiceState.diceNumber = selfHealth + targetHealth;
+            G.UI.uiMiddleDiceState.MarkDirty();
+            return Mathf.RoundToInt(damageAmount * 0.3f);
         }
 
         if (randomNumber < 0.1f * selfHealth) {
