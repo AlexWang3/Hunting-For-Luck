@@ -19,7 +19,7 @@ public class FinishScreen : MonoBehaviour {
     public void RestartGame() {
         G.UI.overlayUIType = OverlayUIType.None;
         G.UI.MarkDirty();
-        SceneLoadManager.Instance.RestartScene(SceneManager.GetSceneByBuildIndex(0).name, () => {
+        SceneLoadManager.Instance.RestartScene(G.I.UIMain.titlePage.newGameScene, () => {
             G.UI.mainUITye = MainUITye.InGame;
             G.UI.MarkDirty();
         });

@@ -35021,7 +35021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0.008571616, y: -0.01601826, z: 0.00013732504, w: 0.99983495}
-  m_LocalPosition: {x: -2.3821783, y: 20.249683, z: -13.036529}
+  m_LocalPosition: {x: -2.3821793, y: 20.249683, z: -13.036529}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64619,7 +64619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812696015}
   m_LocalRotation: {x: 0.008571615, y: -0.01601826, z: 0.00013732503, w: 0.99983495}
-  m_LocalPosition: {x: 12.507822, y: 2.0496826, z: -3.0365286}
+  m_LocalPosition: {x: 12.507821, y: 2.0496826, z: -3.0365286}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -115069,18 +115069,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6516199096517aa459c9cac776777794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 1000
-  initialLuck: 1000
+  maxHealthPoints: 500
+  initialLuck: 500
   currentLuck: 0
   enemyName: Legna
   healthPoints: 0
   giveUpwardForce: 0
   left: 0
   hit: 0
-  recoverAmount: 1
-  recoverTimeAfterGainHealth: 10
-  recoverTimeAfterHit: 100
-  recoverInterval: 100
+  recoverAmount: 20
+  recoverTimeAfterGainHealth: 100
+  recoverTimeAfterHit: 20
+  recoverInterval: 1
   recoverTimeCountdown: 0
   isGuarding: 0
 --- !u!1 &4923887756164272561

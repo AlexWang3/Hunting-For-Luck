@@ -11,6 +11,10 @@ namespace MetroidvaniaTools
         [SerializeField] protected int recoverAmount;
         [SerializeField] protected float recoverTime;
         private float recoverTimeCountdown;
+        public void TakeMidBarDamage(int amount) {
+            
+        }
+
         public void TakeDamage(int amount) {
             DealDamage(amount);
         }

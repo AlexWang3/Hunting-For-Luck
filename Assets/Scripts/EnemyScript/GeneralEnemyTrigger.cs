@@ -59,6 +59,7 @@ namespace MetroidvaniaTools
                 }
                 playerHealth.verticalDamageForce = verticalDamageForce;
                 playerHealth.horizontalDamageForce = horizontalDamageForce;
+                legnaHealth.GainHealthFromAttack(50);
                 playerHealth.DealDamage(G.I.DamageCalculation( legnaHealth.healthPoints,playerHealth.healthPoints, damageAmount, GameSystem.AttackSource.Enemy));
                 if (!G.I.character.isDashing)
                 {
