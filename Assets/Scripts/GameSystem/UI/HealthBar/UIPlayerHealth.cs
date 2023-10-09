@@ -14,7 +14,6 @@ public class UIPlayerHealthState : UIState {
     public int playerCurrentLuckValue;
     public string playerName;
     [FormerlySerializedAs("setPlayerName")] public bool hasSetPlayerName;
-    public float previousFill;
     public void SetPlayerName(string playerName) {
         this.playerName = playerName;
         hasSetPlayerName = true;
@@ -42,6 +41,7 @@ public class UIPlayerHealth : UIBase<UIPlayerHealthState> {
     public float luckNumbnerTransitDuration = 1.2f;
     public float midBarTransitDuration = 1.2f;
     public Sequence oldSequence;
+    public float previousFill;
     public override void ApplyNewStateInternal() {
         oldSequence.Kill();
         Sequence newSequence = DOTween.Sequence();
@@ -49,14 +49,14 @@ public class UIPlayerHealth : UIBase<UIPlayerHealthState> {
             newSequence.Insert(0f, playerName.DOText(state.playerName,  nameTransitDuration, true, ScrambleMode.All));
             state.hasSetPlayerName = false;
         }
+        previousFill = frontHealthBar.fillAmount;
         float newTargetFill = (float)state.playerHealth / state.maxHealth;
-       
         newSequence.Insert(0,DOTween.To(SetLuckNumber,currentLuck, state.playerHealth, luckNumbnerTransitDuration));
         newSequence.Insert(0,slider.DOValue(midBarLuckValue / state.maxHealth, midBarTransitDuration));
         newSequence.Insert(0, DOTween.To(SetMidBarNumber,midBarLuckValue, state.playerCurrentLuckValue, midBarTransitDuration));
         currentLuck = state.playerHealth;
         midBarLuckValue = state.playerCurrentLuckValue;
-        if (newTargetFill >= state.previousFill) {
+        if (newTargetFill >= previousFill) {
             // Regain Health
             newSequence.Insert(0,frontHealthBar.DOFillAmount(newTargetFill, slowFillSpeed));
             newSequence.Insert(0,backHealthBar.DOFillAmount(newTargetFill, fastFillSpeed));
@@ -65,10 +65,8 @@ public class UIPlayerHealth : UIBase<UIPlayerHealthState> {
             newSequence.Insert(0,frontHealthBar.DOFillAmount(newTargetFill, fastFillSpeed));
             newSequence.Insert(0,backHealthBar.DOFillAmount(newTargetFill, slowFillSpeed));
         }
-
         newSequence.Play();
         oldSequence = newSequence;
-        state.previousFill = newTargetFill;
     }
     public void SetLuckNumber(float targetValue) {
         int value = Mathf.RoundToInt(targetValue);
