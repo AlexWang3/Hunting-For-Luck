@@ -44,6 +44,7 @@ public class GameSystem : MonoBehaviour {
     public PlayerHealth playerHealth;
     public bool finishInitialize;
     private void Start() {
+        Screen.fullScreen = false;
         InitializeUIMain();
     }
 
