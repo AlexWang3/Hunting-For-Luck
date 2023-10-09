@@ -737,8 +737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newGameScene:
-    sceneAsset: {fileID: 102900000, guid: 35ffb28d92d00714693e7de79c701179, type: 3}
-    scenePath: Assets/Scenes/loadTest.unity
+    sceneAsset: {fileID: 102900000, guid: ce23e177d2a1cda4ca344b9ce5d74c6b, type: 3}
+    scenePath: Assets/Scenes/BossTestScene.unity
   titleScreen:
     sceneAsset: {fileID: 102900000, guid: e5c6c6249e8b0bb46bda0403786b6872, type: 3}
     scenePath: Assets/Scenes/AlwaysLoad.unity
