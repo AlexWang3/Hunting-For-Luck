@@ -52,7 +52,7 @@ public class UIEnemyHealth : UIBase<UIEnemyHealthState> {
         float previousFill = frontHealthBar.fillAmount;
         float newTargetFill = (float)state.enemyHealth / state.maxHealth;
         newSequence.Insert(0,DOTween.To(SetLuckNumber,currentLuck, state.enemyHealth, luckNumbnerTransitDuration));
-        newSequence.Insert(0,slider.DOValue(state.enemyCurrentLuckValue / state.maxHealth, midBarTransitDuration));
+        newSequence.Insert(0,slider.DOValue(midBarLuckValue / state.maxHealth, midBarTransitDuration));
         newSequence.Insert(0,DOTween.To(SetMidBarNumber,midBarLuckValue, state.enemyCurrentLuckValue, midBarTransitDuration));
         currentLuck = state.enemyHealth;
         midBarLuckValue = state.enemyCurrentLuckValue;

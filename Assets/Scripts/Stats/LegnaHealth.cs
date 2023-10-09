@@ -27,7 +27,11 @@ namespace MetroidvaniaTools
         {
             Initialization();
         }
-        
+
+        public void TakeMidBarDamage(int amount) {
+            ModifyLuckBarValue(-amount);
+        }
+
         private void Initialization() {
             currentLuck = initialLuck;
             healthPoints = currentLuck;
