@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AlwaysLoad.unity
     guid: e5c6c6249e8b0bb46bda0403786b6872
-  - enabled: 1
-    path: Assets/Scenes/loadTest.unity
-    guid: 35ffb28d92d00714693e7de79c701179
   m_configObjects: {}
