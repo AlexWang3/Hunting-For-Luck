@@ -11,13 +11,17 @@ namespace MetroidvaniaTools
         private LegnaCharacter character;
         private float maxChargeTime;
         private float minDistance;
+        private float velocityOffset;
+        private float maxDistanceToApply;
         
         // Local
         private int moveIndex = 0;
         private float chargeCountDown;
-        public LCalibur(LegnaCharacter character, float maxChargeTime, float minDistance)
-            => (this.character, this.maxChargeTime, this.minDistance) =
-                (character, maxChargeTime, minDistance);
+        private HorizontalMovement playerHorizontalMovement;
+        public LCalibur(LegnaCharacter character, float maxChargeTime, float minDistance,
+        float velocityOffset, float maxDistanceToApply)
+            => (this.character, this.maxChargeTime, this.minDistance, this.velocityOffset, this.maxDistanceToApply) =
+                (character, maxChargeTime, minDistance, velocityOffset, maxDistanceToApply);
 
         public override NodeState Evaluate()
         {
@@ -49,10 +53,21 @@ namespace MetroidvaniaTools
                 if (chargeCountDown <= 0 || character.GetPlayerDistance() < minDistance)
                 {
                     character.anim.SetTrigger("CaliburEnd");
+                    character.playerHorizontalMovement.velocityOffset = 0;
                     moveIndex = 3;
                 }
                 else
                 {
+                    bool playerIsOnLeft = character.player.transform.position.x <= character.transform.position.x;
+                    if (character.facingLeft == playerIsOnLeft && character.GetPlayerDistance() < maxDistanceToApply)
+                    {
+                        float dir = playerIsOnLeft ? 1 : -1;
+                        character.playerHorizontalMovement.velocityOffset = dir * velocityOffset;
+                    }
+                    else
+                    {
+                        character.playerHorizontalMovement.velocityOffset = 0;
+                    }
                     chargeCountDown -= Time.deltaTime;
                 }
             }

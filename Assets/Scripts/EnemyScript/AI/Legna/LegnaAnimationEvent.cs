@@ -134,5 +134,45 @@ namespace MetroidvaniaTools
         {
             hitAim.SetTrigger("CT");
         }
+
+        public void TriggerSlash1HitBox()
+        {
+            hitAim.SetTrigger("SL1");
+        }
+
+        public void TriggerSlash2HitBox()
+        {
+            hitAim.SetTrigger("SL2");
+        }
+
+        public void TriggerSlash3HitBox()
+        {
+            hitAim.SetTrigger("SL3");
+        }
+
+        public void TriggerSlash4HitBox()
+        {
+            hitAim.SetTrigger("SL4");
+        }
+        
+        public void TriggerSlash1EXHitBox()
+        {
+            hitAim.SetTrigger("SL1EX");
+        }
+
+        public void TriggerSlash2EXHitBox()
+        {
+            hitAim.SetTrigger("SL2EX");
+        }
+
+        public void TriggerSlash3EXHitBox()
+        {
+            hitAim.SetTrigger("SL3EX");
+        }
+
+        public void TriggerSlash4EXHitBox()
+        {
+            hitAim.SetTrigger("SL4EX");
+        }
     }
 }

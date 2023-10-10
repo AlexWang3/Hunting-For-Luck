@@ -34997,7 +34997,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -35021,7 +35021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0.008571616, y: -0.01601826, z: 0.00013732504, w: 0.99983495}
-  m_LocalPosition: {x: 6.4645867, y: 20.27472, z: -14.495637}
+  m_LocalPosition: {x: 12.766626, y: 20.249046, z: -12.999276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64619,7 +64619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812696015}
   m_LocalRotation: {x: 0.008571615, y: -0.01601826, z: 0.00013732503, w: 0.99983495}
-  m_LocalPosition: {x: 21.354588, y: 2.0747185, z: -4.495637}
+  m_LocalPosition: {x: 27.656628, y: 2.0490456, z: -2.9992762}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -84721,7 +84721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538698971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.434479, y: -5.2209415, z: 10}
+  m_LocalPosition: {x: 26.299103, y: -5.6454487, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -114903,7 +114903,8 @@ MonoBehaviour:
   centerRef: {fileID: 2038673540}
   startRef: {fileID: 1186537682}
   shield: {fileID: 449558566}
-  maxToughness: 1
+  p1_MaxToughness: 20
+  p2_MaxToughness: 30
   curState: 0
   health: {fileID: 0}
   isGrounded: 0
@@ -114942,6 +114943,7 @@ MonoBehaviour:
   PC_endTrggier: 0
   TA_prepareEnd: 0
   TA_endTrigger: 0
+  playerHorizontalMovement: {fileID: 0}
 --- !u!23 &761806920986357827
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115152,7 +115154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628597160100139212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.9, y: 14.6, z: 0}
+  m_LocalPosition: {x: 15.5, y: 14.6, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -115176,8 +115178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827f70d8c40e44348969b6331f1ed3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1_stunTime: 5
-  P2_stunTime: 5
+  P1_stunTime: 3
+  P2_stunTime: 2
   C_TimeTillMaxSpeed: 0
   C_MaxSpeed: 35
   JC_SuccessDistance: 30
@@ -115189,7 +115191,7 @@ MonoBehaviour:
   SA_FastSpinTime: 2
   SA_FastMaxSpeed: 40
   Dodge_distance: 65
-  GreatDodge_distance: 0
+  GreatDodge_distance: 80
   NC_SuccessDistance: 10
   N2_distance: 20
   SL2_JumpDistance: 20
@@ -115200,8 +115202,11 @@ MonoBehaviour:
   GC_dodgeForce: 50
   TA_interval: 3
   BF_distance: 40
-  EX_maxChargeTime: 5
-  EX_minDistance: 10
+  EX_maxChargeTime: 3
+  EX_minDistance: 20
+  EX_velocityOffset: 15
+  EX_maxDistanceToApply: 60
+  EX_normalRange: 25
 --- !u!50 &7115403308453206655
 Rigidbody2D:
   serializedVersion: 4
@@ -115267,7 +115272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4391973155934170921, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.9
+      value: 9.2
       objectReference: {fileID: 0}
     - target: {fileID: 4391973155934170921, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_LocalPosition.y

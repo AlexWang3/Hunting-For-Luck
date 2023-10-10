@@ -8,7 +8,6 @@ namespace MetroidvaniaTools
     public class LegnaBT : AbstractBT
     {
         private LegnaCharacter character;
-        // private EnemyHealth enemyHealth;
         
         [Header("硬直")]
         [SerializeField] private float P1_stunTime;
@@ -55,6 +54,9 @@ namespace MetroidvaniaTools
         [Header("Excalibur!")]        
         [SerializeField] private float EX_maxChargeTime;
         [SerializeField] private float EX_minDistance;
+        [SerializeField] private float EX_velocityOffset;
+        [SerializeField] private float EX_maxDistanceToApply;
+        [SerializeField] private float EX_normalRange;
         protected override void Initialization()
         {
             character = GetComponent<LegnaCharacter>();
@@ -70,6 +72,7 @@ namespace MetroidvaniaTools
             
             Node chaseForJump = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, JC_SuccessDistance);
             Node chaseForNormalAttack = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, NC_SuccessDistance);
+            Node chaseForEXAttack = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, EX_normalRange);
             Node jumpAttack = new LJumpAttack(character, JA_jumpHeight, JA_distanceOffset, JA_maxDistance);
             Node spinAttack = new LSpinAttack(character, SA_SlowSpinTime, SA_SlowMaxSpeed, SA_FastSpinTime, SA_FastMaxSpeed);
             Node crossAttack = new LCrossAttack(character, N2_distance);
@@ -78,12 +81,17 @@ namespace MetroidvaniaTools
             Node greatDodge = new LBackToCenter(character, GreatDodge_distance);
             Node shortIdle = new LIdle(character, .5f);
             Node longIdle = new LIdle(character, 2f);
+            Node randomShortIdle = new RandomPicker(new List<Node>
+            {
+                shortIdle,
+                new LIdle(character, 0)
+            });
             Node twinkleAttack = new LTwinkleAttack(character, TA_interval);
             Node slashAttack2c = new LSlashAttack2C(character, SL2_JumpDistance);
             Node slashAttack4c = new LSlashAttack4C(character, SL2_JumpDistance, SL3_JumpDistance);
             Node fire = new LFire(character);
             Node backFire = new LBackFire(character, BF_distance);
-            Node calibur = new LCalibur(character, EX_maxChargeTime, EX_minDistance);
+            Node calibur = new LCalibur(character, EX_maxChargeTime, EX_minDistance, EX_velocityOffset, EX_maxDistanceToApply);
             Node phaseChange = new LPhaseChange(character);
             
             // Phase 1 Sequences
@@ -111,22 +119,21 @@ namespace MetroidvaniaTools
             Node p1_veryShortBehavior = new RandomSelector(new List<Node>
             {
                 new LIdle(character, 3),
-                //p1_crossAttackSequence,
-                //dodge,
-                //guardCounter
+                p1_crossAttackSequence,
+                dodge,
+                guardCounter
             });
             Node p1_shortBehavior = new RandomSelector(new List<Node>
             {
                 new LIdle(character, 3),
-                //p1_crossAttackSequence,
-                //dodge,
-                //guardCounter
+                p1_crossAttackSequence,
+                dodge,
+                guardCounter
             });
             Node p1_longBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 3),
-                //p1_chaseAndJumpAttackSequence,
-                //p1_spinAttackSequence
+                p1_chaseAndJumpAttackSequence,
+                p1_spinAttackSequence
             });
             Node p1_unSeenBehavior = dodge;
             
@@ -158,38 +165,83 @@ namespace MetroidvaniaTools
             Node caliburSequence2 = new Sequence(new List<Node>
             {
                 calibur,
-                chaseForNormalAttack,
+                chaseForEXAttack,
                 slashAttack4c,
                 longIdle
+            });
+
+            Node randomCalibur = new RandomPicker(new List<Node>
+            {
+                caliburSequence1,
+                caliburSequence2,
+            });
+
+            Node randomSlash = new RandomPicker(new List<Node>
+            {
+                slashAttack2c,
+                slashAttack4c
+            });
+
+            Node slashSequence = new Sequence(new List<Node>
+            {
+                randomSlash,
+                randomShortIdle
+            });
+
+            Node closeRandCalibur = new Sequence(new List<Node>
+            {
+                greatDodge,
+                randomCalibur
+            });
+
+            Node p2_chaseAndJumpAttack = new Sequence(new List<Node>
+            {
+                chaseForJump,
+                jumpAttack,
+                dodge,
+                jumpAttack,
+                dodge,
+                jumpAttack,
+                shortIdle
+            });
+            
+            Node p2_spinAttack = new Sequence(new List<Node>
+            {
+                spinAttack,
+                dodge,
+                spinAttack,
+                shortIdle
             });
             
             
             // Phase 2 Behaviours
             Node p2_veryShortBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 1),
-                // backFire,
-                // dodge
+                shortIdle,
+                closeRandCalibur,
+                backFire,
+                dodge
             });
             Node p2_shortBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 1),
-                // fire,
-                // slashAttack2c,
-                // dodge
+                closeRandCalibur,
+                fire,
+                slashSequence,
+                twinkleAttack,
+                dodge
             });
             Node p2_longBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 1),
-                caliburSequence2,
-                // twinkleAttack,
-                // p1_chaseAndJumpAttackSequence,
-                // chaseForNormalAttack,
-                // p1_spinAttackSequence
+                randomCalibur,
+                twinkleAttack,
+                fire,
+                p2_chaseAndJumpAttack,
+                p2_spinAttack
             });
             Node p2_unSeenBehavior = new RandomSelector(new List<Node>
             {
-                dodge
+                dodge,
+                backFire
             });
             
             // Phase2 Detectors

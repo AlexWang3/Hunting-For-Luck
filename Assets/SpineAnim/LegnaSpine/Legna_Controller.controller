@@ -1521,7 +1521,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.3333
-    functionName: SlashStart
+    functionName: TriggerSlash3HitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -3896,7 +3896,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.5
-    functionName: SlashStart
+    functionName: TriggerSlash1EXHitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -6211,7 +6211,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.3333
-    functionName: SlashStart
+    functionName: TriggerSlash3EXHitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -6467,7 +6467,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.5
-    functionName: SlashStart
+    functionName: TriggerSlash1HitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -6660,7 +6660,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.2667
-    functionName: SlashStart
+    functionName: TriggerSlash2EXHitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -9048,7 +9048,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.2667
-    functionName: SlashStart
+    functionName: TriggerSlash2HitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -9701,7 +9701,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.6667
-    functionName: SlashStart
+    functionName: TriggerSlash4EXHitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -10479,7 +10479,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.6667
-    functionName: SlashStart
+    functionName: TriggerSlash4HitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

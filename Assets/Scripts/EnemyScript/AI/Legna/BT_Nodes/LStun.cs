@@ -53,7 +53,14 @@ namespace MetroidvaniaTools
                 if (character.ST_endTrigger)
                 {
                     character.ST_endTrigger = false;
-                    character.toughness = character.maxToughness;
+                    if (character.health.phaseIndex == 1)
+                    {
+                        character.toughness = character.p1_MaxToughness;
+                    }
+                    else
+                    {
+                        character.toughness = character.p2_MaxToughness;
+                    }
                     character.curState = LegnaStates.NULL;
                     state = NodeState.SUCCESS;
                 }

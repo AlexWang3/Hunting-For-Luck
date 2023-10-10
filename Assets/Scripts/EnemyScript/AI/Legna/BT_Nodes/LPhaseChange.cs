@@ -43,7 +43,7 @@ namespace MetroidvaniaTools
                 if (character.PC_endTrggier)
                 {
                     character.PC_endTrggier = false;
-                    character.toughness = character.maxToughness;
+                    character.toughness = character.p2_MaxToughness;
                     character.anim.SetBool("P1", false);
                     character.anim.SetTrigger("PhaseChangeEnd");
                     character.curState = LegnaStates.NULL;

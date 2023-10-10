@@ -36,14 +36,15 @@ namespace MetroidvaniaTools
         public Transform centerRef;
         public Transform startRef;
         public GameObject shield;
-        public int maxToughness;
+        public int p1_MaxToughness;
+        public int p2_MaxToughness;
         
         
         [HideInInspector] public LegnaStates curState;
         [HideInInspector] public LegnaHealth health;
         [HideInInspector] public bool isGrounded;
         [HideInInspector] public int playerDistanceClass;
-        public int toughness;
+        [HideInInspector] public int toughness;
         [HideInInspector] public bool isStagger;
         
         // Awake
@@ -85,6 +86,8 @@ namespace MetroidvaniaTools
         [HideInInspector] public bool TA_prepareEnd;
         [HideInInspector] public bool TA_endTrigger;
         
+        // Excalibur
+        [HideInInspector] public HorizontalMovement playerHorizontalMovement;
         private bool groundCheckDisabled;
 
         private MeshRenderer mr;
@@ -100,7 +103,7 @@ namespace MetroidvaniaTools
             curState = LegnaStates.NULL;
             health = GetComponent<LegnaHealth>();
             groundCheckDisabled = false;
-            toughness = maxToughness;
+            toughness = p1_MaxToughness;
             isStagger = false;
             
             mr = GetComponentInChildren<MeshRenderer>();
@@ -115,6 +118,8 @@ namespace MetroidvaniaTools
             shieldFilter.SetLayerMask(playerLayer);
             shildOverlapResult = new List<Collider2D>();
             shieldCollider = shield.GetComponent<Collider2D>();
+
+            playerHorizontalMovement = player.GetComponent<HorizontalMovement>();
         }
         
         protected override void OnEnable()
