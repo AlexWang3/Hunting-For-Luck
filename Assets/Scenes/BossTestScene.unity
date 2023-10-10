@@ -115200,7 +115200,7 @@ MonoBehaviour:
   GC_maxDistance: 30
   GC_closeDistance: 10
   GC_dodgeForce: 50
-  TA_interval: 3
+  TA_interval: 1.5
   BF_distance: 40
   EX_maxChargeTime: 3
   EX_minDistance: 20
