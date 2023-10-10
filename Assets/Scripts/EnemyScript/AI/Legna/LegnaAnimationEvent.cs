@@ -94,6 +94,11 @@ namespace MetroidvaniaTools
         {
             character.Counter_finishTrigger = true;
         }
+
+        public void PhaseChangePrepareEnd()
+        {
+            character.PC_prepareEndTrigger = true;
+        }
         
         public void PhaseChangeEnd()
         {

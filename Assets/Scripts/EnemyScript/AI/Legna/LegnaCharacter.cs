@@ -78,6 +78,7 @@ namespace MetroidvaniaTools
         private Collider2D shieldCollider;
         
         // PhaseChange (Throw Cross)
+        [HideInInspector] public bool PC_prepareEndTrigger;
         [HideInInspector] public bool PC_endTrggier;
         
         // TwinkleAttack

@@ -30,7 +30,9 @@ namespace MetroidvaniaTools
         [SerializeField] private float SA_FastSpinTime;
         [SerializeField] private float SA_FastMaxSpeed;
 
-        [Header("闪避")] [SerializeField] private float Dodge_distance;
+        [Header("闪避")] 
+        [SerializeField] private float Dodge_distance;
+        [SerializeField] private float GreatDodge_distance;
         
         [Header("平A")] 
         [SerializeField] private float NC_SuccessDistance;
@@ -49,6 +51,10 @@ namespace MetroidvaniaTools
         [Header("闪现大跳")] [SerializeField] private float TA_interval;
         
         [Header("时代变了")] [SerializeField] private float BF_distance;
+        
+        [Header("Excalibur!")]        
+        [SerializeField] private float EX_maxChargeTime;
+        [SerializeField] private float EX_minDistance;
         protected override void Initialization()
         {
             character = GetComponent<LegnaCharacter>();
@@ -69,6 +75,7 @@ namespace MetroidvaniaTools
             Node crossAttack = new LCrossAttack(character, N2_distance);
             Node guardCounter = new LGuardCounter(character, GC_maxGuardTime, GC_maxDistance, GC_closeDistance, GC_dodgeForce);
             Node dodge = new LBackToCenter(character, Dodge_distance);
+            Node greatDodge = new LBackToCenter(character, GreatDodge_distance);
             Node shortIdle = new LIdle(character, .5f);
             Node longIdle = new LIdle(character, 2f);
             Node twinkleAttack = new LTwinkleAttack(character, TA_interval);
@@ -76,6 +83,7 @@ namespace MetroidvaniaTools
             Node slashAttack4c = new LSlashAttack4C(character, SL2_JumpDistance, SL3_JumpDistance);
             Node fire = new LFire(character);
             Node backFire = new LBackFire(character, BF_distance);
+            Node calibur = new LCalibur(character, EX_maxChargeTime, EX_minDistance);
             Node phaseChange = new LPhaseChange(character);
             
             // Phase 1 Sequences
@@ -140,24 +148,40 @@ namespace MetroidvaniaTools
             Node phase1 = new PhaseChecker(character, 1, phase1Behavior);
             
             // Phase2 Sequences
+            Node caliburSequence1 = new Sequence(new List<Node>
+            {
+                calibur,
+                dodge,
+                twinkleAttack,
+                longIdle
+            });
+            Node caliburSequence2 = new Sequence(new List<Node>
+            {
+                calibur,
+                chaseForNormalAttack,
+                slashAttack4c,
+                longIdle
+            });
+            
             
             // Phase 2 Behaviours
             Node p2_veryShortBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 3),
+                new LIdle(character, 1),
                 // backFire,
                 // dodge
             });
             Node p2_shortBehavior = new RandomSelector(new List<Node>
             {
-                // new LIdle(character, 3),
-                fire,
+                new LIdle(character, 1),
+                // fire,
                 // slashAttack2c,
                 // dodge
             });
             Node p2_longBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 3),
+                new LIdle(character, 1),
+                caliburSequence2,
                 // twinkleAttack,
                 // p1_chaseAndJumpAttackSequence,
                 // chaseForNormalAttack,

@@ -9,7 +9,8 @@ namespace MetroidvaniaTools
     {
         // Passing in
         private LegnaCharacter character;
-        
+
+        private int moveIndex;
         public LPhaseChange(LegnaCharacter character)
             => (this.character) =
                 (character);
@@ -23,18 +24,31 @@ namespace MetroidvaniaTools
                 character.curState = LegnaStates.PHASE_CHANGING;
                 character.FacingPlayer();
                 character.GeneralIdle();
+                moveIndex = 1;
                 character.anim.SetTrigger("PhaseChange");
             }
             
             state = NodeState.RUNNING;
-            if (character.PC_endTrggier)
+            if (moveIndex == 1)
             {
-                character.PC_endTrggier = false;
-                character.toughness = character.maxToughness;
-                character.anim.SetBool("P1", false);
-                character.anim.SetTrigger("PhaseChangeEnd");
-                character.curState = LegnaStates.NULL;
-                state = NodeState.SUCCESS;
+                if (character.PC_prepareEndTrigger)
+                {
+                    character.transform.position = character.centerRef.transform.position;
+                    character.FacingPlayer();
+                    moveIndex = 2;
+                }
+            }
+            else if (moveIndex == 2)
+            {
+                if (character.PC_endTrggier)
+                {
+                    character.PC_endTrggier = false;
+                    character.toughness = character.maxToughness;
+                    character.anim.SetBool("P1", false);
+                    character.anim.SetTrigger("PhaseChangeEnd");
+                    character.curState = LegnaStates.NULL;
+                    state = NodeState.SUCCESS;
+                }   
             }
             return state;
         }

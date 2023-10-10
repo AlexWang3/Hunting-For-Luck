@@ -35021,7 +35021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0.008571616, y: -0.01601826, z: 0.00013732504, w: 0.99983495}
-  m_LocalPosition: {x: -13.756135, y: 20.263626, z: -13.849081}
+  m_LocalPosition: {x: 6.4645867, y: 20.27472, z: -14.495637}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64619,7 +64619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812696015}
   m_LocalRotation: {x: 0.008571615, y: -0.01601826, z: 0.00013732503, w: 0.99983495}
-  m_LocalPosition: {x: 1.1338654, y: 2.0636253, z: -3.849081}
+  m_LocalPosition: {x: 21.354588, y: 2.0747185, z: -4.495637}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -84721,7 +84721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538698971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7359791, y: -5.25062, z: 10}
+  m_LocalPosition: {x: 19.434479, y: -5.2209415, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -114938,6 +114938,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  PC_prepareEndTrigger: 0
   PC_endTrggier: 0
   TA_prepareEnd: 0
   TA_endTrigger: 0
@@ -115151,7 +115152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628597160100139212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.5, y: 14.6, z: 0}
+  m_LocalPosition: {x: 55.9, y: 14.6, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -115188,6 +115189,7 @@ MonoBehaviour:
   SA_FastSpinTime: 2
   SA_FastMaxSpeed: 40
   Dodge_distance: 65
+  GreatDodge_distance: 0
   NC_SuccessDistance: 10
   N2_distance: 20
   SL2_JumpDistance: 20
@@ -115198,6 +115200,8 @@ MonoBehaviour:
   GC_dodgeForce: 50
   TA_interval: 3
   BF_distance: 40
+  EX_maxChargeTime: 5
+  EX_minDistance: 10
 --- !u!50 &7115403308453206655
 Rigidbody2D:
   serializedVersion: 4
