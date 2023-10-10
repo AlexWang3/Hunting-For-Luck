@@ -115111,7 +115111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 500
-  initialLuck: 1
+  initialLuck: 500
   currentLuck: 0
   enemyName: Legna
   healthPoints: 0
