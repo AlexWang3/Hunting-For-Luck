@@ -11,13 +11,16 @@ namespace MetroidvaniaTools
     public enum LegnaStates
     {
         NULL,
+        SLEEPING,
+        PHASE_CHANGING,
         CHASE,
         IDLE,
         JUMPATTACK,
         CROSSATTACK,
         SPINATTACK,
         POS_ADJUST,
-        GUARD_COUNTER
+        GUARD_COUNTER,
+        TWINKLEATTACK
     }
     public class LegnaCharacter : EnemyCharacter
     {
@@ -62,6 +65,12 @@ namespace MetroidvaniaTools
         private List<Collider2D> shildOverlapResult;
         private Collider2D shieldCollider;
         
+        // PhaseChange (Throw Cross)
+        [HideInInspector] public bool PC_endTrggier;
+        
+        // TwinkleAttack
+        [HideInInspector] public bool TA_prepareEnd;
+        [HideInInspector] public bool TA_endTrigger;
         
         private bool groundCheckDisabled;
 
@@ -185,6 +194,7 @@ namespace MetroidvaniaTools
                         guardCancelTriggered = true; // 等isGuarding变为false时变为false
                         Guard_endTrigger = true; // 触发等待一小段时间cancle
                     }
+                    return false;
                 }
                 else
                 {
@@ -194,7 +204,7 @@ namespace MetroidvaniaTools
                     TriggerHitPointEffect();    
                 }
                 
-                if (canStagger)
+                if (canStagger && health.healthPoints > 0)
                 {
                     isStagger = true;
                     return true;

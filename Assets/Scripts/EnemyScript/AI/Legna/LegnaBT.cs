@@ -37,6 +37,9 @@ namespace MetroidvaniaTools
         [SerializeField] private float GC_maxDistance;
         [SerializeField] private float GC_closeDistance;
         [SerializeField] private float GC_dodgeForce;
+
+        [Header("闪现大跳")] [SerializeField] private float TA_interval;
+        
         protected override void Initialization()
         {
             character = GetComponent<LegnaCharacter>();
@@ -45,65 +48,113 @@ namespace MetroidvaniaTools
 
         protected override Node SetupTree()
         {
-            Node chaseForJump = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, JC_SuccessDistance);
-            Node chaseForNormalAttack = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, NC_SuccessDistance);
-            Node jumpAttack = new LJumpAttack(character, JA_jumpHeight, JA_distanceOffset, JA_maxDistance);
-            Node spinAttack = new LSpinAttack(character, SA_SlowSpinTime, SA_SlowMaxSpeed, SA_FastSpinTime, SA_FastMaxSpeed);
-            Node crossAttack = new LCrossAttack(character, N2_distance);
-            Node guardCounter = new LGuardCounter(character, GC_maxGuardTime, GC_maxDistance, GC_closeDistance, GC_dodgeForce);
+            Node p1_chaseForJump = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, JC_SuccessDistance);
+            Node p1_chaseForNormalAttack = new LChase(character, C_TimeTillMaxSpeed, C_MaxSpeed, NC_SuccessDistance);
+            Node p1_jumpAttack = new LJumpAttack(character, JA_jumpHeight, JA_distanceOffset, JA_maxDistance);
+            Node p1_spinAttack = new LSpinAttack(character, SA_SlowSpinTime, SA_SlowMaxSpeed, SA_FastSpinTime, SA_FastMaxSpeed);
+            Node p1_crossAttack = new LCrossAttack(character, N2_distance);
+            Node p1_guardCounter = new LGuardCounter(character, GC_maxGuardTime, GC_maxDistance, GC_closeDistance, GC_dodgeForce);
             Node dodge = new LBackToCenter(character, Dodge_distance);
             Node shortIdle = new LIdle(character, .5f);
             Node longIdle = new LIdle(character, 2f);
+            Node p2_twinkleAttack = new LTwinkleAttack(character, TA_interval);
 
-            Node crossAttackSequence = new Sequence(new List<Node>
+            Node phaseChange = new LPhaseChange(character);
+            
+            // Phase 1 Sequences
+            Node p1_crossAttackSequence = new Sequence(new List<Node>
             {
-                chaseForNormalAttack,
-                crossAttack,
+                p1_chaseForNormalAttack,
+                p1_crossAttack,
                 shortIdle
             });
             
-            Node chaseAndJumpAttackSequence = new Sequence(new List<Node>
+            Node p1_chaseAndJumpAttackSequence = new Sequence(new List<Node>
             {
-                chaseForJump,
-                jumpAttack,
+                p1_chaseForJump,
+                p1_jumpAttack,
                 longIdle
             });;
 
-            Node spinAttackSequence = new Sequence(new List<Node>
+            Node p1_spinAttackSequence = new Sequence(new List<Node>
             {
-                spinAttack,
+                p1_spinAttack,
                 longIdle
             });
             
-            Node veryShortBehavior = new RandomSelector(new List<Node>
+            // Phase 1 Behaviours
+            Node p1_veryShortBehavior = new RandomSelector(new List<Node>
             {
-                crossAttackSequence,
+                p1_crossAttackSequence,
                 dodge,
-                guardCounter
+                p1_guardCounter
             });
-            Node shortBehavior = new RandomSelector(new List<Node>
+            Node p1_shortBehavior = new RandomSelector(new List<Node>
             {
-                crossAttackSequence,
+                p1_crossAttackSequence,
                 dodge,
-                guardCounter
+                p1_guardCounter
             });
-            Node longBehavior = new RandomSelector(new List<Node>
+            Node p1_longBehavior = new RandomSelector(new List<Node>
             {
-                chaseAndJumpAttackSequence,
-                spinAttackSequence
+                p1_chaseAndJumpAttackSequence,
+                p1_spinAttackSequence
             });
-            Node unSeenBehavior = new DetectPlayer(character, 0, dodge);
-            Node veryShortDetector = new DetectPlayer(character, 1, veryShortBehavior);
-            Node shortDetector = new DetectPlayer(character, 2, shortBehavior);
-            Node longDetector = new DetectPlayer(character, 3, longBehavior);
+            Node p1_unSeenBehavior = new DetectPlayer(character, 0, dodge);
             
+            // Phase1 Detectors
+            Node p1_veryShortDetector = new DetectPlayer(character, 1, p1_veryShortBehavior);
+            Node p1_shortDetector = new DetectPlayer(character, 2, p1_shortBehavior);
+            Node p1_longDetector = new DetectPlayer(character, 3, p1_longBehavior);
             
-            Node root = new Selector(new List<Node>
+            Node phase1Behavior = new Selector(new List<Node>
             {
-                unSeenBehavior,
-                veryShortDetector,
-                shortDetector,
-                longDetector
+                //p1_unSeenBehavior,
+                //p1_veryShortDetector,
+                //p1_shortDetector,
+                p1_longDetector
+            });
+
+            Node phase1 = new PhaseChecker(character, 1, phase1Behavior);
+            
+            // Phase2 Sequences
+            
+            // Phase 2 Behaviours
+            Node p2_veryShortBehavior = new RandomSelector(new List<Node>
+            {
+                dodge
+            });
+            Node p2_shortBehavior = new RandomSelector(new List<Node>
+            {
+                dodge
+            });
+            Node p2_longBehavior = new RandomSelector(new List<Node>
+            {
+                p2_twinkleAttack
+            });
+            Node p2_unSeenBehavior = new DetectPlayer(character, 0, dodge);
+            
+            // Phase1 Detectors
+            Node p2_veryShortDetector = new DetectPlayer(character, 1, p2_veryShortBehavior);
+            Node p2_shortDetector = new DetectPlayer(character, 2, p2_shortBehavior);
+            Node p2_longDetector = new DetectPlayer(character, 3, p2_longBehavior);
+            
+            Node phase2Behavior = new Selector(new List<Node>
+            {
+                // p2_unSeenBehavior,
+                // p2_veryShortDetector,
+                // p2_shortDetector,
+                p2_longDetector
+            });
+
+            Node phase2 = new PhaseChecker(character, 2, phase2Behavior);
+
+
+            Node root = new Sequence(new List<Node>
+            {
+                phase1,
+                phaseChange,
+                phase2
             });
             return root;
         }

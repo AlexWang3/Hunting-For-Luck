@@ -21,8 +21,12 @@ namespace MetroidvaniaTools
         [SerializeField] protected float recoverInterval;
         [HideInInspector] public float recoverTimeCountdown;
         private bool gainHealthFromAttack = false;
+        private bool HealthEmptyTrigger;
 
         [HideInInspector] public bool isGuarding;
+        
+        [HideInInspector] public int phaseIndex;
+        
         private void Start()
         {
             Initialization();
@@ -37,6 +41,8 @@ namespace MetroidvaniaTools
             healthPoints = currentLuck;
             giveUpwardForce = true;
             isGuarding = false;
+            HealthEmptyTrigger = false;
+            phaseIndex = 1;
         }
 
         public bool IsGiveUpwardForce() {
@@ -60,15 +66,27 @@ namespace MetroidvaniaTools
 
         public virtual void DealDamage(int amount)
         {
-            if (healthPoints > 0)
+            if (phaseIndex <= 2)
             {
                 healthPoints -= amount;
                 hit = true;
             }
-            if (healthPoints <= 0 )
+            if (healthPoints <= 0)
             {
                 healthPoints = 0;
-                Invoke("Death", .1f);
+                if (!HealthEmptyTrigger)
+                {
+                    HealthEmptyTrigger = true;
+                    phaseIndex++;
+                    if (phaseIndex > 2)
+                    {
+                        Invoke("Death", 5f);   
+                    }
+                    else
+                    {
+                        Invoke("PhaseChange", 2f);
+                    }   
+                }
             }
         }
 
@@ -121,6 +139,12 @@ namespace MetroidvaniaTools
             gameObject.SetActive(false);
             G.UI.overlayUIType = OverlayUIType.WinScreen;
             G.UI.MarkDirty();
+        }
+        
+        private void PhaseChange()
+        {
+            GainCurrentHealth(maxHealthPoints);
+            HealthEmptyTrigger = false;
         }
     [ContextMenu("Set This As Current Enemy")]
         public void UpdateEnemyInformation() {
