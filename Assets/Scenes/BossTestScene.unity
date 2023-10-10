@@ -29894,7 +29894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &449558567
 Transform:
   m_ObjectHideFlags: 0
@@ -35021,7 +35021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0.008571616, y: -0.01601826, z: 0.00013732504, w: 0.99983495}
-  m_LocalPosition: {x: -2.3821793, y: 20.249683, z: -13.036529}
+  m_LocalPosition: {x: -12.282603, y: 20.249458, z: -13.023282}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64619,7 +64619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812696015}
   m_LocalRotation: {x: 0.008571615, y: -0.01601826, z: 0.00013732503, w: 0.99983495}
-  m_LocalPosition: {x: 12.507821, y: 2.0496826, z: -3.0365286}
+  m_LocalPosition: {x: 2.607397, y: 2.0494576, z: -3.023282}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -84690,7 +84690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538698971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.258335, y: -5.4816885, z: 10}
+  m_LocalPosition: {x: 1.1647673, y: -5.589038, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -114903,6 +114903,9 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  PC_endTrggier: 0
+  TA_prepareEnd: 0
+  TA_endTrigger: 0
 --- !u!23 &761806920986357827
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114924,7 +114927,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 85ff594da1daefa4682e4956badbc5ef, type: 2}
-  - {fileID: 2100000, guid: b51ae988bbfe9d9478dc643d5db84c0f, type: 2}
+  - {fileID: 2100000, guid: 8c23ab15b42f7ef47a6f31ac855d6cec, type: 2}
   - {fileID: 2100000, guid: 85ff594da1daefa4682e4956badbc5ef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -115070,7 +115073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 500
-  initialLuck: 500
+  initialLuck: 1
   currentLuck: 0
   enemyName: Legna
   healthPoints: 0
@@ -115083,6 +115086,7 @@ MonoBehaviour:
   recoverInterval: 1
   recoverTimeCountdown: 0
   isGuarding: 0
+  phaseIndex: 0
 --- !u!1 &4923887756164272561
 GameObject:
   m_ObjectHideFlags: 0
@@ -115146,13 +115150,14 @@ MonoBehaviour:
   SA_SlowMaxSpeed: 10
   SA_FastSpinTime: 2
   SA_FastMaxSpeed: 40
-  Dodge_distance: 30
+  Dodge_distance: 65
   NC_SuccessDistance: 10
   N2_distance: 20
   GC_maxGuardTime: 5
   GC_maxDistance: 30
   GC_closeDistance: 10
   GC_dodgeForce: 50
+  TA_interval: 3
 --- !u!50 &7115403308453206655
 Rigidbody2D:
   serializedVersion: 4
@@ -115201,6 +115206,10 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1691689124750749858, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: timeTillMaxSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691689124750749858, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: collisionLayer.m_Bits
       value: 1152
       objectReference: {fileID: 0}
@@ -115214,7 +115223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4391973155934170921, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.2
+      value: -16.6
       objectReference: {fileID: 0}
     - target: {fileID: 4391973155934170921, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -115306,7 +115315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5595839096499355307, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: gravityMultipler
-      value: 6
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5962658054301295010, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_Name

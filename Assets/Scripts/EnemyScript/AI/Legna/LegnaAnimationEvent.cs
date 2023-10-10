@@ -84,6 +84,21 @@ namespace MetroidvaniaTools
         {
             character.Counter_finishTrigger = true;
         }
+        
+        public void PhaseChangeEnd()
+        {
+            character.PC_endTrggier = true;
+        }
+
+        public void TwinkleAttackPrepareEnd()
+        {
+            character.TA_prepareEnd = true;
+        }
+        
+        public void TwinkleAttackEnd()
+        {
+            character.TA_endTrigger = true;
+        }
 
         public void TriggerNA1HitBox()
         {
