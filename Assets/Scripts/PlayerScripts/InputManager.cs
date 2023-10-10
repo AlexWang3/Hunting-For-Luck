@@ -80,7 +80,7 @@ namespace MetroidvaniaTools
         private Sequence lastSequence;
         public void OnBurnLuck(InputAction.CallbackContext ctx) {
             if (ctx.started) {
-                if (G.I.playerHealth.luckSkill) {
+                if (G.I.playerHealth.luckSkill || G.I.playerHealth.minimumLuckBar >= G.I.playerHealth.playerCurrentLuckValue) {
                     return;
                 }
                 lastSequence.Kill();

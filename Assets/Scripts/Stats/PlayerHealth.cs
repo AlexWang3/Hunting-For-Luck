@@ -51,7 +51,7 @@ namespace MetroidvaniaTools
         public float BurningLuckTime;
         public float BurningReduceMaximumProportion;
         public int meleeMidBarDamageDuringLuckSkill = 20;
-
+        public int minimumLuckBar = 10;
         [Header("Damage Part")] 
         public int meleeDamage = 20;
         public int rangeDamage = 20;
@@ -267,7 +267,7 @@ namespace MetroidvaniaTools
         }
 
         public void ModifyPlayerLuckBarValue(int amount) {
-            playerCurrentLuckValue = Mathf.Clamp(playerCurrentLuckValue + amount, 10, maxHealthPoints);
+            playerCurrentLuckValue = Mathf.Clamp(playerCurrentLuckValue + amount,  minimumLuckBar , maxHealthPoints);
             G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
             G.UI.playerHealthState.MarkDirty();
         }

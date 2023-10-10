@@ -103,6 +103,7 @@ public class GameSystem : MonoBehaviour {
         int randomNumber = Random.Range(0, selfHealth + targetHealth + 1);
         G.UI.uiMiddleDiceState.diceNumber = randomNumber;
         G.UI.uiMiddleDiceState.diceOwner = attackSource;
+        /*
         if (playerHealth.luckSkill && attackSource == AttackSource.Player) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatSuccess;
             G.UI.uiMiddleDiceState.diceNumber = 0;
@@ -114,7 +115,7 @@ public class GameSystem : MonoBehaviour {
             G.UI.uiMiddleDiceState.diceNumber = selfHealth + targetHealth;
             G.UI.uiMiddleDiceState.MarkDirty();
             return Mathf.RoundToInt(damageAmount * 0.3f * damageFloatValue);
-        }
+        }*/
 
         if (randomNumber < 0.1f * selfHealth) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatSuccess;
