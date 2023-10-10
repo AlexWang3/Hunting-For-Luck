@@ -2759,6 +2759,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: PhaseChange
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: P1
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -458620870469691047}
   m_Solo: 0
@@ -8912,6 +8915,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: StunStart
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: P1
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2094422835063895335}

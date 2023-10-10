@@ -34,6 +34,7 @@ namespace MetroidvaniaTools
                 if (character.player.transform.position.x > character.startRef.transform.position.x)
                 {
                     character.anim.SetTrigger("SleepEnd");
+                    character.anim.SetBool("P1", true);
                     character.col.enabled = true;
                     character.rb.simulated = true;
                     moveIndex = 2;

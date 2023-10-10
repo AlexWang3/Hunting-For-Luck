@@ -80,7 +80,7 @@ namespace MetroidvaniaTools
             Node dodge = new LBackToCenter(character, Dodge_distance);
             Node greatDodge = new LBackToCenter(character, GreatDodge_distance);
             Node shortIdle = new LIdle(character, .5f);
-            Node longIdle = new LIdle(character, 2f);
+            Node longIdle = new LIdle(character, 1.5f);
             Node randomShortIdle = new RandomPicker(new List<Node>
             {
                 shortIdle,
@@ -184,6 +184,7 @@ namespace MetroidvaniaTools
 
             Node slashSequence = new Sequence(new List<Node>
             {
+                chaseForNormalAttack,
                 randomSlash,
                 randomShortIdle
             });
@@ -226,6 +227,7 @@ namespace MetroidvaniaTools
             {
                 closeRandCalibur,
                 fire,
+                backFire,
                 slashSequence,
                 twinkleAttack,
                 dodge
@@ -233,6 +235,7 @@ namespace MetroidvaniaTools
             Node p2_longBehavior = new RandomSelector(new List<Node>
             {
                 randomCalibur,
+                slashSequence,
                 twinkleAttack,
                 fire,
                 p2_chaseAndJumpAttack,
