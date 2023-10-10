@@ -81,6 +81,10 @@ public class GameSystem : MonoBehaviour {
             overlayUIType = OverlayUIType.None,
             uiLoadScreenState = new UILoadScreenState() {
                 progress = 0f,
+            },
+            uiNoteBoardDisplayState = new UINoteBoardDisplayState() {
+                content = "",
+                displayTarget = null,
             }
         };
     }
