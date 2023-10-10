@@ -5,37 +5,36 @@ using BehaviorTree;
 
 namespace MetroidvaniaTools
 {
-    public class LPhaseChange : Node
+    public class LFire : Node
     {
         // Passing in
         private LegnaCharacter character;
         
-        public LPhaseChange(LegnaCharacter character)
+        // Local
+        private float dir;
+        
+        public LFire(LegnaCharacter character)
             => (this.character) =
                 (character);
         
         public override NodeState Evaluate()
         {
-            character.HandleHit();
-            character.isStagger = false;
-            if (character.curState != LegnaStates.PHASE_CHANGING)
+            if (character.curState != LegnaStates.FIRE)
             {
-                character.curState = LegnaStates.PHASE_CHANGING;
+                character.curState = LegnaStates.FIRE;
                 character.FacingPlayer();
                 character.GeneralIdle();
-                character.anim.SetTrigger("PhaseChange");
+                character.Dodge_finishTrigger = false;
+                character.anim.SetTrigger("Fire");
             }
-            
             state = NodeState.RUNNING;
-            if (character.PC_endTrggier)
+            if (character.Dodge_finishTrigger)
             {
-                character.PC_endTrggier = false;
-                character.toughness = character.maxToughness;
-                character.anim.SetBool("P1", false);
-                character.anim.SetTrigger("PhaseChangeEnd");
+                character.GeneralIdle();
                 character.curState = LegnaStates.NULL;
                 state = NodeState.SUCCESS;
             }
+            
             return state;
         }
     }   

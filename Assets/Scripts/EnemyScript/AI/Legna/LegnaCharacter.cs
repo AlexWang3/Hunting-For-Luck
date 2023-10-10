@@ -12,6 +12,8 @@ namespace MetroidvaniaTools
     {
         NULL,
         SLEEPING,
+        STUN,
+        DEATH,
         PHASE_CHANGING,
         CHASE,
         IDLE,
@@ -20,7 +22,9 @@ namespace MetroidvaniaTools
         SPINATTACK,
         POS_ADJUST,
         GUARD_COUNTER,
-        TWINKLEATTACK
+        TWINKLEATTACK,
+        FIRE,
+        EXCALIBUR,
     }
     public class LegnaCharacter : EnemyCharacter
     {
@@ -30,21 +34,29 @@ namespace MetroidvaniaTools
         public GameObject explosions;
         public GameObject spinAttackHitBox;
         public Transform centerRef;
+        public Transform startRef;
         public GameObject shield;
+        public int maxToughness;
         
         
         [HideInInspector] public LegnaStates curState;
         [HideInInspector] public LegnaHealth health;
         [HideInInspector] public bool isGrounded;
         [HideInInspector] public int playerDistanceClass;
-        [HideInInspector] public bool canStagger;
+        public int toughness;
         [HideInInspector] public bool isStagger;
+        
+        // Awake
+        [HideInInspector] public bool AW_endTrigger;
+        
+        // Stun
+        [HideInInspector] public bool ST_endTrigger;
         
         // JumpAttack
         [HideInInspector] public bool JA_airTrigger;
         [HideInInspector] public bool JA_finishTrigger;
         
-        // NormalCrossAttack
+        // NormalCross/Slash Attack
         [HideInInspector] public bool NA_finishTrigger;
         
         // SpinAttack
@@ -80,14 +92,15 @@ namespace MetroidvaniaTools
         private float tintResetCountDown;
         private bool needResetTint;
 
-
+        
         protected override void Initialization()
         {
             base.Initialization();
             curState = LegnaStates.NULL;
             health = GetComponent<LegnaHealth>();
             groundCheckDisabled = false;
-            canStagger = false;
+            toughness = maxToughness;
+            isStagger = false;
             
             mr = GetComponentInChildren<MeshRenderer>();
             mpb_red = new MaterialPropertyBlock();
@@ -201,10 +214,11 @@ namespace MetroidvaniaTools
                     mr.SetPropertyBlock(mpb_red);
                     needResetTint = true;
                     tintResetCountDown = .3f;
-                    TriggerHitPointEffect();    
+                    TriggerHitPointEffect();
+                    toughness--;
                 }
                 
-                if (canStagger && health.healthPoints > 0)
+                if (toughness == 0 && health.healthPoints > 0)
                 {
                     isStagger = true;
                     return true;

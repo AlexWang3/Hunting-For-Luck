@@ -40,7 +40,10 @@ namespace MetroidvaniaTools
             if (state == NodeState.RUNNING)
                 running = true;
             else
+            {
+                state = NodeState.SUCCESS;
                 running = false;
+            }
             
             return state;
             

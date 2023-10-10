@@ -34,7 +34,7 @@ namespace MetroidvaniaTools
                     state = NodeState.FAILURE;
                     return state;
                 }
-
+                
                 float randFloat = Random.Range(0, (float)character.health.maxHealthPoints);
                 if (randFloat < character.health.healthPoints)
                 {

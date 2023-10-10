@@ -15,6 +15,16 @@ namespace MetroidvaniaTools
             hitAim = hitBox.GetComponent<Animator>();
         }
 
+        public void AwakeFinish()
+        {
+            character.AW_endTrigger = true;
+        }
+
+        public void StunFinish()
+        {
+            character.ST_endTrigger = true;
+        }
+
         public void JumpAttackAir()
         {
             character.JA_airTrigger = true;

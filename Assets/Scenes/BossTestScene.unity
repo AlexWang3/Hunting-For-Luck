@@ -34997,7 +34997,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -35021,7 +35021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0.008571616, y: -0.01601826, z: 0.00013732504, w: 0.99983495}
-  m_LocalPosition: {x: -12.282603, y: 20.249458, z: -13.023282}
+  m_LocalPosition: {x: -13.756135, y: 20.263626, z: -13.849081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64619,7 +64619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812696015}
   m_LocalRotation: {x: 0.008571615, y: -0.01601826, z: 0.00013732503, w: 0.99983495}
-  m_LocalPosition: {x: 2.607397, y: 2.0494576, z: -3.023282}
+  m_LocalPosition: {x: 1.1338654, y: 2.0636253, z: -3.849081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74748,6 +74748,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1186537681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1186537682}
+  m_Layer: 0
+  m_Name: StartRef
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1186537682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186537681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -28.7, y: 13.3, z: -0.19502334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388700462
 GameObject:
   m_ObjectHideFlags: 0
@@ -84690,7 +84721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538698971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1647673, y: -5.589038, z: 10}
+  m_LocalPosition: {x: -0.7359791, y: -5.25062, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -114870,13 +114901,17 @@ MonoBehaviour:
   explosions: {fileID: 1422032111}
   spinAttackHitBox: {fileID: 346787598}
   centerRef: {fileID: 2038673540}
+  startRef: {fileID: 1186537682}
   shield: {fileID: 449558566}
+  maxToughness: 1
   curState: 0
   health: {fileID: 0}
   isGrounded: 0
   playerDistanceClass: 0
-  canStagger: 0
+  toughness: 0
   isStagger: 0
+  AW_endTrigger: 0
+  ST_endTrigger: 0
   JA_airTrigger: 0
   JA_finishTrigger: 0
   NA_finishTrigger: 0
@@ -115116,7 +115151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628597160100139212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.8, y: 14.6, z: 0}
+  m_LocalPosition: {x: 15.5, y: 14.6, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -115140,6 +115175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827f70d8c40e44348969b6331f1ed3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  P1_stunTime: 5
+  P2_stunTime: 5
   C_TimeTillMaxSpeed: 0
   C_MaxSpeed: 35
   JC_SuccessDistance: 30
@@ -115153,11 +115190,14 @@ MonoBehaviour:
   Dodge_distance: 65
   NC_SuccessDistance: 10
   N2_distance: 20
+  SL2_JumpDistance: 20
+  SL3_JumpDistance: 20
   GC_maxGuardTime: 5
   GC_maxDistance: 30
   GC_closeDistance: 10
   GC_dodgeForce: 50
   TA_interval: 3
+  BF_distance: 40
 --- !u!50 &7115403308453206655
 Rigidbody2D:
   serializedVersion: 4
@@ -115223,7 +115263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4391973155934170921, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.6
+      value: -43.9
       objectReference: {fileID: 0}
     - target: {fileID: 4391973155934170921, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: m_LocalPosition.y
