@@ -80,8 +80,12 @@ namespace MetroidvaniaTools
         private Sequence lastSequence;
         public void OnBurnLuck(InputAction.CallbackContext ctx) {
             if (ctx.started) {
+                if (G.I.playerHealth.luckSkill) {
+                    return;
+                }
                 lastSequence.Kill();
                 G.I.playerHealth.luckSkill = true;
+                G.I.playerHealth.GainCurrentHealth(G.I.playerHealth.maxHealthPoints);
                 G.I.playerHealth.ModifyPlayerLuckBarValue(-Mathf.RoundToInt( G.I.playerHealth.BurningReduceMaximumProportion * G.I.playerHealth.playerCurrentLuckValue));
                 Sequence sequence = DOTween.Sequence();
                 sequence.InsertCallback(G.I.playerHealth.BurningLuckTime, () => { G.I.playerHealth.luckSkill = false; });

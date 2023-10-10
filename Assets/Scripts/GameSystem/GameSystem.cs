@@ -97,8 +97,9 @@ public class GameSystem : MonoBehaviour {
         Fail,
         GreatFail,
     }
-
+    
     public int DamageCalculation(int selfHealth, int targetHealth, int damageAmount,AttackSource attackSource) {
+        float damageFloatValue = Random.Range(0.85f, 1.15f);
         int randomNumber = Random.Range(0, selfHealth + targetHealth + 1);
         G.UI.uiMiddleDiceState.diceNumber = randomNumber;
         G.UI.uiMiddleDiceState.diceOwner = attackSource;
@@ -106,38 +107,38 @@ public class GameSystem : MonoBehaviour {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatSuccess;
             G.UI.uiMiddleDiceState.diceNumber = 0;
             G.UI.uiMiddleDiceState.MarkDirty();
-            return damageAmount * 3;
+            return Mathf.RoundToInt(damageAmount * 3 * damageFloatValue);
         }
         if (playerHealth.luckSkill && attackSource == AttackSource.Enemy) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatSuccess;
             G.UI.uiMiddleDiceState.diceNumber = selfHealth + targetHealth;
             G.UI.uiMiddleDiceState.MarkDirty();
-            return Mathf.RoundToInt(damageAmount * 0.3f);
+            return Mathf.RoundToInt(damageAmount * 0.3f * damageFloatValue);
         }
 
         if (randomNumber < 0.1f * selfHealth) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatSuccess;
             G.UI.uiMiddleDiceState.MarkDirty();
-            return damageAmount * 3;
+            return Mathf.RoundToInt(damageAmount * 3 * damageFloatValue);
         } 
         if (randomNumber < 0.5f * selfHealth) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.Success;
             G.UI.uiMiddleDiceState.MarkDirty();
-            return damageAmount * 2;
+            return Mathf.RoundToInt(damageAmount * 2 * damageFloatValue);
         } 
         if (randomNumber < selfHealth) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.Normal;
             G.UI.uiMiddleDiceState.MarkDirty();
-            return damageAmount;
+            return Mathf.RoundToInt(damageAmount * damageFloatValue);
         } 
         if (randomNumber < 0.5f * targetHealth + selfHealth) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.Fail;
             G.UI.uiMiddleDiceState.MarkDirty();
-            return Mathf.RoundToInt(damageAmount * 0.5f);
+            return Mathf.RoundToInt(damageAmount * 0.5f * damageFloatValue);
         } 
         G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatFail;
         G.UI.uiMiddleDiceState.MarkDirty();
-        return Mathf.RoundToInt(damageAmount * 0.3f);
+        return Mathf.RoundToInt(damageAmount * 0.3f * damageFloatValue);
     }
 
     public void StopGame() {

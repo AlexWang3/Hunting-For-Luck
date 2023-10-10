@@ -21,6 +21,7 @@ namespace MetroidvaniaTools
         //How much the time value needs to be adjusted to better visualize when the player is hit; this is an effects feature, not needed for actual gameplay
         [SerializeField] protected float slowDownSpeed;
         [SerializeField] protected float forceApplyTime;
+        [Header("Recover Part")]
         [SerializeField] protected int recoverAmount;
         [SerializeField] protected float recoverTimeAfterGainHealth;
         [SerializeField] protected float recoverTimeAfterHit;
@@ -44,9 +45,18 @@ namespace MetroidvaniaTools
         private Rigidbody2D rb;
         private bool gainHealthFromAttack = false;
         public string playerName;
+        
+        [Header ("Luck Skill Part")]
         public bool luckSkill;
         public float BurningLuckTime;
         public float BurningReduceMaximumProportion;
+        public int meleeMidBarDamageDuringLuckSkill = 20;
+
+        [Header("Damage Part")] 
+        public int meleeDamage = 20;
+        public int rangeDamage = 20;
+        public int rangeDamageToPlayerSelf = 5;
+        public int rangeDamageToBossMidBarValue = 10;
         protected override void Initialization()
         {
             base.Initialization();
@@ -177,9 +187,8 @@ namespace MetroidvaniaTools
                 gainHealthFromAttack = false;
             }
 
-            if (hit)
-            {
-                recoverTimeCountdown = recoverTimeAfterHit;
+            if (hit) {
+                recoverTimeCountdown = healthPoints > playerCurrentLuckValue ? recoverInterval : recoverTimeAfterHit;
             }
             else
             {
@@ -211,6 +220,10 @@ namespace MetroidvaniaTools
 
         public virtual void GainCurrentHealth(int amount)
         {
+            if (luckSkill) {
+                amount = Mathf.Clamp(amount, 0, amount);
+            }
+
             healthPoints = Mathf.Clamp(healthPoints + amount, 0, maxHealthPoints);
             G.UI.playerHealthState.playerHealth = healthPoints;
             G.UI.playerHealthState.MarkDirty();
@@ -254,7 +267,7 @@ namespace MetroidvaniaTools
         }
 
         public void ModifyPlayerLuckBarValue(int amount) {
-            playerCurrentLuckValue = Mathf.Clamp(playerCurrentLuckValue + amount, 0, maxHealthPoints);
+            playerCurrentLuckValue = Mathf.Clamp(playerCurrentLuckValue + amount, 10, maxHealthPoints);
             G.UI.playerHealthState.playerCurrentLuckValue = playerCurrentLuckValue;
             G.UI.playerHealthState.MarkDirty();
         }
