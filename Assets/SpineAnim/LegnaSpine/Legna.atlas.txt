@@ -1,305 +1,360 @@
 
 Legna.png
-size: 2039,1439
+size: 2029,1694
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BCloth
   rotate: false
-  xy: 795, 55
+  xy: 427, 211
   size: 620, 412
   orig: 620, 412
   offset: 0, 0
   index: -1
 BHair
   rotate: true
-  xy: 559, 784
+  xy: 261, 970
   size: 208, 678
   orig: 209, 680
   offset: 0, 2
   index: -1
 BLHAir_1
   rotate: true
-  xy: 1417, 2
+  xy: 1049, 2
   size: 465, 585
   orig: 468, 617
   offset: 1, 31
   index: -1
 BLHAir_2
   rotate: true
-  xy: 558, 528
+  xy: 2, 714
   size: 254, 644
   orig: 255, 645
   offset: 0, 1
   index: -1
 BRHair
   rotate: true
-  xy: 1204, 469
+  xy: 648, 625
   size: 261, 697
   orig: 261, 698
   offset: 0, 0
   index: -1
 Body
   rotate: true
-  xy: 1555, 968
+  xy: 999, 1156
   size: 171, 198
   orig: 171, 199
   offset: 0, 1
   index: -1
 Chain
   rotate: true
-  xy: 2, 1273
+  xy: 2, 1576
   size: 26, 2022
   orig: 26, 2022
   offset: 0, 0
   index: -1
 CrossHandler
   rotate: false
-  xy: 2, 1413
+  xy: 2, 1668
   size: 92, 24
   orig: 167, 24
   offset: 1, 0
   index: -1
 Head
   rotate: true
-  xy: 332, 826
+  xy: 1757, 1093
   size: 194, 225
   orig: 194, 225
   offset: 0, 0
   index: -1
 LCalf
   rotate: true
-  xy: 261, 539
+  xy: 1590, 806
   size: 285, 295
   orig: 287, 295
   offset: 0, 0
   index: -1
 LCloth
   rotate: false
-  xy: 370, 124
+  xy: 2, 310
   size: 423, 402
   orig: 423, 402
   offset: 0, 0
   index: -1
 LHair_1
   rotate: true
-  xy: 1498, 732
+  xy: 941, 929
   size: 219, 388
   orig: 220, 388
   offset: 1, 0
   index: -1
 LHair_2
   rotate: true
-  xy: 910, 1143
+  xy: 955, 1329
   size: 128, 516
   orig: 128, 516
   offset: 0, 0
   index: -1
 LHair_3
   rotate: true
-  xy: 2, 1301
+  xy: 2, 1494
   size: 80, 497
   orig: 111, 498
   offset: 31, 0
   index: -1
 LHand
   rotate: true
-  xy: 1695, 1329
+  xy: 654, 1466
   size: 108, 176
   orig: 108, 176
   offset: 0, 0
   index: -1
+LHand_A
+  rotate: true
+  xy: 1402, 1615
+  size: 77, 130
+  orig: 103, 130
+  offset: 26, 0
+  index: -1
+LHand_B
+  rotate: false
+  xy: 1728, 1456
+  size: 132, 118
+  orig: 133, 121
+  offset: 0, 3
+  index: -1
+LHand_C
+  rotate: true
+  xy: 501, 1476
+  size: 98, 151
+  orig: 100, 151
+  offset: 2, 0
+  index: -1
 LLowerArm
   rotate: true
-  xy: 2, 1158
+  xy: 982, 1461
   size: 113, 239
   orig: 113, 241
   offset: 0, 1
   index: -1
 LLowerArmStripe_1
   rotate: true
-  xy: 378, 1383
+  xy: 378, 1638
   size: 54, 374
   orig: 54, 391
   offset: 0, 17
   index: -1
 LLowerArmStripe_2
   rotate: true
-  xy: 243, 1156
+  xy: 1223, 1459
   size: 115, 381
   orig: 116, 382
   offset: 0, 1
   index: -1
 LLowerArmStripe_3
   rotate: true
-  xy: 1063, 994
+  xy: 684, 1180
   size: 147, 313
   orig: 148, 313
   offset: 0, 0
   index: -1
 LMask_1
   rotate: false
-  xy: 1211, 1362
+  xy: 1211, 1617
   size: 189, 75
   orig: 189, 75
   offset: 0, 0
   index: -1
 LMask_2
   rotate: true
-  xy: 1890, 1132
+  xy: 344, 1353
   size: 139, 147
   orig: 141, 147
   offset: 2, 0
   index: -1
 LMask_3
   rotate: true
-  xy: 754, 1373
+  xy: 754, 1628
   size: 64, 204
   orig: 65, 204
   offset: 1, 0
   index: -1
 LShoe
   rotate: false
-  xy: 1873, 1325
+  xy: 832, 1462
   size: 148, 112
   orig: 149, 112
   offset: 0, 0
   index: -1
 LShoeSide
   rotate: false
-  xy: 427, 1022
+  xy: 215, 1219
   size: 210, 132
   orig: 210, 142
   offset: 0, 0
   index: -1
 LThigh
   rotate: true
-  xy: 1428, 1143
+  xy: 493, 1336
   size: 128, 211
   orig: 129, 212
   offset: 0, 1
   index: -1
 LUpperArm
   rotate: false
-  xy: 748, 1148
+  xy: 1862, 1451
   size: 160, 123
   orig: 160, 124
   offset: 0, 0
   index: -1
 MidHair_1
   rotate: true
-  xy: 960, 1368
+  xy: 960, 1623
   size: 69, 249
   orig: 72, 252
   offset: 2, 3
   index: -1
 MidHair_2
   rotate: true
-  xy: 96, 1389
+  xy: 96, 1644
   size: 48, 280
   orig: 49, 280
   offset: 0, 0
   index: -1
 Pelvis
   rotate: false
-  xy: 639, 1011
+  xy: 1685, 1319
   size: 165, 135
   orig: 165, 135
   offset: 0, 0
   index: -1
 RCalf
   rotate: true
-  xy: 2, 843
+  xy: 1427, 1139
   size: 178, 328
   orig: 178, 328
   offset: 0, 0
   index: -1
 RCloth
   rotate: true
-  xy: 2, 202
+  xy: 1347, 469
   size: 335, 366
   orig: 335, 366
   offset: 0, 0
   index: -1
 RHand
   rotate: false
-  xy: 1584, 1350
+  xy: 1716, 1605
   size: 109, 87
   orig: 109, 87
   offset: 0, 0
   index: -1
+RHand_A
+  rotate: false
+  xy: 1827, 1604
+  size: 168, 88
+  orig: 169, 88
+  offset: 0, 0
+  index: -1
 RLowerArm
   rotate: false
-  xy: 806, 996
+  xy: 427, 1189
   size: 255, 145
   orig: 255, 145
   offset: 0, 0
   index: -1
 RMask
   rotate: false
-  xy: 1378, 981
+  xy: 1852, 1289
   size: 175, 160
   orig: 175, 160
   offset: 0, 0
   index: -1
 RShoe
   rotate: false
-  xy: 2, 1025
+  xy: 1473, 1326
   size: 210, 131
   orig: 210, 131
   offset: 0, 0
   index: -1
 RThigh
   rotate: false
-  xy: 1755, 953
+  xy: 1199, 1150
   size: 226, 177
   orig: 227, 178
   offset: 0, 0
   index: -1
 RUpperArm
   rotate: false
-  xy: 1402, 1358
+  xy: 1534, 1613
   size: 180, 79
   orig: 180, 79
   offset: 0, 0
   index: -1
+Revolver
+  rotate: false
+  xy: 2, 1367
+  size: 340, 125
+  orig: 343, 149
+  offset: 2, 0
+  index: -1
 vfx_0
   rotate: false
-  xy: 626, 1156
+  xy: 1606, 1459
   size: 120, 115
   orig: 120, 115
   offset: 0, 0
   index: -1
 vfx_1
   rotate: false
-  xy: 214, 1023
+  xy: 2, 1234
   size: 211, 131
   orig: 211, 131
   offset: 0, 0
   index: -1
 vfx_2
   rotate: false
-  xy: 1239, 765
+  xy: 2, 1003
   size: 257, 214
   orig: 257, 214
   offset: 0, 0
   index: -1
 vfx_3
   rotate: true
-  xy: 1641, 1141
+  xy: 706, 1330
   size: 130, 247
   orig: 130, 247
   offset: 0, 0
   index: -1
 vfx_4
   rotate: false
-  xy: 2, 592
+  xy: 1331, 888
   size: 257, 249
   orig: 257, 249
   offset: 0, 0
   index: -1
 
 Legna2.png
+size: 2011,1707
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+CrossSword
+  rotate: false
+  xy: 2, 2
+  size: 1259, 652
+  orig: 1478, 861
+  offset: 0, 0
+  index: -1
+CrossSwordEX
+  rotate: false
+  xy: 2, 656
+  size: 2007, 1049
+  orig: 2227, 1260
+  offset: 0, 0
+  index: -1
+
+Legna3.png
 size: 1532,1099
 format: RGBA8888
 filter: Linear,Linear

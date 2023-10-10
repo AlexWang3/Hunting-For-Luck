@@ -11,13 +11,20 @@ namespace MetroidvaniaTools
     public enum LegnaStates
     {
         NULL,
+        SLEEPING,
+        STUN,
+        DEATH,
+        PHASE_CHANGING,
         CHASE,
         IDLE,
         JUMPATTACK,
         CROSSATTACK,
         SPINATTACK,
         POS_ADJUST,
-        GUARD_COUNTER
+        GUARD_COUNTER,
+        TWINKLEATTACK,
+        FIRE,
+        EXCALIBUR,
     }
     public class LegnaCharacter : EnemyCharacter
     {
@@ -27,21 +34,30 @@ namespace MetroidvaniaTools
         public GameObject explosions;
         public GameObject spinAttackHitBox;
         public Transform centerRef;
+        public Transform startRef;
         public GameObject shield;
+        public int p1_MaxToughness;
+        public int p2_MaxToughness;
         
         
         [HideInInspector] public LegnaStates curState;
         [HideInInspector] public LegnaHealth health;
         [HideInInspector] public bool isGrounded;
         [HideInInspector] public int playerDistanceClass;
-        [HideInInspector] public bool canStagger;
+        [HideInInspector] public int toughness;
         [HideInInspector] public bool isStagger;
+        
+        // Awake
+        [HideInInspector] public bool AW_endTrigger;
+        
+        // Stun
+        [HideInInspector] public bool ST_endTrigger;
         
         // JumpAttack
         [HideInInspector] public bool JA_airTrigger;
         [HideInInspector] public bool JA_finishTrigger;
         
-        // NormalCrossAttack
+        // NormalCross/Slash Attack
         [HideInInspector] public bool NA_finishTrigger;
         
         // SpinAttack
@@ -62,7 +78,16 @@ namespace MetroidvaniaTools
         private List<Collider2D> shildOverlapResult;
         private Collider2D shieldCollider;
         
+        // PhaseChange (Throw Cross)
+        [HideInInspector] public bool PC_prepareEndTrigger;
+        [HideInInspector] public bool PC_endTrggier;
         
+        // TwinkleAttack
+        [HideInInspector] public bool TA_prepareEnd;
+        [HideInInspector] public bool TA_endTrigger;
+        
+        // Excalibur
+        [HideInInspector] public HorizontalMovement playerHorizontalMovement;
         private bool groundCheckDisabled;
 
         private MeshRenderer mr;
@@ -71,14 +96,15 @@ namespace MetroidvaniaTools
         private float tintResetCountDown;
         private bool needResetTint;
 
-
+        
         protected override void Initialization()
         {
             base.Initialization();
             curState = LegnaStates.NULL;
             health = GetComponent<LegnaHealth>();
             groundCheckDisabled = false;
-            canStagger = false;
+            toughness = p1_MaxToughness;
+            isStagger = false;
             
             mr = GetComponentInChildren<MeshRenderer>();
             mpb_red = new MaterialPropertyBlock();
@@ -92,6 +118,8 @@ namespace MetroidvaniaTools
             shieldFilter.SetLayerMask(playerLayer);
             shildOverlapResult = new List<Collider2D>();
             shieldCollider = shield.GetComponent<Collider2D>();
+
+            playerHorizontalMovement = player.GetComponent<HorizontalMovement>();
         }
         
         protected override void OnEnable()
@@ -185,16 +213,18 @@ namespace MetroidvaniaTools
                         guardCancelTriggered = true; // 等isGuarding变为false时变为false
                         Guard_endTrigger = true; // 触发等待一小段时间cancle
                     }
+                    return false;
                 }
                 else
                 {
                     mr.SetPropertyBlock(mpb_red);
                     needResetTint = true;
                     tintResetCountDown = .3f;
-                    TriggerHitPointEffect();    
+                    TriggerHitPointEffect();
+                    toughness--;
                 }
                 
-                if (canStagger)
+                if (toughness == 0 && health.healthPoints > 0)
                 {
                     isStagger = true;
                     return true;

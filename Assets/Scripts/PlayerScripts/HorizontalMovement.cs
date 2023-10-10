@@ -11,6 +11,8 @@ namespace MetroidvaniaTools
         [SerializeField] protected float distanceToCollider;
         [SerializeField] protected LayerMask collisionLayer;
 
+        [HideInInspector] public float velocityOffset;
+        
         private float acceleration;
         private float currentSpeed;
         private float horizontalInput;
@@ -19,6 +21,7 @@ namespace MetroidvaniaTools
         protected override void Initialization()
         {
             base.Initialization();
+            velocityOffset = 0;
         }
 
         // Update is called once per frame
@@ -67,7 +70,7 @@ namespace MetroidvaniaTools
                 runTime = 0;
                 currentSpeed = 0;
             }
-            rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(currentSpeed + velocityOffset, rb.velocity.y);
             if ((rb.velocity.x > 0 && CollisionCheck(Vector2.right, distanceToCollider, collisionLayer))
                 || (rb.velocity.x < 0 && CollisionCheck(Vector2.left, distanceToCollider, collisionLayer)))
             {

@@ -1,0 +1,354 @@
+
+Normal.png
+size: 2038,1508
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BCloth
+  rotate: false
+  xy: 2, 63
+  size: 620, 412
+  orig: 620, 412
+  offset: 0, 0
+  index: -1
+BHair
+  rotate: true
+  xy: 392, 740
+  size: 208, 678
+  orig: 209, 680
+  offset: 0, 2
+  index: -1
+BLHAir_1
+  rotate: false
+  xy: 1494, 2
+  size: 465, 585
+  orig: 468, 617
+  offset: 1, 31
+  index: -1
+BLHAir_2
+  rotate: true
+  xy: 1369, 589
+  size: 254, 644
+  orig: 255, 645
+  offset: 0, 1
+  index: -1
+BRHair
+  rotate: true
+  xy: 2, 477
+  size: 261, 697
+  orig: 261, 698
+  offset: 0, 0
+  index: -1
+Body
+  rotate: true
+  xy: 494, 960
+  size: 171, 198
+  orig: 171, 199
+  offset: 0, 1
+  index: -1
+Chain
+  rotate: true
+  xy: 2, 1380
+  size: 26, 2022
+  orig: 26, 2022
+  offset: 0, 0
+  index: -1
+CrossHandler
+  rotate: false
+  xy: 2, 1482
+  size: 92, 24
+  orig: 167, 24
+  offset: 1, 0
+  index: -1
+Head
+  rotate: true
+  xy: 1252, 930
+  size: 194, 225
+  orig: 194, 225
+  offset: 0, 0
+  index: -1
+LCalf
+  rotate: true
+  xy: 1072, 643
+  size: 285, 295
+  orig: 287, 295
+  offset: 0, 0
+  index: -1
+LCloth
+  rotate: false
+  xy: 1069, 185
+  size: 423, 402
+  orig: 423, 402
+  offset: 0, 0
+  index: -1
+LHair_1
+  rotate: true
+  xy: 2, 754
+  size: 219, 388
+  orig: 220, 388
+  offset: 1, 0
+  index: -1
+LHair_2
+  rotate: true
+  xy: 676, 1133
+  size: 128, 516
+  orig: 128, 516
+  offset: 0, 0
+  index: -1
+LHair_3
+  rotate: true
+  xy: 2, 1298
+  size: 80, 497
+  orig: 111, 498
+  offset: 31, 0
+  index: -1
+LHand
+  rotate: true
+  xy: 501, 1270
+  size: 108, 176
+  orig: 108, 176
+  offset: 0, 0
+  index: -1
+LHand_A
+  rotate: true
+  xy: 1402, 1429
+  size: 77, 130
+  orig: 103, 130
+  offset: 26, 0
+  index: -1
+LHand_B
+  rotate: false
+  xy: 1575, 1260
+  size: 132, 118
+  orig: 133, 121
+  offset: 0, 3
+  index: -1
+LHand_C
+  rotate: true
+  xy: 1827, 1408
+  size: 98, 151
+  orig: 100, 151
+  offset: 2, 0
+  index: -1
+LLowerArm
+  rotate: true
+  xy: 829, 1265
+  size: 113, 239
+  orig: 113, 241
+  offset: 0, 1
+  index: -1
+LLowerArmStripe_1
+  rotate: true
+  xy: 378, 1452
+  size: 54, 374
+  orig: 54, 391
+  offset: 0, 17
+  index: -1
+LLowerArmStripe_2
+  rotate: true
+  xy: 1070, 1263
+  size: 115, 381
+  orig: 116, 382
+  offset: 0, 1
+  index: -1
+LLowerArmStripe_3
+  rotate: true
+  xy: 2, 1017
+  size: 147, 313
+  orig: 148, 313
+  offset: 0, 0
+  index: -1
+LMask_1
+  rotate: false
+  xy: 1211, 1431
+  size: 189, 75
+  orig: 189, 75
+  offset: 0, 0
+  index: -1
+LMask_2
+  rotate: true
+  xy: 1619, 1114
+  size: 139, 147
+  orig: 141, 147
+  offset: 2, 0
+  index: -1
+LMask_3
+  rotate: true
+  xy: 754, 1442
+  size: 64, 204
+  orig: 65, 204
+  offset: 1, 0
+  index: -1
+LShoe
+  rotate: false
+  xy: 679, 1266
+  size: 148, 112
+  orig: 149, 112
+  offset: 0, 0
+  index: -1
+LShoeSide
+  rotate: false
+  xy: 1407, 1126
+  size: 210, 132
+  orig: 210, 142
+  offset: 0, 0
+  index: -1
+LThigh
+  rotate: true
+  xy: 2, 1168
+  size: 128, 211
+  orig: 129, 212
+  offset: 0, 1
+  index: -1
+LUpperArm
+  rotate: false
+  xy: 1709, 1255
+  size: 160, 123
+  orig: 160, 124
+  offset: 0, 0
+  index: -1
+MidHair_1
+  rotate: true
+  xy: 960, 1437
+  size: 69, 249
+  orig: 72, 252
+  offset: 2, 3
+  index: -1
+MidHair_2
+  rotate: true
+  xy: 96, 1458
+  size: 48, 280
+  orig: 49, 280
+  offset: 0, 0
+  index: -1
+Pelvis
+  rotate: false
+  xy: 1871, 1243
+  size: 165, 135
+  orig: 165, 135
+  offset: 0, 0
+  index: -1
+RCalf
+  rotate: true
+  xy: 922, 950
+  size: 178, 328
+  orig: 178, 328
+  offset: 0, 0
+  index: -1
+RCloth
+  rotate: true
+  xy: 701, 403
+  size: 335, 366
+  orig: 335, 366
+  offset: 0, 0
+  index: -1
+RHand
+  rotate: false
+  xy: 1716, 1419
+  size: 109, 87
+  orig: 109, 87
+  offset: 0, 0
+  index: -1
+RLowerArm
+  rotate: false
+  xy: 1768, 1096
+  size: 255, 145
+  orig: 255, 145
+  offset: 0, 0
+  index: -1
+RMask
+  rotate: false
+  xy: 317, 975
+  size: 175, 160
+  orig: 175, 160
+  offset: 0, 0
+  index: -1
+RShoe
+  rotate: false
+  xy: 464, 1137
+  size: 210, 131
+  orig: 210, 131
+  offset: 0, 0
+  index: -1
+RThigh
+  rotate: false
+  xy: 694, 954
+  size: 226, 177
+  orig: 227, 178
+  offset: 0, 0
+  index: -1
+RUpperArm
+  rotate: false
+  xy: 1534, 1427
+  size: 180, 79
+  orig: 180, 79
+  offset: 0, 0
+  index: -1
+vfx_0
+  rotate: false
+  xy: 1453, 1263
+  size: 120, 115
+  orig: 120, 115
+  offset: 0, 0
+  index: -1
+vfx_1
+  rotate: false
+  xy: 1194, 1130
+  size: 211, 131
+  orig: 211, 131
+  offset: 0, 0
+  index: -1
+vfx_2
+  rotate: false
+  xy: 1479, 898
+  size: 257, 214
+  orig: 257, 214
+  offset: 0, 0
+  index: -1
+vfx_3
+  rotate: true
+  xy: 215, 1166
+  size: 130, 247
+  orig: 130, 247
+  offset: 0, 0
+  index: -1
+vfx_4
+  rotate: false
+  xy: 1738, 845
+  size: 257, 249
+  orig: 257, 249
+  offset: 0, 0
+  index: -1
+
+Normal2.png
+size: 2011,1707
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+CrossSword
+  rotate: false
+  xy: 2, 2
+  size: 1259, 652
+  orig: 1478, 861
+  offset: 0, 0
+  index: -1
+CrossSwordEX
+  rotate: false
+  xy: 2, 656
+  size: 2007, 1049
+  orig: 2227, 1260
+  offset: 0, 0
+  index: -1
+
+Normal3.png
+size: 1532,1099
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Cross
+  rotate: false
+  xy: 2, 2
+  size: 1528, 1095
+  orig: 1531, 1095
+  offset: 2, 0
+  index: -1

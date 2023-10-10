@@ -39,6 +39,7 @@ namespace MetroidvaniaTools
                     character.curState = LegnaStates.NULL;
                     character.anim.SetTrigger("CrossAttackFinish");
                     moveIndex = 0;
+                    character.curState = LegnaStates.NULL;
                     state = NodeState.SUCCESS;
                 }
                 else
