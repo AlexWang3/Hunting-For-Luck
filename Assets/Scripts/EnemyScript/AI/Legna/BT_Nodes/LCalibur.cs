@@ -18,6 +18,7 @@ namespace MetroidvaniaTools
         private int moveIndex = 0;
         private float chargeCountDown;
         private HorizontalMovement playerHorizontalMovement;
+        private bool effectTriggered;
         public LCalibur(LegnaCharacter character, float maxChargeTime, float minDistance,
         float velocityOffset, float maxDistanceToApply)
             => (this.character, this.maxChargeTime, this.minDistance, this.velocityOffset, this.maxDistanceToApply) =
@@ -33,6 +34,9 @@ namespace MetroidvaniaTools
                 character.GeneralIdle();
                 character.NA_finishTrigger = false;
                 chargeCountDown = maxChargeTime;
+                effectTriggered = false;
+                character.caliburCharge.SetActive(false);
+                character.suck.SetActive(false);
                 character.anim.SetTrigger("CaliburStart");
                 moveIndex = 1;
             }
@@ -54,6 +58,8 @@ namespace MetroidvaniaTools
                 {
                     character.anim.SetTrigger("CaliburEnd");
                     character.playerHorizontalMovement.velocityOffset = 0;
+                    character.caliburCharge.SetActive(false);
+                    character.suck.SetActive(false);
                     moveIndex = 3;
                 }
                 else
@@ -68,6 +74,13 @@ namespace MetroidvaniaTools
                     {
                         character.playerHorizontalMovement.velocityOffset = 0;
                     }
+
+                    if (!effectTriggered)
+                    {
+                        character.caliburCharge.SetActive(true);
+                        character.suck.SetActive(true);
+                    }
+                    
                     chargeCountDown -= Time.deltaTime;
                 }
             }

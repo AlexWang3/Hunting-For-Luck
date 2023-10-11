@@ -37,6 +37,10 @@ namespace MetroidvaniaTools
         public GameObject fireMuzzle;
         public GameObject bullet;
         public GameObject cross;
+        public GameObject twinkleStart;
+        public GameObject twinkleEnd;
+        public GameObject caliburCharge;
+        public GameObject suck;
         public Transform centerRef;
         public Transform startRef;
         public GameObject shield;
@@ -126,6 +130,10 @@ namespace MetroidvaniaTools
             playerHorizontalMovement = player.GetComponent<HorizontalMovement>();
             
             fireMuzzle.GetComponent<ParticleSystem>().Stop();
+            twinkleEnd.GetComponent<ParticleSystem>().Stop();
+            
+            caliburCharge.SetActive(false);
+            suck.SetActive(false);
         }
         
         protected override void OnEnable()
@@ -307,6 +315,22 @@ namespace MetroidvaniaTools
         {
             GameObject currentItem = Instantiate(hitPoint);
             currentItem.transform.position = hitPoint.transform.position;
+            currentItem.SetActive(true);
+            currentItem.GetComponent<ParticleSystem>().Play();
+        }
+
+        public void TriggerTwinkleStart()
+        {
+            GameObject currentItem = Instantiate(twinkleStart);
+            currentItem.transform.position = twinkleStart.transform.position;
+            currentItem.SetActive(true);
+            currentItem.GetComponent<ParticleSystem>().Play();
+        }
+
+        public void TriggerTwinkleEnd()
+        {
+            GameObject currentItem = Instantiate(twinkleEnd, gameObject.transform);
+            // currentItem.transform.position = twinkleEnd.transform.position;
             currentItem.SetActive(true);
             currentItem.GetComponent<ParticleSystem>().Play();
         }

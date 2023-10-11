@@ -14,6 +14,7 @@ namespace MetroidvaniaTools
         // Local
         private int moveIndex = 0;
         private float fallDownCountDown;
+        private bool endEffectTriggered;
         public LTwinkleAttack(LegnaCharacter character, float intervalTime)
             => (this.character, this.intervalTime) =
                 (character, intervalTime);
@@ -28,6 +29,7 @@ namespace MetroidvaniaTools
                 character.GeneralIdle();
                 character.TA_prepareEnd = false;
                 character.TA_endTrigger = false;
+                endEffectTriggered = false;
                 fallDownCountDown = intervalTime;
                 character.anim.SetTrigger("TwinkleAttack");
                 moveIndex = 1;
@@ -41,12 +43,20 @@ namespace MetroidvaniaTools
                     character.TA_prepareEnd = false;
                     character.col.enabled = false;
                     character.rb.simulated = false;
+                    character.TriggerTwinkleStart();
                     moveIndex = 2;
                 }
             }
             else if (moveIndex == 2)
             {
                 character.transform.position = character.player.transform.position + Vector3.up;
+
+                if (!endEffectTriggered)
+                {
+                    endEffectTriggered = true;
+                    character.TriggerTwinkleEnd();
+                }
+                
                 if (fallDownCountDown <= 0)
                 {
                     character.anim.SetTrigger("TwinkleAttackDown");
