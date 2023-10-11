@@ -13,7 +13,7 @@ public class UIMiddleDiceState : UIState {
 public class UIMiddleDice : UIBase<UIMiddleDiceState> {
     public int currentDiceNumber;
     public TMP_Text middleText;
-    public float diceNumberChangeDuration = 1.6f;
+    public float diceNumberChangeDuration = 0.8f;
     public Color playerColor;
     public Color enemyColor;
     public Color normalColor;
@@ -40,6 +40,7 @@ public class UIMiddleDice : UIBase<UIMiddleDiceState> {
         mySequence.Insert(0f,DOTween.To(SetDiceNumber,currentDiceNumber, state.diceNumber, diceNumberChangeDuration));
         mySequence.Insert(2f,middleText.DOFontSize(normalFontSize, diceNumberChangeDuration));
         mySequence.Insert(2f,middleText.DOColor(normalColor, diceNumberChangeDuration));
+        AudioManager.Instance.PlaySFX("UI/DiceShake");
         //mySequence.InsertCallback(2f, () => diceEffect.SetActive(false));
         mySequence.Play();
         lastSequence = mySequence;

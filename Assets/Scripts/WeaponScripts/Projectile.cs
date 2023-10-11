@@ -72,7 +72,7 @@ namespace MetroidvaniaTools
             objHealth.TakeDamage(damage);
             objHealth.TakeMidBarDamage(G.I.playerHealth.rangeDamageToBossMidBarValue);
             int i = Random.Range(1, 6);
-            AudioManager.Instance.PlaySFX("Body Head (Headshot) "+i);
+            AudioManager.Instance.PlaySFX("BulletHit/Body Head (Headshot) "+i);
         }
 
         protected virtual void DestroyProjectile()

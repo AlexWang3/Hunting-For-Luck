@@ -11,6 +11,7 @@ public class TitleScreen : MonoBehaviour
 
     public void StartGame() {
         SceneLoadManager.Instance.LoadScene(newGameScene, () => {
+            AudioManager.Instance.PlayBGM("Barren Dungeon LOOP");
             G.UI.mainUITye = MainUITye.InGame;
             G.UI.MarkDirty();
         });

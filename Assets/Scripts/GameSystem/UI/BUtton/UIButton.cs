@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 {
     public void OnPointerEnter(PointerEventData eventData) {
-        AudioManager.Instance.PlaySFX("buttonHighlight");
+        AudioManager.Instance.PlaySFX("UI/buttonHighlight");
     }
     public void OnPointerDown(PointerEventData eventData) {
-        AudioManager.Instance.PlaySFX("buttonPress");
+        AudioManager.Instance.PlaySFX("UI/buttonPress");
     }
 }

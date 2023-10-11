@@ -79,6 +79,15 @@ public class UIMain : UIBase<UIMainState> {
             AudioManager.Instance.PlayBGM("TitleScreen");
         }
 
+        if (state.overlayUIType == OverlayUIType.DeadScreen) {
+            AudioManager.Instance.PlayBGM("");
+            AudioManager.Instance.PlaySFX("UI/Defeat");
+        }
+        if (state.overlayUIType == OverlayUIType.WinScreen) {
+            AudioManager.Instance.PlayBGM("");
+            AudioManager.Instance.PlaySFX("UI/Victory");
+        }
+
         LoadScreen.gameObject.SetActive(state.mainUITye == MainUITye.LoadingScreen);
         titlePage.gameObject.SetActive(state.mainUITye == MainUITye.TitleScreen);
         titleSetting.SetActive(state.overlayUIType == OverlayUIType.TitleSetting);
