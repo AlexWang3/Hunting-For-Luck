@@ -70,7 +70,6 @@ namespace MetroidvaniaTools
             int damage = G.I.DamageCalculation(G.I.playerHealth.healthPoints, objHealth.ReturnHealthPoint(), G.I.playerHealth.rangeDamage,
                 GameSystem.AttackSource.Player);
             objHealth.TakeDamage(damage);
-            G.I.playerHealth.GainCurrentHealth(-G.I.playerHealth.rangeDamageToPlayerSelf);
             objHealth.TakeMidBarDamage(G.I.playerHealth.rangeDamageToBossMidBarValue);
         }
 

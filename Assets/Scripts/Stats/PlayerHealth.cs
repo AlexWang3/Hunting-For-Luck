@@ -189,7 +189,7 @@ namespace MetroidvaniaTools
                 recoverTimeCountdown = healthPoints < playerCurrentLuckValue? recoverInterval : recoverTimeAfterGainHealth;
                 gainHealthFromAttack = false;
             }
-
+        
             if (hit) {
                 recoverTimeCountdown = healthPoints > playerCurrentLuckValue ? recoverInterval : recoverTimeAfterHit;
             }
@@ -226,7 +226,10 @@ namespace MetroidvaniaTools
             if (luckSkill) {
                 amount = Mathf.Clamp(amount, 0, amount);
             }
-        
+            if (amount < 0) {
+                recoverTimeCountdown = healthPoints > playerCurrentLuckValue ? recoverInterval : recoverTimeAfterHit;
+            }
+
             healthPoints = Mathf.Clamp(healthPoints + amount, 0, maxHealthPoints);
             G.UI.playerHealthState.playerHealth = healthPoints;
             G.UI.playerHealthState.MarkDirty();
