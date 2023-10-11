@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour {
     public static AudioManager Instance;
     public AudioSource audioSourceForBGM;
     public AudioSource audioSourceForSFX;
-    private string currentBGM;
+    private string currentBGM = "";
     private Sequence oldSequence;
     private void Awake() {
         Instance = this;
@@ -20,21 +20,24 @@ public class AudioManager : MonoBehaviour {
         audioSourceForSFX.PlayOneShot(audioClip);
     }
     
-    public void PlayBGM(string fileName) {
-        oldSequence.Kill();
+
+    public async void PlayBGM(string fileName) {
+        if (currentBGM != "" && oldSequence.active) {
+            await oldSequence.AsyncWaitForCompletion();
+        }
+        float originalVolume = audioSourceForBGM.volume;
         Sequence sequence = DOTween.Sequence();
         if (fileName == "") {
-            sequence.Insert(0,audioSourceForBGM.DOFade(0, 1f));
+            sequence.Insert(0,audioSourceForBGM.DOFade(0, 0.5f));
             sequence.InsertCallback(2f, () => {
                 audioSourceForBGM.Stop();
                 audioSourceForBGM.clip = null;
             });
-            sequence.Insert(2f,audioSourceForBGM.DOFade(1, 0));
+            sequence.Insert(2f,audioSourceForBGM.DOFade(originalVolume, 0));
         } else {
             if (currentBGM == fileName) {
                 return;
             }
-            currentBGM = fileName;
             string path = Path.Join("Audio", "BGMs", fileName);
             var audioClip = Resources.Load<AudioClip>(path);
             audioSourceForBGM.loop = true;
@@ -43,8 +46,9 @@ public class AudioManager : MonoBehaviour {
                 audioSourceForBGM.clip = audioClip;
                 audioSourceForBGM.Play(); 
             });
-            sequence.Insert(0.5f,audioSourceForBGM.DOFade(1, 0.5f));
+            sequence.Insert(0.5f,audioSourceForBGM.DOFade(originalVolume, 0.5f));
         }
+        currentBGM = fileName;
         sequence.Play();
         oldSequence = sequence;
     }
