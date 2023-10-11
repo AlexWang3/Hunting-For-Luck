@@ -40,7 +40,7 @@ public class UIMiddleDice : UIBase<UIMiddleDiceState> {
         mySequence.Insert(0f,DOTween.To(SetDiceNumber,currentDiceNumber, state.diceNumber, diceNumberChangeDuration));
         mySequence.Insert(2f,middleText.DOFontSize(normalFontSize, diceNumberChangeDuration));
         mySequence.Insert(2f,middleText.DOColor(normalColor, diceNumberChangeDuration));
-        AudioManager.Instance.PlaySFX("UI/DiceShake");
+        AudioManager.Instance.PlaySFX("UI/DiceResult");
         //mySequence.InsertCallback(2f, () => diceEffect.SetActive(false));
         mySequence.Play();
         lastSequence = mySequence;

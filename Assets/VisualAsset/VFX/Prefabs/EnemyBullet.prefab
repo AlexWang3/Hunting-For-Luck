@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 235044563813728598}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7094739480626137187
 BoxCollider2D:
@@ -86,6 +86,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6556832569362518900}
     m_Modifications:
+    - target: {fileID: 1267194326901354716, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267194326901354716, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267194326901354716, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -315755543
+      objectReference: {fileID: 0}
     - target: {fileID: 2033786479006403857, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -133,6 +145,42 @@ PrefabInstance:
     - target: {fileID: 2033786479006403862, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
       propertyPath: m_Name
       value: FX_Shoot_13_projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033786479006403863, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033786479006403863, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033786479006403863, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -315755543
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419170803260736160, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419170803260736160, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419170803260736160, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -315755543
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515701585302644686, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515701585302644686, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515701585302644686, guid: 2678ca478c4699646b0c32bb19ad411b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -315755543
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AlwaysLoad.unity
     guid: e5c6c6249e8b0bb46bda0403786b6872
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BossTestScene.unity
     guid: ce23e177d2a1cda4ca344b9ce5d74c6b
   - enabled: 1
