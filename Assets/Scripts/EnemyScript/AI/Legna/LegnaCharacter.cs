@@ -33,7 +33,6 @@ namespace MetroidvaniaTools
         public GameObject hitPoint;
         public GameObject explosions;
         public GameObject spinAttackHitBox;
-        public GameObject hitBox;
         public Transform centerRef;
         public Transform startRef;
         public GameObject shield;
