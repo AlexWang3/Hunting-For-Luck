@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!82 &562124525 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2620142190338558209, guid: aa7a2f0df250d8d41810eb9f756f4060, type: 3}
+  m_PrefabInstance: {fileID: 3001240922285736259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &685576668 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7044827032233789515, guid: aa7a2f0df250d8d41810eb9f756f4060, type: 3}
+  m_PrefabInstance: {fileID: 3001240922285736259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1887676809021778385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,10 +145,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 652616906954728362, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
-      propertyPath: noteBoardDisplay
+    - target: {fileID: 680848029515023220, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 685576668}
     - target: {fileID: 1380881082576242286, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -147,14 +157,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSystem
       objectReference: {fileID: 0}
-    - target: {fileID: 4751148194211566380, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8442208206785967301, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 2745741995132402241, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 562124525}
+    - target: {fileID: 4329370448300825806, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 562124525}
+    - target: {fileID: 6798614211769695243, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 685576668}
     - target: {fileID: 8514866642896158859, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -199,20 +213,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8955070823040271108, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
-      propertyPath: useTestScene
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955070823040271108, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
-      propertyPath: testScene.scenePath
-      value: Assets/Scenes/GCXTest.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 8955070823040271108, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
-      propertyPath: testScene.sceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: 758077ad943e8cc43a6a6d97501a3032, type: 3}
-    m_RemovedComponents:
-    - {fileID: 7579754304892866251, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

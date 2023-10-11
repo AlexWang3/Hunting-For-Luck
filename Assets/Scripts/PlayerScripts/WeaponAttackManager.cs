@@ -102,6 +102,7 @@ namespace MetroidvaniaTools
             disableCountDown = disableTime;
             anim.SetBool("Shooting", true);
             anim.SetTrigger("Shoot");
+            AudioManager.Instance.PlaySFX("gunShot");
             // aimTarget.position = aimStartPosition.position;
             // aimingRightHand.enabled = true;
             
