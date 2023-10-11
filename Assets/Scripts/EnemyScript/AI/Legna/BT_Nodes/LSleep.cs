@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,8 @@ using BehaviorTree;
 
 namespace MetroidvaniaTools
 {
-    public class LSleep : Node
-    {
+    public class LSleep : Node {
+        public static Action SleepEvent;
         // Passing in
         private LegnaCharacter character;
 
@@ -44,6 +45,7 @@ namespace MetroidvaniaTools
             {
                 if (character.AW_endTrigger)
                 {
+                    SleepEvent?.Invoke();
                     AudioManager.Instance.PlayBGM("BossFirst");
                     character.AW_endTrigger = false;
                     character.curState = LegnaStates.NULL;

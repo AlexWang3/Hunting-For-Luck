@@ -30,6 +30,11 @@ namespace MetroidvaniaTools
         private void Start()
         {
             Initialization();
+            LSleep.SleepEvent += UpdateEnemyInformation;
+        }
+
+        private void OnDestroy() {
+            LSleep.SleepEvent -= UpdateEnemyInformation;
         }
 
         public void TakeMidBarDamage(int amount) {
