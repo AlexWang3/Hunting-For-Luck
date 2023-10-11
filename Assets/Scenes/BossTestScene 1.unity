@@ -32003,7 +32003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: BurningLuckTime
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: maxHealthPoints
@@ -32026,8 +32026,12 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: BurningReduceMaximumProportion
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: meleeMidBarDamageDuringLuckSkill
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1691689124750749858, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: timeTillMaxSpeed
