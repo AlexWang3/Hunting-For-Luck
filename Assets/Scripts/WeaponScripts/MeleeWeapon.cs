@@ -71,7 +71,8 @@ namespace MetroidvaniaTools
             if (playerHealth.luckSkill) {
                 objHealth.TakeMidBarDamage(G.I.playerHealth.meleeMidBarDamageDuringLuckSkill);
             }
-
+            int i = Random.Range(1, 5);
+            AudioManager.Instance.PlaySFX("Player/Spear Stab (Flesh) "+i);
             StartCoroutine(NoLongerColliding());
         }
 

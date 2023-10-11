@@ -21,6 +21,7 @@ public enum MainUITye {
     TitleScreen,
     InGame,
     LoadingScreen,
+    None,
 }
 
 [System.Serializable]
@@ -54,7 +55,8 @@ public class UIMain : UIBase<UIMainState> {
     [FormerlySerializedAs("imageFadeTIme")] public float imageFadeTime = 1.2f;
     public float textFadeTime = 1.2f;
     public float midDiceFadeTime = 1.2f;
-    
+    private MainUITye lastMainUIType;
+    private OverlayUIType lastOverlayUiType;
     public LegnaHealth currentTarget;
     public override void ApplyNewStateInternal() {
         if (state.overlayUIType == OverlayUIType.None || 
@@ -73,6 +75,18 @@ public class UIMain : UIBase<UIMainState> {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+        if (state.mainUITye == MainUITye.TitleScreen) {
+            AudioManager.Instance.PlayBGM("TitleScreen");
+        }
+
+        if (state.overlayUIType == OverlayUIType.DeadScreen) {
+            AudioManager.Instance.PlayBGM("");
+            AudioManager.Instance.PlaySFX("UI/Defeat");
+        }
+        if (state.overlayUIType == OverlayUIType.WinScreen) {
+            AudioManager.Instance.PlayBGM("");
+            AudioManager.Instance.PlaySFX("UI/Victory");
+        }
 
         LoadScreen.gameObject.SetActive(state.mainUITye == MainUITye.LoadingScreen);
         titlePage.gameObject.SetActive(state.mainUITye == MainUITye.TitleScreen);
@@ -85,6 +99,9 @@ public class UIMain : UIBase<UIMainState> {
             HideEnemyStatus();
             HidePlayerStatus();
         }
+
+        lastMainUIType = state.mainUITye;
+        lastOverlayUiType = state.overlayUIType;
     }
     
     
@@ -102,6 +119,8 @@ public class UIMain : UIBase<UIMainState> {
         middleDiceText = middleDice.GetComponentsInChildren<TMP_Text>();
         HideEnemyStatus();
         HidePlayerStatus();
+        lastOverlayUiType = OverlayUIType.None;
+        lastMainUIType = MainUITye.None;
     }
     
     public override void UpdateChildren() {

@@ -42,6 +42,7 @@ namespace MetroidvaniaTools
             {
                 if (character.PC_endTrggier)
                 {
+                    AudioManager.Instance.PlayBGM("BossSecond");
                     character.PC_endTrggier = false;
                     character.toughness = character.p2_MaxToughness;
                     character.anim.SetBool("P1", false);

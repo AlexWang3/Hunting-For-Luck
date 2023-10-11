@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class DelayExplosion : MonoBehaviour
 {
     public ParticleSystem smokingParticle;
@@ -36,6 +35,8 @@ public class DelayExplosion : MonoBehaviour
         
         if (countDown <= 0)
         {
+            int i = UnityEngine.Random.Range(1, 7);
+            AudioManager.Instance.PlaySFX("Explosion/Explosion Flesh "+i);
             smokingParticle.Stop();
             explodingParticle.Play();
             col.enabled = true;

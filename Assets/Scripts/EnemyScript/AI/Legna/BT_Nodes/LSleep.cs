@@ -44,6 +44,7 @@ namespace MetroidvaniaTools
             {
                 if (character.AW_endTrigger)
                 {
+                    AudioManager.Instance.PlayBGM("BossFirst");
                     character.AW_endTrigger = false;
                     character.curState = LegnaStates.NULL;
                     state = NodeState.SUCCESS;

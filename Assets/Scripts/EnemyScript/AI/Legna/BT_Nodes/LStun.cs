@@ -26,7 +26,7 @@ namespace MetroidvaniaTools
                 character.FacingPlayer();
                 character.GeneralIdle();
                 stunCountDown = stunTime;
-                character.spinAttackHitBox.GetComponent<Animator>().SetTrigger("Cancle");
+                character.spinAttackHitBox.GetComponent<Animator>().SetTrigger("CANCLE");
                 character.ST_endTrigger = false;
                 character.anim.SetTrigger("StunStart");
                 moveIndex = 1;
