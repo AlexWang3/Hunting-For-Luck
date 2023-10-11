@@ -179,7 +179,16 @@ namespace MetroidvaniaTools
         {
             hitAim.SetTrigger("SL4EX");
         }
-        
+
+        public void TriggerShoot()
+        {
+            character.TriggerShoot();
+        }
+
+        public void TriggerThrowCross()
+        {
+            character.TriggerThrowCross();
+        }
         
     }
 }

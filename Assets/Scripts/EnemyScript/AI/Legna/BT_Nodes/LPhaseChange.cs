@@ -40,6 +40,7 @@ namespace MetroidvaniaTools
             }
             else if (moveIndex == 2)
             {
+                character.FacingPlayer();
                 if (character.PC_endTrggier)
                 {
                     AudioManager.Instance.PlayBGM("BossSecond");

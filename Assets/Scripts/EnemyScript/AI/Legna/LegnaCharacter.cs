@@ -34,6 +34,9 @@ namespace MetroidvaniaTools
         public GameObject explosions;
         public GameObject spinAttackHitBox;
         public GameObject calibur;
+        public GameObject fireMuzzle;
+        public GameObject bullet;
+        public GameObject cross;
         public Transform centerRef;
         public Transform startRef;
         public GameObject shield;
@@ -121,6 +124,8 @@ namespace MetroidvaniaTools
             shieldCollider = shield.GetComponent<Collider2D>();
 
             playerHorizontalMovement = player.GetComponent<HorizontalMovement>();
+            
+            fireMuzzle.GetComponent<ParticleSystem>().Stop();
         }
         
         protected override void OnEnable()
@@ -315,6 +320,28 @@ namespace MetroidvaniaTools
                 currentItem.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             currentItem.SetActive(true);
+        }
+
+        public void TriggerShoot()
+        {
+            fireMuzzle.GetComponent<ParticleSystem>().Play();
+            GameObject currentItem = Instantiate(bullet);
+            currentItem.transform.position = fireMuzzle.transform.position;
+            if (facingLeft)
+            {
+                currentItem.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            currentItem.SetActive(true);
+        }
+
+        public void TriggerThrowCross()
+        {
+            if (facingLeft)
+            {
+                cross.transform.localScale = new Vector2(cross.transform.localScale.x * -1, cross.transform.localScale.y);
+                cross.GetComponent<MovingForwardProjectile>().left = true;
+            }
+            cross.SetActive(true);
         }
     }   
 }

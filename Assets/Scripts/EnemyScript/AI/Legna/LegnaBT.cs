@@ -219,24 +219,25 @@ namespace MetroidvaniaTools
             // Phase 2 Behaviours
             Node p2_veryShortBehavior = new RandomSelector(new List<Node>
             {
-                shortIdle,
+                //shortIdle,
                 //closeRandCalibur,
-                //backFire,
+                backFire,
                 //dodge
             });
             Node p2_shortBehavior = new RandomSelector(new List<Node>
             {
                 shortIdle,
                 //closeRandCalibur,
-                //fire,
-                //backFire,
+                // fire,
+                // backFire,
                 //slashSequence,
                 //twinkleAttack,
                 //dodge
             });
             Node p2_longBehavior = new RandomSelector(new List<Node>
             {
-                randomCalibur,
+                shortIdle,
+                // randomCalibur,
                 //slashSequence,
                 //twinkleAttack,
                 //fire,

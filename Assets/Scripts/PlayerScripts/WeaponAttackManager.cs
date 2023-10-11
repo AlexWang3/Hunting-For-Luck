@@ -7,17 +7,13 @@ namespace MetroidvaniaTools
     public class WeaponAttackManager : Abilities
     {
         [SerializeField] List<WeaponTypes> weaponTypes;
+        [SerializeField] private GameObject gunMuzzle;
         [SerializeField] Transform gunBarrel;
         [SerializeField] Transform gunRotation;
 
         public List<GameObject> currentPool = new List<GameObject>();
-        // public Solver2D aimingRightHand;
-        // public Transform aimStartPosition;
-        // public Transform aimEndPosition;
-        // public Transform aimTarget;
         public float shootInterval;
         public float disableTime;
-        // public float recoilAnimTime;
         [HideInInspector] public GameObject currentProjectile;
         private GameObject projectileParentFolder;
         private bool keepShooting;
@@ -33,7 +29,7 @@ namespace MetroidvaniaTools
                 projectileParentFolder = newPool;
                 objectPooler.CreatePool(weapon, currentPool, projectileParentFolder);
             }
-            // aimingRightHand.enabled = false;
+            gunMuzzle.GetComponent<ParticleSystem>().Stop();
             character.isShooting = false;
             keepShooting = false;
         }
@@ -103,8 +99,6 @@ namespace MetroidvaniaTools
             anim.SetBool("Shooting", true);
             anim.SetTrigger("Shoot");
             AudioManager.Instance.PlaySFX("gunShot");
-            // aimTarget.position = aimStartPosition.position;
-            // aimingRightHand.enabled = true;
             
         }
 
@@ -119,8 +113,9 @@ namespace MetroidvaniaTools
 
         protected virtual void PlaceProjectile()
         {
-            currentProjectile.transform.position = gunBarrel.position;
-            currentProjectile.transform.rotation = gunRotation.rotation;
+            currentProjectile.transform.position = gunMuzzle.transform.position;
+            currentProjectile.transform.rotation = gunMuzzle.transform.rotation;
+            gunMuzzle.GetComponent<ParticleSystem>().Play();
             currentProjectile.SetActive(true);
             if(!character.isFacingLeft)
             {
