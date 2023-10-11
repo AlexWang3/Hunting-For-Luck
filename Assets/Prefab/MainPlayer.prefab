@@ -189,7 +189,7 @@ Transform:
   - {fileID: 4782100750993568591}
   - {fileID: 7944390999931171586}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2505919318508841146
 Rigidbody2D:
@@ -316,7 +316,7 @@ MonoBehaviour:
   horizontalDamageForce: 0
   playerCurrentLuckValue: 0
   recoverTimeCountdown: 0
-  playerName: Lucknity
+  playerName: Prototype
   luckSkill: 0
   BurningLuckTime: 3
   BurningReduceMaximumProportion: 0.3

@@ -46,7 +46,7 @@ public class UIEnemyHealth : UIBase<UIEnemyHealthState> {
         oldSequence.Kill();
         Sequence newSequence = DOTween.Sequence();
         if (state.hasSetEnemyName) {
-            newSequence.Insert(0,enemyName.DOText(state.enemyName, nameTransitDuration, true, ScrambleMode.All));
+            newSequence.Insert(0,enemyName.DOText(state.enemyName, nameTransitDuration));
             state.hasSetEnemyName = false;
         }
         float previousFill = frontHealthBar.fillAmount;

@@ -47,7 +47,6 @@ public class GameSystem : MonoBehaviour {
     public SceneReference testScene;
     public bool useTestScene;
     private void Start() {
-        Screen.fullScreen = false;
         InitializeUIMain();
     }
 
