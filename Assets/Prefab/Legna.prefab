@@ -34690,8 +34690,8 @@ MonoBehaviour:
   centerRef: {fileID: 0}
   startRef: {fileID: 0}
   shield: {fileID: 2106194015794523506}
-  p1_MaxToughness: 5
-  p2_MaxToughness: 10
+  p1_MaxToughness: 8
+  p2_MaxToughness: 15
   curState: 0
   health: {fileID: 0}
   isGrounded: 0
@@ -34743,7 +34743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827f70d8c40e44348969b6331f1ed3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1_stunTime: 3
+  P1_stunTime: 4
   P2_stunTime: 2
   C_TimeTillMaxSpeed: 0
   C_MaxSpeed: 35
@@ -34784,8 +34784,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6516199096517aa459c9cac776777794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 500
-  initialLuck: 500
+  maxHealthPoints: 700
+  initialLuck: 700
   currentLuck: 0
   enemyName: Legna
   healthPoints: 0
@@ -98896,8 +98896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2cf7196861bd747888b1eeccd19439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 20
-  GainHealthAmountFromAttack: 20
+  damageAmount: 25
+  GainHealthAmountFromAttack: 25
   teleportAfterHit: 0
   disableColliderAfterHit: 0
   teleportPosition: {fileID: 0}
@@ -108728,7 +108728,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 4
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
