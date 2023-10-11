@@ -15,6 +15,7 @@ public enum OverlayUIType {
     InGameSetting,
     DeadScreen,
     WinScreen,
+    IntroScreen,
 }
 
 public enum MainUITye {
@@ -58,10 +59,12 @@ public class UIMain : UIBase<UIMainState> {
     private MainUITye lastMainUIType;
     private OverlayUIType lastOverlayUiType;
     public LegnaHealth currentTarget;
+    public GameObject introScene;
     public override void ApplyNewStateInternal() {
         if (state.overlayUIType == OverlayUIType.None || 
             state.overlayUIType == OverlayUIType.DeadScreen || 
-            state.overlayUIType == OverlayUIType.WinScreen) {
+            state.overlayUIType == OverlayUIType.WinScreen ||
+            state.overlayUIType == OverlayUIType.IntroScreen) {
             G.I.ResumeGame();
         } else {
             G.I.StopGame();
@@ -87,7 +90,7 @@ public class UIMain : UIBase<UIMainState> {
             AudioManager.Instance.PlayBGM("");
             AudioManager.Instance.PlaySFX("UI/Victory");
         }
-
+        introScene.SetActive(state.overlayUIType == OverlayUIType.IntroScreen);
         LoadScreen.gameObject.SetActive(state.mainUITye == MainUITye.LoadingScreen);
         titlePage.gameObject.SetActive(state.mainUITye == MainUITye.TitleScreen);
         titleSetting.SetActive(state.overlayUIType == OverlayUIType.TitleSetting);

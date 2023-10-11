@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04096418, g: 0.045235656, b: 0.06303049, a: 1}
+  m_IndirectSpecularColor: {r: NaN, g: NaN, b: NaN, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!82 &1357548801 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7044827032233789515, guid: aa7a2f0df250d8d41810eb9f756f4060, type: 3}
+  m_PrefabInstance: {fileID: 3001240922285736259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1793601095 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2620142190338558209, guid: aa7a2f0df250d8d41810eb9f756f4060, type: 3}
+  m_PrefabInstance: {fileID: 3001240922285736259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1887676809021778385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,6 +145,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 680848029515023220, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1357548801}
+    - target: {fileID: 680848029515023220, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_volume
+      objectReference: {fileID: 0}
     - target: {fileID: 1380881082576242286, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -142,6 +160,34 @@ PrefabInstance:
     - target: {fileID: 2551439325089762512, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
       propertyPath: m_Name
       value: GameSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2745741995132402241, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1793601095}
+    - target: {fileID: 2745741995132402241, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_volume
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329370448300825806, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1793601095}
+    - target: {fileID: 4329370448300825806, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_volume
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798614211769695243, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1357548801}
+    - target: {fileID: 6798614211769695243, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_volume
+      objectReference: {fileID: 0}
+    - target: {fileID: 8221866169263497815, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8514866642896158859, guid: c0a30ce358f43f84a908d8705820aee8, type: 3}
       propertyPath: m_RootOrder
