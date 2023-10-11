@@ -40,6 +40,11 @@ namespace MetroidvaniaTools
             character.NA_finishTrigger = true;
         }
 
+        public void TriggerExcalibur()
+        {
+            character.TriggerExcalibur();
+        }
+
         public void TriggerSeriesExplosion1D()
         {
             character.TriggerSeriesDelayExplosion1D(5, 5f, .2f, .2f);
@@ -174,5 +179,7 @@ namespace MetroidvaniaTools
         {
             hitAim.SetTrigger("SL4EX");
         }
+        
+        
     }
 }

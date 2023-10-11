@@ -33,6 +33,7 @@ namespace MetroidvaniaTools
         public GameObject hitPoint;
         public GameObject explosions;
         public GameObject spinAttackHitBox;
+        public GameObject calibur;
         public Transform centerRef;
         public Transform startRef;
         public GameObject shield;
@@ -303,6 +304,21 @@ namespace MetroidvaniaTools
             currentItem.transform.position = hitPoint.transform.position;
             currentItem.SetActive(true);
             currentItem.GetComponent<ParticleSystem>().Play();
+        }
+
+        public void TriggerExcalibur()
+        {
+            GameObject currentItem = Instantiate(calibur);
+            currentItem.transform.position = calibur.transform.position;
+            if (facingLeft)
+            {
+                currentItem.GetComponent<MovingForwardProjectile>().left = true;
+            }
+            else
+            {
+                currentItem.GetComponent<MovingForwardProjectile>().left = false;
+            }
+            currentItem.SetActive(true);
         }
     }   
 }

@@ -24887,6 +24887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 20
+  GainHealthAmountFromAttack: 20
   teleportAfterHit: 0
   disableColliderAfterHit: 0
   teleportPosition: {fileID: 0}
@@ -34997,7 +34998,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.239967
+  orthographic size: 10.236971
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -84663,6 +84664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 20
+  GainHealthAmountFromAttack: 20
   teleportAfterHit: 0
   disableColliderAfterHit: 1
   teleportPosition: {fileID: 0}
@@ -109891,6 +109893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 20
+  GainHealthAmountFromAttack: 5
 --- !u!1 &2002751141
 GameObject:
   m_ObjectHideFlags: 0
@@ -114900,6 +114903,7 @@ MonoBehaviour:
   hitPoint: {fileID: 2145853288}
   explosions: {fileID: 1422032111}
   spinAttackHitBox: {fileID: 346787598}
+  calibur: {fileID: 0}
   centerRef: {fileID: 2038673540}
   startRef: {fileID: 1186537682}
   shield: {fileID: 449558566}
@@ -115111,7 +115115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 500
-  initialLuck: 500
+  initialLuck: 1
   currentLuck: 0
   enemyName: Legna
   healthPoints: 0
@@ -115206,7 +115210,7 @@ MonoBehaviour:
   EX_minDistance: 20
   EX_velocityOffset: 15
   EX_maxDistanceToApply: 60
-  EX_normalRange: 25
+  EX_normalRange: 15
 --- !u!50 &7115403308453206655
 Rigidbody2D:
   serializedVersion: 4

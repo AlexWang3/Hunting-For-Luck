@@ -118,20 +118,21 @@ namespace MetroidvaniaTools
             // Phase 1 Behaviours
             Node p1_veryShortBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 3),
+                // new LIdle(character, 3),
                 p1_crossAttackSequence,
                 dodge,
                 guardCounter
             });
             Node p1_shortBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 3),
+                // new LIdle(character, 3),
                 p1_crossAttackSequence,
                 dodge,
                 guardCounter
             });
             Node p1_longBehavior = new RandomSelector(new List<Node>
             {
+                // new LIdle(character, 3),
                 p1_chaseAndJumpAttackSequence,
                 p1_spinAttackSequence
             });
@@ -218,13 +219,14 @@ namespace MetroidvaniaTools
             // Phase 2 Behaviours
             Node p2_veryShortBehavior = new RandomSelector(new List<Node>
             {
-                shortIdle,
+                // shortIdle,
                 closeRandCalibur,
                 backFire,
                 dodge
             });
             Node p2_shortBehavior = new RandomSelector(new List<Node>
             {
+                // shortIdle,
                 closeRandCalibur,
                 fire,
                 backFire,
