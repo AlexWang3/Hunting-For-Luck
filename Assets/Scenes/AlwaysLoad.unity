@@ -318,6 +318,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2620142190338558209, guid: aa7a2f0df250d8d41810eb9f756f4060, type: 3}
+      propertyPath: m_Volume
+      value: 0.885
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620142190338558209, guid: aa7a2f0df250d8d41810eb9f756f4060, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.548
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620142190338558209, guid: aa7a2f0df250d8d41810eb9f756f4060, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.857
+      objectReference: {fileID: 0}
     - target: {fileID: 7044827032233789515, guid: aa7a2f0df250d8d41810eb9f756f4060, type: 3}
       propertyPath: Loop
       value: 1

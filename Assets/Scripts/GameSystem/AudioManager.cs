@@ -21,7 +21,16 @@ public class AudioManager : MonoBehaviour {
     }
     
 
-    public async void PlayBGM(string fileName) {
+    public async void PlayBGM(string fileName, bool playOneShot = false) {
+        if (playOneShot) {
+            string path = Path.Join("Audio", "BGMs", fileName);
+            var audioClip = Resources.Load<AudioClip>(path);
+            audioSourceForBGM.loop = false;
+            audioSourceForBGM.clip = audioClip;
+            audioSourceForBGM.Play();
+            return;
+        }
+
         if (currentBGM != "" && oldSequence.active) {
             await oldSequence.AsyncWaitForCompletion();
         }
@@ -30,10 +39,9 @@ public class AudioManager : MonoBehaviour {
         if (fileName == "") {
             sequence.Insert(0,audioSourceForBGM.DOFade(0, 0.5f));
             sequence.InsertCallback(2f, () => {
-                audioSourceForBGM.Stop();
                 audioSourceForBGM.clip = null;
             });
-            sequence.Insert(2f,audioSourceForBGM.DOFade(originalVolume, 0));
+            sequence.Insert(2f,audioSourceForBGM.DOFade(0.8f, 0));
         } else {
             if (currentBGM == fileName) {
                 return;

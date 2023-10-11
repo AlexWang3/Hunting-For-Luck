@@ -16066,6 +16066,14 @@ PrefabInstance:
       propertyPath: centerRef
       value: 
       objectReference: {fileID: 2038673540}
+    - target: {fileID: 3580908215059449655, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
+      propertyPath: p1_MaxToughness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580908215059449655, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
+      propertyPath: p2_MaxToughness
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8062371082297290358, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -16113,6 +16121,18 @@ PrefabInstance:
     - target: {fileID: 8690892952412469200, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920016394312556797, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
+      propertyPath: initialLuck
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920016394312556797, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
+      propertyPath: recoverTimeAfterHit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920016394312556797, guid: 9870ceb3b7726e549be6fd4507eeb43d, type: 3}
+      propertyPath: recoverTimeAfterGainHealth
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31966,16 +31986,48 @@ PrefabInstance:
       value: 3.23
       objectReference: {fileID: 0}
     - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: luckSkill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: iFrameTime
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: playerName
+      value: Lucknity
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: rangeDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: BurningLuckTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: maxHealthPoints
-      value: 10000
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: recoverInterval
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: initialHealthPoints
-      value: 10000
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: rangeDamageToPlayerSelf
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: rangeDamageToBossMidBarValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 510010732558049835, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
+      propertyPath: meleeMidBarDamageDuringLuckSkill
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1691689124750749858, guid: 9edd37133ed4a374bad0d8f2942ec91d, type: 3}
       propertyPath: timeTillMaxSpeed

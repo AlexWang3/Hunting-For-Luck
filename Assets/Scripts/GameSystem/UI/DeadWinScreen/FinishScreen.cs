@@ -20,6 +20,7 @@ public class FinishScreen : MonoBehaviour {
         G.UI.overlayUIType = OverlayUIType.None;
         G.UI.MarkDirty();
         SceneLoadManager.Instance.RestartScene(G.I.UIMain.titlePage.newGameScene, () => {
+            AudioManager.Instance.PlayBGM("Barren Dungeon LOOP");
             G.UI.mainUITye = MainUITye.InGame;
             G.UI.MarkDirty();
         });
