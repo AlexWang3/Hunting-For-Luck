@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour {
     public static AudioManager Instance;
     public AudioSource audioSourceForBGM;
     public AudioSource audioSourceForSFX;
+    private string currentBGM;
     private void Awake() {
         Instance = this;
     }
@@ -19,10 +20,14 @@ public class AudioManager : MonoBehaviour {
     }
     
     public void PlayBGM(string fileName) {
+        if (currentBGM == fileName) {
+            return;
+        }
+        currentBGM = fileName;
         string path = Path.Join("Audio", "BGMs", fileName);
         var audioClip = Resources.Load<AudioClip>(path);
         audioSourceForBGM.loop = true;
-        audioSourceForBGM.PlayOneShot(audioClip);
-        audioSourceForBGM.loop = true;
+        audioSourceForBGM.clip = audioClip;
+        audioSourceForBGM.Play();
     }
 }
