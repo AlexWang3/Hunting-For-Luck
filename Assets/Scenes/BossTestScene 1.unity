@@ -23387,6 +23387,11 @@ MonoBehaviour:
   Player: {fileID: 1682867766}
   Boss: {fileID: 277948851}
   targetGroup: {fileID: 1538698973}
+  playerRadiusBeforeAwake: 4.5
+  playerRadiusAfterAwake: 4.5
+  bossRadiusAwake: 4.5
+  playerWeight: 1
+  bossWeight: 3
 --- !u!1 &1675861375
 GameObject:
   m_ObjectHideFlags: 0

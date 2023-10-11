@@ -189,6 +189,52 @@ namespace MetroidvaniaTools
         {
             character.TriggerThrowCross();
         }
+
+        public void CaliburEnd() {
+            AudioManager.Instance.PlaySFX("Boss/LCaliburEnd");
+        }
         
+        public void LoopEnd() {
+            AudioManager.Instance.PlaySFX("Boss/LoopEnd");
+        }
+        
+        public void LFire() {
+            AudioManager.Instance.PlaySFX("Boss/LFire");
+        }
+
+        public void LSAttack1() {
+            AudioManager.Instance.PlaySFX("Boss/LSAttack1");
+        }
+        public void LSAttack2() {
+            AudioManager.Instance.PlaySFX("Boss/LSAttack2");
+        }
+        public void LSAttack3() {
+            AudioManager.Instance.PlaySFX("Boss/LSAttack3");
+        }
+        public void LSAttack4() {
+            AudioManager.Instance.PlaySFX("Boss/LSAttack4");
+        }
+
+        public void LStun() {
+            AudioManager.Instance.PlaySFX("Boss/LStun");
+        }
+        public void LThrowCross() {
+            AudioManager.Instance.PlaySFX("Boss/LThrowCross");
+        }
+        
+        public void L十字架1() {
+            AudioManager.Instance.PlaySFX("Boss/L十字架1");
+        }
+        
+        public void L十字架2() {
+            AudioManager.Instance.PlaySFX("Boss/L十字架2");
+        }
+        
+        public void L十字架跳劈And龙车End() {
+            AudioManager.Instance.PlaySFX("Boss/L十字架跳劈&龙车End");
+        }
+        public void L闪现End() {
+            AudioManager.Instance.PlaySFX("Boss/L闪现End");
+        }
     }
 }

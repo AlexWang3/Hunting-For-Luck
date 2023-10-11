@@ -290,7 +290,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: "L\u5341\u5B57\u67B6\u8DF3\u5288&\u9F99\u8F66End"
+    functionName: "L\u5341\u5B57\u67B6\u8DF3\u5288And\u9F99\u8F66End"
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -2040,7 +2040,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: "L\u5341\u5B57\u67B6\u8DF3\u5288&\u9F99\u8F66End"
+    functionName: "L\u5341\u5B57\u67B6\u8DF3\u5288And\u9F99\u8F66End"
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

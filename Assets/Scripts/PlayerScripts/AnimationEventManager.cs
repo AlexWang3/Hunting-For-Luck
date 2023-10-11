@@ -30,5 +30,26 @@ namespace MetroidvaniaTools
         {
             _meleeAttack.FinishMeleeAttack();
         }
+
+        public void PlayerDodge() {
+            AudioManager.Instance.PlaySFX("Player/PlayerDodge");
+        }
+        
+        public void PAttack1() {
+            AudioManager.Instance.PlaySFX("Player/PAttack1");
+        }
+        public void PAttack2() {
+            AudioManager.Instance.PlaySFX("Player/PAttack2");
+        }
+
+        public void PFire() {
+            AudioManager.Instance.PlaySFX("Player/PFire");
+        }
+        public void Land() {
+            AudioManager.Instance.PlaySFX("Player/Land");
+        }
+        public void Jump() {
+            AudioManager.Instance.PlaySFX("Player/Jump");
+        }
     }
 }
