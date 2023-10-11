@@ -312,11 +312,7 @@ namespace MetroidvaniaTools
             currentItem.transform.position = calibur.transform.position;
             if (facingLeft)
             {
-                currentItem.GetComponent<MovingForwardProjectile>().left = true;
-            }
-            else
-            {
-                currentItem.GetComponent<MovingForwardProjectile>().left = false;
+                currentItem.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             currentItem.SetActive(true);
         }

@@ -8,12 +8,15 @@ public class MovingForwardProjectile : MonoBehaviour
         public float lifeTime;
         public float speed;
         public bool left;
+
         private bool flipped;
         private float projectileLifeTime;
 
         protected virtual void OnEnable()
         {
             projectileLifeTime = lifeTime;
+            flipped = false;
+            left = false;
         }
         protected virtual void FixedUpdate()
         {
@@ -27,20 +30,10 @@ public class MovingForwardProjectile : MonoBehaviour
             {
                 if(!left)
                 {
-                    if (flipped)
-                    {
-                        flipped = false;
-                        transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-                    }
                     transform.Translate(Vector2.right * speed * Time.deltaTime);
                 }
                 else 
                 {
-                    if (!flipped)
-                    {
-                        flipped = true;
-                        transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-                    }
                     transform.Translate(Vector2.left * speed * Time.deltaTime);
                 }
             }
