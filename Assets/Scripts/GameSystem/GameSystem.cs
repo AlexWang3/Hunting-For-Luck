@@ -44,6 +44,8 @@ public class GameSystem : MonoBehaviour {
     public Character character;
     public PlayerHealth playerHealth;
     public bool finishInitialize;
+    public SceneReference testScene;
+    public bool useTestScene;
     private void Start() {
         Screen.fullScreen = false;
         InitializeUIMain();
@@ -82,11 +84,10 @@ public class GameSystem : MonoBehaviour {
             uiLoadScreenState = new UILoadScreenState() {
                 progress = 0f,
             },
-            uiNoteBoardDisplayState = new UINoteBoardDisplayState() {
-                content = "",
-                displayTarget = null,
-            }
         };
+        if (useTestScene) {
+            G.I.UIMain.titlePage.newGameScene = testScene;
+        }
     }
     public enum AttackSource {
         None,

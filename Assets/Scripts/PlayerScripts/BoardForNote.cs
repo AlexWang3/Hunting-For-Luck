@@ -5,19 +5,20 @@ using MetroidvaniaTools;
 using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class BoardForNote : MonoBehaviour {
-    [Multiline] private string content;
+    [Multiline] public string content;
 
-    public void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay2D(Collider2D other) {
+        Debug.Log(other);
         if (other.TryGetComponent(out PlayerHealth player)) {
-            G.UI.uiNoteBoardDisplayState.displayTarget = this.gameObject;
-            G.UI.uiNoteBoardDisplayState.content = content;
-            G.UI.uiNoteBoardDisplayState.MarkDirty();
+            Debug.Log(Camera.main);
+            Debug.Log(Camera.main.WorldToScreenPoint(this.transform.position));
         }
     }
 
-    public void OnTriggerExit(Collider other) {
+    private void OnTriggerExit2D(Collider2D other) {
+
         if (other.TryGetComponent(out PlayerHealth player)) {
-            G.UI.uiNoteBoardDisplayState.Reset();
+
         }
     }
 }

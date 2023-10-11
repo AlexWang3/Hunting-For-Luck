@@ -29,13 +29,11 @@ public class UIMainState : UIState {
     public UIEnemyHealthState enemyHealthState;
     public UIMiddleDiceState uiMiddleDiceState;
     public UILoadScreenState uiLoadScreenState;
-    public UINoteBoardDisplayState uiNoteBoardDisplayState;
     public MainUITye mainUITye;
     public OverlayUIType overlayUIType;
 }
 
 public class UIMain : UIBase<UIMainState> {
-    public UINoteBoardDisplay noteBoardDisplay;
     public GameObject UICamera;
     public GameObject titleSetting;
     public GameObject inGameSetting;
@@ -52,6 +50,7 @@ public class UIMain : UIBase<UIMainState> {
     public Image[] middleDiceImage;
     public GameObject DeadScreen;
     public GameObject WinScreen;
+    public Canvas canvas;
     [FormerlySerializedAs("imageFadeTIme")] public float imageFadeTime = 1.2f;
     public float textFadeTime = 1.2f;
     public float midDiceFadeTime = 1.2f;
@@ -91,12 +90,10 @@ public class UIMain : UIBase<UIMainState> {
     
 
     private void Start() {
+        canvas = GetComponent<Canvas>();
         playerHealth = GetComponentInChildren<UIPlayerHealth>();
         enemyHealth = GetComponentInChildren<UIEnemyHealth>();
         middleDice = GetComponentInChildren<UIMiddleDice>();
-        LoadScreen = GetComponentInChildren<UILoadScreen>();
-        titlePage = GetComponentInChildren<TitleScreen>();
-        noteBoardDisplay = GetComponentInChildren<UINoteBoardDisplay>();
         enemyStatusImages = enemyHealth.GetComponentsInChildren<Image>();
         enemyStatusText = enemyHealth.GetComponentsInChildren<TMP_Text>();
         playerHealthImages = playerHealth.GetComponentsInChildren<Image>();
@@ -116,8 +113,6 @@ public class UIMain : UIBase<UIMainState> {
         middleDice.ApplyNewState();
         LoadScreen.state = state.uiLoadScreenState;
         LoadScreen.ApplyNewState();
-        noteBoardDisplay.state = state.uiNoteBoardDisplayState;
-        noteBoardDisplay.ApplyNewState();
     }
     
     public void UpdateCurrentEnemy(string enemyName, int currentHealth,int maxHealth, int currentLuck, LegnaHealth target) {

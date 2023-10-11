@@ -88,7 +88,13 @@ namespace MetroidvaniaTools
                 G.I.playerHealth.GainCurrentHealth(G.I.playerHealth.maxHealthPoints);
                 G.I.playerHealth.ModifyPlayerLuckBarValue(-Mathf.RoundToInt( G.I.playerHealth.BurningReduceMaximumProportion * G.I.playerHealth.playerCurrentLuckValue));
                 Sequence sequence = DOTween.Sequence();
-                sequence.InsertCallback(G.I.playerHealth.BurningLuckTime, () => { G.I.playerHealth.luckSkill = false; });
+                sequence.InsertCallback(0f, () => G.I.playerHealth.BurnLuck.SetActive(true));
+                sequence.InsertCallback(0.5f, () => G.I.playerHealth.BurnLuckState.SetActive(true));
+                sequence.InsertCallback(G.I.playerHealth.BurningLuckTime, () => {
+                    G.I.playerHealth.luckSkill = false;
+                    G.I.playerHealth.BurnLuck.SetActive(false);
+                    G.I.playerHealth.BurnLuckState.SetActive(false);
+                });
                 sequence.Play();
                 lastSequence = sequence;
             }

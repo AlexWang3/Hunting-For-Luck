@@ -57,6 +57,9 @@ namespace MetroidvaniaTools
         public int rangeDamage = 20;
         public int rangeDamageToPlayerSelf = 5;
         public int rangeDamageToBossMidBarValue = 10;
+        [Header("Luck Skill")] 
+        public GameObject BurnLuck;
+        public GameObject BurnLuckState;
         protected override void Initialization()
         {
             base.Initialization();
@@ -223,10 +226,13 @@ namespace MetroidvaniaTools
             if (luckSkill) {
                 amount = Mathf.Clamp(amount, 0, amount);
             }
-
+        
             healthPoints = Mathf.Clamp(healthPoints + amount, 0, maxHealthPoints);
             G.UI.playerHealthState.playerHealth = healthPoints;
             G.UI.playerHealthState.MarkDirty();
+            if (healthPoints == 0) {
+                character.isDead = true;
+            }
         }
 
         public void GainHealthFromAttack(int amount) {
