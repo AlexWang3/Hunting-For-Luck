@@ -46,7 +46,7 @@ public class UIPlayerHealth : UIBase<UIPlayerHealthState> {
         oldSequence.Kill();
         Sequence newSequence = DOTween.Sequence();
         if (state.hasSetPlayerName) {
-            newSequence.Insert(0f, playerName.DOText(state.playerName,  nameTransitDuration, true, ScrambleMode.All));
+            newSequence.Insert(0f, playerName.DOText(state.playerName,  nameTransitDuration));
             state.hasSetPlayerName = false;
         }
         previousFill = frontHealthBar.fillAmount;
