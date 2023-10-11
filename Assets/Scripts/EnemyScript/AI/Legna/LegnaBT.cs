@@ -118,23 +118,23 @@ namespace MetroidvaniaTools
             // Phase 1 Behaviours
             Node p1_veryShortBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 3),
-                //p1_crossAttackSequence,
-                //dodge,
-                //guardCounter
+                // new LIdle(character, 3),
+                p1_crossAttackSequence,
+                dodge,
+                guardCounter
             });
             Node p1_shortBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 3),
-                //p1_crossAttackSequence,
-                //dodge,
-                //guardCounter
+                // new LIdle(character, 3),
+                p1_crossAttackSequence,
+                dodge,
+                guardCounter
             });
             Node p1_longBehavior = new RandomSelector(new List<Node>
             {
-                new LIdle(character, 3),
-                //p1_chaseAndJumpAttackSequence,
-                //p1_spinAttackSequence
+                // new LIdle(character, 3),
+                p1_chaseAndJumpAttackSequence,
+                p1_spinAttackSequence
             });
             Node p1_unSeenBehavior = dodge;
             
@@ -220,29 +220,29 @@ namespace MetroidvaniaTools
             Node p2_veryShortBehavior = new RandomSelector(new List<Node>
             {
                 //shortIdle,
-                //closeRandCalibur,
+                closeRandCalibur,
                 backFire,
-                //dodge
+                dodge
             });
             Node p2_shortBehavior = new RandomSelector(new List<Node>
             {
-                shortIdle,
-                //closeRandCalibur,
-                // fire,
-                // backFire,
-                //slashSequence,
-                //twinkleAttack,
-                //dodge
+                //shortIdle,
+                closeRandCalibur,
+                fire,
+                backFire,
+                slashSequence,
+                twinkleAttack,
+                dodge
             });
             Node p2_longBehavior = new RandomSelector(new List<Node>
             {
-                shortIdle,
-                // randomCalibur,
-                //slashSequence,
-                //twinkleAttack,
-                //fire,
-                //p2_chaseAndJumpAttack,
-                //p2_spinAttack
+                // shortIdle,
+                randomCalibur,
+                slashSequence,
+                twinkleAttack,
+                fire,
+                p2_chaseAndJumpAttack,
+                p2_spinAttack
             });
             Node p2_unSeenBehavior = new RandomSelector(new List<Node>
             {
