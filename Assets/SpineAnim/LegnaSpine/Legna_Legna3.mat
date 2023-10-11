@@ -17,7 +17,7 @@ Material:
   - _FIXED_NORMALS_VIEWSPACE
   - _FOG
   - _NORMALMAP
-  - _OLD_HARD_RAMP
+  - _OLD_SOFT_RAMP
   - _RIM_LIGHTING
   - _STRAIGHT_ALPHA_INPUT
   m_InvalidKeywords:
