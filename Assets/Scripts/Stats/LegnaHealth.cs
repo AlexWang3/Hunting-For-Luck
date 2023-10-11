@@ -104,7 +104,7 @@ namespace MetroidvaniaTools
 
             if (hit)
             {
-                recoverTimeCountdown = recoverTimeAfterHit;
+                recoverTimeCountdown = healthPoints > currentLuck? recoverInterval : recoverTimeAfterHit;
             }
             else
             {
@@ -151,7 +151,7 @@ namespace MetroidvaniaTools
             G.I.UIMain.UpdateCurrentEnemy(enemyName, healthPoints, maxHealthPoints, currentLuck, this);
         }
         public void ModifyLuckBarValue(int amount) {
-            currentLuck = Mathf.Clamp(currentLuck  + amount, 0, maxHealthPoints);
+            currentLuck = Mathf.Clamp(currentLuck  + amount, 10, maxHealthPoints);
             if (G.I.UIMain.currentTarget == this) {
                 G.UI.enemyHealthState.enemyCurrentLuckValue = currentLuck;
                 G.UI.enemyHealthState.MarkDirty();

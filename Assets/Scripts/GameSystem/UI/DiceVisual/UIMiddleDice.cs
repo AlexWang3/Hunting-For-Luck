@@ -19,6 +19,8 @@ public class UIMiddleDice : UIBase<UIMiddleDiceState> {
     public Color normalColor;
     public float normalFontSize;
     public Sequence lastSequence;
+    public GameObject diceEffect;
+    public RectTransform diceEffectPlace;
     private void Start() {
         currentDiceNumber = 0;
     }
@@ -29,35 +31,16 @@ public class UIMiddleDice : UIBase<UIMiddleDiceState> {
         }
         
         Sequence mySequence = DOTween.Sequence();
-        switch (state.diceOwner) {
-            case GameSystem.AttackSource.Player:
-                mySequence.Insert(0,middleText.DOColor(playerColor, diceNumberChangeDuration));
-                break;
-            case GameSystem.AttackSource.Enemy:
-                mySequence.Insert(0,middleText.DOColor(enemyColor, diceNumberChangeDuration));
-                break;
-        }
         
-        switch (state.attackLevel) {
-            case GameSystem.AttackLevel.GreatSuccess:
-                mySequence.Insert(0.3f,middleText.DOFontSize(normalFontSize + 10f, diceNumberChangeDuration));
-                break;
-            case GameSystem.AttackLevel.Success:
-                mySequence.Insert(0.3f,middleText.DOFontSize(normalFontSize + 5f, diceNumberChangeDuration));
-                break;
-            case GameSystem.AttackLevel.Normal:
-                mySequence.Insert(0.3f,middleText.DOFontSize(normalFontSize, diceNumberChangeDuration));
-                break;
-            case GameSystem.AttackLevel.Fail:
-                mySequence.Insert(0.3f,middleText.DOFontSize(normalFontSize - 5f, diceNumberChangeDuration));
-                break;
-            case GameSystem.AttackLevel.GreatFail:
-                mySequence.Insert(0.3f,middleText.DOFontSize(normalFontSize - 10f, diceNumberChangeDuration));
-                break;
-        }
+        //mySequence.InsertCallback(0f, () => diceEffect.SetActive(true));
+        //mySequence.InsertCallback(0f, () => AudioManager.Instance.PlaySFX("Dice"));
+        mySequence.InsertCallback(0f, () => Instantiate(diceEffect, diceEffectPlace));
+        mySequence.InsertCallback(0.2f, () => diceEffect.SetActive(true));
+        mySequence.Insert(0f,middleText.DOFontSize(normalFontSize + 10f, diceNumberChangeDuration / 2));
         mySequence.Insert(0f,DOTween.To(SetDiceNumber,currentDiceNumber, state.diceNumber, diceNumberChangeDuration));
-        mySequence.Insert(5f,middleText.DOFontSize(normalFontSize, diceNumberChangeDuration));
-        mySequence.Insert(5f,middleText.DOColor(normalColor, diceNumberChangeDuration));
+        mySequence.Insert(2f,middleText.DOFontSize(normalFontSize, diceNumberChangeDuration));
+        mySequence.Insert(2f,middleText.DOColor(normalColor, diceNumberChangeDuration));
+        //mySequence.InsertCallback(2f, () => diceEffect.SetActive(false));
         mySequence.Play();
         lastSequence = mySequence;
         currentDiceNumber = state.diceNumber;

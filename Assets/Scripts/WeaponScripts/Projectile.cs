@@ -59,13 +59,19 @@ namespace MetroidvaniaTools
         {
             if ((1 << collision.gameObject.layer & damageLayers) != 0)
             {
-                if (collision.gameObject.GetComponent<Health>() != null)
-                {
-                    collision.gameObject.GetComponent<Health>().DealDamage(damageAmount);
+                if (collision.TryGetComponent(out IDamagebale damagebale)) {
+                    HandleCollision(damagebale);
                 }
                 DestroyProjectile();
             }
+        }
 
+        private void HandleCollision(IDamagebale objHealth) {
+            int damage = G.I.DamageCalculation(G.I.playerHealth.healthPoints, objHealth.ReturnHealthPoint(), G.I.playerHealth.rangeDamage,
+                GameSystem.AttackSource.Player);
+            objHealth.TakeDamage(damage);
+            G.I.playerHealth.GainCurrentHealth(-G.I.playerHealth.rangeDamageToPlayerSelf);
+            objHealth.TakeMidBarDamage(G.I.playerHealth.rangeDamageToBossMidBarValue);
         }
 
         protected virtual void DestroyProjectile()

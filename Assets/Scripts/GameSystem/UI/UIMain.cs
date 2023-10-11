@@ -50,6 +50,7 @@ public class UIMain : UIBase<UIMainState> {
     public Image[] middleDiceImage;
     public GameObject DeadScreen;
     public GameObject WinScreen;
+    public Canvas canvas;
     [FormerlySerializedAs("imageFadeTIme")] public float imageFadeTime = 1.2f;
     public float textFadeTime = 1.2f;
     public float midDiceFadeTime = 1.2f;
@@ -89,6 +90,7 @@ public class UIMain : UIBase<UIMainState> {
     
 
     private void Start() {
+        canvas = GetComponent<Canvas>();
         playerHealth = GetComponentInChildren<UIPlayerHealth>();
         enemyHealth = GetComponentInChildren<UIEnemyHealth>();
         middleDice = GetComponentInChildren<UIMiddleDice>();

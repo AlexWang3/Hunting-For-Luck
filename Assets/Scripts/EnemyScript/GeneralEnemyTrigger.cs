@@ -9,6 +9,7 @@ namespace MetroidvaniaTools
     public class GeneralEnemyTrigger : Managers
     {
         public int damageAmount = 20;
+        public int GainHealthAmountFromAttack = 20;
         public bool teleportAfterHit;
         public bool disableColliderAfterHit;
         public Transform teleportPosition = null;
@@ -59,7 +60,7 @@ namespace MetroidvaniaTools
                 }
                 playerHealth.verticalDamageForce = verticalDamageForce;
                 playerHealth.horizontalDamageForce = horizontalDamageForce;
-                legnaHealth.GainHealthFromAttack(50);
+                legnaHealth.GainHealthFromAttack(GainHealthAmountFromAttack);
                 playerHealth.DealDamage(G.I.DamageCalculation( legnaHealth.healthPoints,playerHealth.healthPoints, damageAmount, GameSystem.AttackSource.Enemy));
                 if (!G.I.character.isDashing)
                 {

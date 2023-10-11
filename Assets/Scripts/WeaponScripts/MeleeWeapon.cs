@@ -7,6 +7,7 @@ namespace MetroidvaniaTools
     public class MeleeWeapon : MonoBehaviour
     {
         [SerializeField] private int damageAmount = 20;
+        public int GainHealthAmountFromAttack = 5;
         private Character character;
         private PlayerHealth playerHealth;
         private Rigidbody2D rb;
@@ -63,12 +64,12 @@ namespace MetroidvaniaTools
                 collided = true;
             }
 
-            int damage = G.I.DamageCalculation(playerHealth.healthPoints, objHealth.ReturnHealthPoint(), damageAmount,
+            int damage = G.I.DamageCalculation(playerHealth.healthPoints, objHealth.ReturnHealthPoint(), G.I.playerHealth.meleeDamage,
                 GameSystem.AttackSource.Player);
-            playerHealth.GainHealthFromAttack(5);
+            playerHealth.GainHealthFromAttack(GainHealthAmountFromAttack);
             objHealth.TakeDamage(damage);
             if (playerHealth.luckSkill) {
-                objHealth.TakeMidBarDamage(damage);
+                objHealth.TakeMidBarDamage(G.I.playerHealth.meleeMidBarDamageDuringLuckSkill);
             }
 
             StartCoroutine(NoLongerColliding());
