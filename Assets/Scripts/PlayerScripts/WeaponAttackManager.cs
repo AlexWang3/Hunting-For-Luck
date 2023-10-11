@@ -96,6 +96,7 @@ namespace MetroidvaniaTools
 
         protected virtual void FireWeapon()
         {
+            G.I.playerHealth.GainCurrentHealth(-G.I.playerHealth.rangeDamageToPlayerSelf);
             character.isShooting = true;
             shootCountDown = shootInterval;
             disableCountDown = disableTime;

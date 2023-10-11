@@ -114,13 +114,13 @@ public class GameSystem : MonoBehaviour {
             G.UI.uiMiddleDiceState.diceNumber = 0;
             G.UI.uiMiddleDiceState.MarkDirty();
             return Mathf.RoundToInt(damageAmount * 3 * damageFloatValue);
-        }
+        }*/
         if (playerHealth.luckSkill && attackSource == AttackSource.Enemy) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatSuccess;
             G.UI.uiMiddleDiceState.diceNumber = selfHealth + targetHealth;
             G.UI.uiMiddleDiceState.MarkDirty();
-            return Mathf.RoundToInt(damageAmount * 0.3f * damageFloatValue);
-        }*/
+            return 0;
+        }
 
         if (randomNumber < 0.1f * selfHealth) {
             G.UI.uiMiddleDiceState.attackLevel = AttackLevel.GreatSuccess;
