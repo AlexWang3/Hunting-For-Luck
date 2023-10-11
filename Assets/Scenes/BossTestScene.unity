@@ -114903,7 +114903,7 @@ MonoBehaviour:
   centerRef: {fileID: 2038673540}
   startRef: {fileID: 1186537682}
   shield: {fileID: 449558566}
-  p1_MaxToughness: 20
+  p1_MaxToughness: 1
   p2_MaxToughness: 30
   curState: 0
   health: {fileID: 0}

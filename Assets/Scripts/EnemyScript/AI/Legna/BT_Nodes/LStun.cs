@@ -23,10 +23,10 @@ namespace MetroidvaniaTools
             if (character.curState != LegnaStates.STUN)
             {
                 character.curState = LegnaStates.STUN;
-                Debug.Log("STUNED");
                 character.FacingPlayer();
                 character.GeneralIdle();
                 stunCountDown = stunTime;
+                character.hitBox.GetComponent<Animator>().SetTrigger("Cancle");
                 character.ST_endTrigger = false;
                 character.anim.SetTrigger("StunStart");
                 moveIndex = 1;
