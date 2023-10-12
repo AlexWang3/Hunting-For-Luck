@@ -13,9 +13,10 @@ namespace MetroidvaniaTools
 
 
         private int moveIndex;
+        private bool sleepTriggered;
         public LSleep(LegnaCharacter character)
-            => (this.character) =
-                (character);
+            => (this.character, this.sleepTriggered) =
+                (character, false);
         
         public override NodeState Evaluate()
         {
@@ -32,10 +33,17 @@ namespace MetroidvaniaTools
             state = NodeState.RUNNING;
             if (moveIndex == 1)
             {
+                if (character.player.transform.position.x > character.cameraStartRef.transform.position.x && !sleepTriggered)
+                {
+                    SleepEvent?.Invoke();
+                    sleepTriggered = true;
+                }
+                
                 if (character.player.transform.position.x > character.startRef.transform.position.x)
                 {
                     character.anim.SetTrigger("SleepEnd");
                     character.anim.SetBool("P1", true);
+                    AudioManager.Instance.PlayBGM("BossFirst");
                     character.col.enabled = true;
                     character.rb.simulated = true;
                     moveIndex = 2;
@@ -45,8 +53,6 @@ namespace MetroidvaniaTools
             {
                 if (character.AW_endTrigger)
                 {
-                    SleepEvent?.Invoke();
-                    AudioManager.Instance.PlayBGM("BossFirst");
                     character.AW_endTrigger = false;
                     character.curState = LegnaStates.NULL;
                     state = NodeState.SUCCESS;

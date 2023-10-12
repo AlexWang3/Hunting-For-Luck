@@ -7,7 +7,8 @@ using MetroidvaniaTools;
 
 public class TargetGroupCameraControl : MonoBehaviour {
     public Transform Player;
-    public Transform Boss;
+    public Transform Boss1;
+    public Transform Boss2;
     public CinemachineTargetGroup targetGroup;
     public float playerRadiusBeforeAwake;
     public float playerRadiusAfterAwake;
@@ -24,7 +25,8 @@ public class TargetGroupCameraControl : MonoBehaviour {
     public void AddBossToTargetGroup() {
         List<CinemachineTargetGroup.Target> targets = new List<CinemachineTargetGroup.Target>();
         targets.Add(new CinemachineTargetGroup.Target{target = Player, radius = playerRadiusAfterAwake, weight = playerWeight});
-        targets.Add(new CinemachineTargetGroup.Target{target = Boss, radius = bossRadiusAwake, weight = bossWeight});
+        targets.Add(new CinemachineTargetGroup.Target{target = Boss1, radius = bossRadiusAwake, weight = bossWeight});
+        targets.Add(new CinemachineTargetGroup.Target{target = Boss2, radius = bossRadiusAwake, weight = bossWeight});
         targetGroup.m_Targets = targets.ToArray();
     }
 }

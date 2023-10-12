@@ -43,6 +43,7 @@ namespace MetroidvaniaTools
         public GameObject suck;
         public Transform centerRef;
         public Transform startRef;
+        public Transform cameraStartRef;
         public GameObject shield;
         public int p1_MaxToughness;
         public int p2_MaxToughness;
