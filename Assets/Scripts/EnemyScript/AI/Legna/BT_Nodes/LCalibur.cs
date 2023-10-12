@@ -35,6 +35,7 @@ namespace MetroidvaniaTools
                 character.NA_finishTrigger = false;
                 chargeCountDown = maxChargeTime;
                 effectTriggered = false;
+                character.playerHorizontalMovement.velocityOffset = 0;
                 character.caliburCharge.SetActive(false);
                 character.suck.SetActive(false);
                 character.curState = LegnaStates.NULL;
