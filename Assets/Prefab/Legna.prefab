@@ -34579,7 +34579,7 @@ Transform:
   - {fileID: 5466649884692366509}
   - {fileID: 5065612328301899654}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6528965158024494677
 Rigidbody2D:
@@ -34678,7 +34678,7 @@ MonoBehaviour:
   shortRangeThreshold: 2
   hitPoint: {fileID: 7626371095656363326}
   explosions: {fileID: 5450674189619188311}
-  spinAttackHitBox: {fileID: 8032214326157457022}
+  HitBox: {fileID: 8032214326157457022}
   calibur: {fileID: 6889330815982167407}
   fireMuzzle: {fileID: 4745548052378864543}
   bullet: {fileID: 6911915084819103841}
@@ -34698,6 +34698,7 @@ MonoBehaviour:
   playerDistanceClass: 0
   toughness: 0
   isStagger: 0
+  stunHandled: 0
   AW_endTrigger: 0
   ST_endTrigger: 0
   JA_airTrigger: 0

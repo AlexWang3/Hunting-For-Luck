@@ -23,6 +23,20 @@ namespace MetroidvaniaTools
         
         public override NodeState Evaluate()
         {
+            if (character.HandleHit())
+            {
+                state = NodeState.FAILURE;
+                if (character.stunHandled)
+                    return state;
+                character.GeneralIdle();
+                character.JA_airTrigger = false;
+                character.JA_finishTrigger = false;
+                moveIndex = 0;
+                character.curState = LegnaStates.NULL;
+                character.stunHandled = true;
+                return state;
+            }
+            
             if (character.curState != LegnaStates.JUMPATTACK)
             {
                 // Enter move

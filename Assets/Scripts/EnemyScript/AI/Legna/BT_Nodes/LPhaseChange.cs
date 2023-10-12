@@ -19,11 +19,17 @@ namespace MetroidvaniaTools
         {
             character.HandleHit();
             character.isStagger = false;
+            
             if (character.curState != LegnaStates.PHASE_CHANGING)
             {
                 character.curState = LegnaStates.PHASE_CHANGING;
                 character.FacingPlayer();
                 character.GeneralIdle();
+                character.stunHandled = false;
+                character.shield.SetActive(false);
+                character.HitBox.GetComponent<Animator>().SetBool("SA", false);
+                character.HitBox.GetComponent<Animator>().SetTrigger("CANCLE");
+                character.anim.SetBool("Running", false);
                 moveIndex = 1;
                 character.anim.SetTrigger("PhaseChange");
             }
@@ -40,7 +46,6 @@ namespace MetroidvaniaTools
             }
             else if (moveIndex == 2)
             {
-                character.FacingPlayer();
                 if (character.PC_endTrggier)
                 {
                     AudioManager.Instance.PlayBGM("BossSecond");

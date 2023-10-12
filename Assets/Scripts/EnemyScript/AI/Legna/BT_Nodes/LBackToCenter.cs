@@ -22,6 +22,19 @@ namespace MetroidvaniaTools
         
         public override NodeState Evaluate()
         {
+            if (character.HandleHit())
+            {
+                state = NodeState.FAILURE;
+                if (character.stunHandled)
+                    return state;
+                character.GeneralIdle();
+                character.Dodge_startTrigger = false;
+                character.Dodge_finishTrigger = false;
+                character.stunHandled = true;
+                character.curState = LegnaStates.NULL;
+                return state;
+            }
+            
             if (character.curState != LegnaStates.POS_ADJUST)
             {
                 character.curState = LegnaStates.POS_ADJUST;

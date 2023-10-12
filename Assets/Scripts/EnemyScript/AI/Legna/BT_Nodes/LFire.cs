@@ -19,6 +19,18 @@ namespace MetroidvaniaTools
         
         public override NodeState Evaluate()
         {
+            if (character.HandleHit())
+            {
+                state = NodeState.FAILURE;
+                if (character.stunHandled)
+                    return state;
+                character.GeneralIdle();
+                character.Dodge_finishTrigger = false;
+                character.curState = LegnaStates.NULL;
+                character.stunHandled = true;
+                return state;
+            }
+            
             if (character.curState != LegnaStates.FIRE)
             {
                 character.curState = LegnaStates.FIRE;
@@ -30,6 +42,7 @@ namespace MetroidvaniaTools
             state = NodeState.RUNNING;
             if (character.Dodge_finishTrigger)
             {
+                character.Dodge_finishTrigger = false;
                 character.GeneralIdle();
                 character.curState = LegnaStates.NULL;
                 state = NodeState.SUCCESS;

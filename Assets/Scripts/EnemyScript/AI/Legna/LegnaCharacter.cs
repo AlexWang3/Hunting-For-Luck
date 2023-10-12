@@ -32,7 +32,7 @@ namespace MetroidvaniaTools
         public float shortRangeThreshold;
         public GameObject hitPoint;
         public GameObject explosions;
-        public GameObject spinAttackHitBox;
+        public GameObject HitBox;
         public GameObject calibur;
         public GameObject fireMuzzle;
         public GameObject bullet;
@@ -54,6 +54,7 @@ namespace MetroidvaniaTools
         [HideInInspector] public int playerDistanceClass;
         [HideInInspector] public int toughness;
         [HideInInspector] public bool isStagger;
+        [HideInInspector] public bool stunHandled;
         
         // Awake
         [HideInInspector] public bool AW_endTrigger;
@@ -113,6 +114,7 @@ namespace MetroidvaniaTools
             groundCheckDisabled = false;
             toughness = p1_MaxToughness;
             isStagger = false;
+            stunHandled = false;
             
             mr = GetComponentInChildren<MeshRenderer>();
             mpb_red = new MaterialPropertyBlock();

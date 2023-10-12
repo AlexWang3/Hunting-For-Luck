@@ -121,6 +121,7 @@ namespace MetroidvaniaTools
             character.isShooting = false;
             character.isMeleeAttacking = false;
             character.anim.SetBool("GettingHit", true);
+            GetComponentInChildren<MeleeWeapon>().gameObject.GetComponent<Animator>().SetTrigger("CANCLE");
             character.input.DisableInput();
         }
 

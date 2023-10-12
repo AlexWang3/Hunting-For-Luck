@@ -27,6 +27,26 @@ namespace MetroidvaniaTools
 
         public override NodeState Evaluate()
         {
+            if (character.HandleHit())
+            {
+                state = NodeState.FAILURE;
+                if (character.stunHandled)
+                    return state;
+                character.GeneralIdle();
+                character.health.isGuarding = false;
+                character.Guard_startTrigger = false;
+                character.Guard_endTrigger = false;
+                character.Counter_startTrigger = false;
+                character.Counter_finishTrigger = false;
+                character.guardCancelTriggered = false;
+                guardEndCountDown = maxGuardTime;
+                character.shield.SetActive(false);
+                character.curState = LegnaStates.NULL;
+                character.stunHandled = true;
+                return state;
+            }
+            
+            
             if (character.curState != LegnaStates.GUARD_COUNTER)
             {
                 if (((float)character.health.healthPoints / character.health.maxHealthPoints) > .5f)
@@ -53,6 +73,7 @@ namespace MetroidvaniaTools
                 character.Counter_startTrigger = false;
                 character.Counter_finishTrigger = false;
                 character.guardCancelTriggered = false;
+                character.shield.SetActive(false);
                 guardEndCountDown = maxGuardTime;
                 character.anim.SetTrigger("GuardCounterStart");
                 moveIndex = 1;

@@ -23,12 +23,12 @@ namespace MetroidvaniaTools
         public override NodeState Evaluate()
         {
 
-            if (character.HandleHit())
-            {
-                running = false;
-                state = NodeState.FAILURE;
-                return state;
-            }
+            // if (character.HandleHit())
+            // {
+            //     running = false;
+            //     state = NodeState.FAILURE;
+            //     return state;
+            // }
             
             if (!running && distanceClass != character.playerDistanceClass)
             {
@@ -41,7 +41,7 @@ namespace MetroidvaniaTools
                 running = true;
             else
             {
-                state = NodeState.SUCCESS;
+                // state = NodeState.SUCCESS;
                 running = false;
             }
             

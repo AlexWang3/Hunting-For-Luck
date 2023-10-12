@@ -196,22 +196,26 @@ namespace MetroidvaniaTools
             switch (curForwardSequence)
             {
                 case 0:
+                    defaultForce = 600;
                     anim.SetTrigger("Stab1");
                     triggerInfo = MeleeAttackType.STAB1;
                     curForwardSequence++;
                     break;
                 case 1:
+                    defaultForce = 600;
                     anim.SetTrigger("Stab2");
                     triggerInfo = MeleeAttackType.STAB2;
                     curForwardSequence++;
                     break;
                 case 2:
+                    defaultForce = 1000;
                     anim.SetTrigger("Stab3");
                     triggerInfo = MeleeAttackType.STAB3;
                     isForward3 = true;
                     curForwardSequence++;
                     break;
                 case 3:
+                    defaultForce = 600;
                     anim.SetTrigger("Stab4Hold");
                     triggerInfo = MeleeAttackType.STAB4;
                     isForward4 = true;

@@ -26,6 +26,22 @@ namespace MetroidvaniaTools
 
         public override NodeState Evaluate()
         {
+            if (character.HandleHit())
+            {
+                state = NodeState.FAILURE;
+                if (character.stunHandled)
+                    return state;
+                character.GeneralIdle();
+                character.NA_finishTrigger = false;
+                chargeCountDown = maxChargeTime;
+                effectTriggered = false;
+                character.caliburCharge.SetActive(false);
+                character.suck.SetActive(false);
+                character.curState = LegnaStates.NULL;
+                character.stunHandled = true;
+                return state;
+            }
+            
             if (character.curState != LegnaStates.EXCALIBUR)
             {
                 // Enter move

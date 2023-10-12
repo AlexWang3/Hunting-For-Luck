@@ -20,6 +20,19 @@ namespace MetroidvaniaTools
         
         public override NodeState Evaluate()
         {
+            
+            if (character.HandleHit())
+            {
+                state = NodeState.FAILURE;
+                if (character.stunHandled)
+                    return state;
+                character.GeneralIdle();
+                character.anim.SetBool("Running", false);
+                character.curState = LegnaStates.NULL;
+                character.stunHandled = true;
+                return state;
+            }
+            
             if (character.GetPlayerDistance() < successDistance)
             {
                 character.anim.SetBool("Running", false);

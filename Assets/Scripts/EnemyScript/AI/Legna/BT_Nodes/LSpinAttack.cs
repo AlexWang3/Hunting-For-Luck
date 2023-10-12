@@ -25,6 +25,23 @@ namespace MetroidvaniaTools
         
         public override NodeState Evaluate()
         {
+            
+            if (character.HandleHit())
+            {
+                state = NodeState.FAILURE;
+                if (character.stunHandled)
+                    return state;
+                character.GeneralIdle();
+                character.HitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit = false;
+                character.SA_dashTrigger = false;
+                character.SA_finishTrigger = false;
+                character.HitBox.GetComponent<Animator>().SetBool("SA", false);
+                character.curState = LegnaStates.NULL;
+                character.stunHandled = true;
+                return state;
+            }
+            
+            
             if (character.curState != LegnaStates.SPINATTACK)
             {
                 character.curState = LegnaStates.SPINATTACK;
@@ -32,7 +49,7 @@ namespace MetroidvaniaTools
                 character.anim.SetTrigger("SpinAttackStart");
                 character.FacingPlayer();
                 moveIndex = 1;
-                character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit = false;
+                character.HitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit = false;
                 character.SA_dashTrigger = false;
                 character.SA_finishTrigger = false;
             }
@@ -46,13 +63,13 @@ namespace MetroidvaniaTools
                     character.FacingPlayer();
                     slowSpinTimeCountDown = slowSpinTime;
                     // Physics2D.IgnoreCollision(character.col, character.playerCollider, true);
-                    character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", true);
+                    character.HitBox.GetComponent<Animator>().SetBool("SA", true);
                     moveIndex = 2;
                 }
             }
             else if (moveIndex == 2)
             {
-                if (slowSpinTimeCountDown <= 0 || character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit)
+                if (slowSpinTimeCountDown <= 0 || character.HitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit)
                 {
                     moveIndex = 3;
                     fastSpinTimeCountDown = fastSpinTime;
@@ -65,11 +82,11 @@ namespace MetroidvaniaTools
             }
             else if (moveIndex == 3)
             {
-                if (fastSpinTimeCountDown <= 0 || character.spinAttackHitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit)
+                if (fastSpinTimeCountDown <= 0 || character.HitBox.GetComponent<GeneralEnemyTrigger>().alreadyHit)
                 {
                     moveIndex = 4;
                     character.GeneralIdle();
-                    character.spinAttackHitBox.GetComponent<Animator>().SetBool("SA", false);
+                    character.HitBox.GetComponent<Animator>().SetBool("SA", false);
                     character.anim.SetTrigger("SpinAttackFinish");
                 }
                 else

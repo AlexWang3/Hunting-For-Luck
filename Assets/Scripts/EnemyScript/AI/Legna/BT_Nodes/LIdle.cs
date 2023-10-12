@@ -17,6 +17,18 @@ namespace MetroidvaniaTools
         
         public override NodeState Evaluate()
         {
+            if (character.HandleHit())
+            {
+                state = NodeState.FAILURE;
+                if (character.stunHandled)
+                    return state;
+                character.GeneralIdle();
+                countDown = idleTime;
+                character.curState = LegnaStates.NULL;
+                character.stunHandled = true;
+                return state;
+            }
+            
             if (character.curState != LegnaStates.IDLE)
             {
                 character.curState = LegnaStates.IDLE;

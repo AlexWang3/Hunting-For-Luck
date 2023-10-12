@@ -19,9 +19,17 @@ namespace MetroidvaniaTools
             if (character.curState != LegnaStates.DEATH)
             {
                 character.curState = LegnaStates.DEATH;
-                Debug.Log("DEAD");
                 character.FacingPlayer();
                 character.GeneralIdle();
+                
+                character.stunHandled = false;
+                character.shield.SetActive(false);
+                character.caliburCharge.SetActive(false);
+                character.suck.SetActive(false);
+                character.HitBox.GetComponent<Animator>().SetBool("SA", false);
+                character.HitBox.GetComponent<Animator>().SetTrigger("CANCLE");
+                character.anim.SetBool("Running", false);
+                
                 character.rb.simulated = false;
                 character.col.enabled = false;
                 character.anim.SetTrigger("Death");
